@@ -1,0 +1,70 @@
+                        JEZ TOOLKIT FREE EDITION LICENSE
+
+       Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
+
+This is the license for Jez Toolkit (JTK) Free Edition version 1.0. It covers
+private use, use of third-party application programs based on Jez Toolkit (JTK),
+and development of free software.
+
+                           COPYRIGHT AND RESTRICTIONS
+
+The Jez Toolkit (JTK) toolkit is a product of OneCube Software Solutions.
+
+You may copy this version of the Jez Toolkit (JTK) Free Edition provided that the
+entire archive is distributed unchanged and as a whole, including this notice.
+
+You may use this version of the Jez Toolkit (JTK) Free Edition to compile, link
+and run application programs legally developed by third parties.
+
+You may use the Jez Toolkit (JTK) Free Edition to create application programs
+provided that you adhere to the following conditions.
+    * You accept this license.
+    * Your software does not require modifications to the Jez Toolkit (JTK) Free
+      Edition.
+    * ONE of the following requirements is satisfied.
+      -- Users of your software can freely obtain source code for the software,
+         freely modify the source code (possibly with restrictions on copyright
+         notices, attributions and legal responsibility), and freely redistribute
+         original or modified versions of the software.
+      -- Your software is distributed under the GNU GENERAL PUBLIC LICENSE,
+         version 2 or later, as defined by the Free Software Foundation.
+      -- Your software is distributed under the GNU LIBRARY GENERAL PUBLIC LICENSE,
+         version 2 or later, as defined by the Free Software Foundation.
+
+If you are paid to develop something with Jez Toolkit (JTK) Free Edition or it
+is a part of your job, the following conditions apply in addition to the above terms.
+    * Your software must not require libraries, programs, data or documentation
+      that are not available outside your organization in order to compile or use.
+    * If and when your organization starts using the software, you must notify
+      OneCube Software Solutions of the following.
+        -- Your organization's name and purpose.
+        -- The software's name and purpose.
+        -- The software's license.
+        -- That your organization considers the software to be free software.
+
+Further, you may use the Jez Toolkit (JTK) Free Edition to create reusable components
+(such as libraries) provided that you accept the above terms, and in addition the
+following conditions.
+      * Your components' license includes the following text:
+
+        [Your Package] requires the Jez Toolkit (JTK) library, a product of OneCube
+        Software Solutions. Please visit http://www.onecube.in/jtk for more
+        information.
+
+      * Jez Toolkit (JTK) Free Edition is not distributed as an integral part of
+        your components.
+
+                             LIMITATIONS OF LIABILITY
+
+OneCube Software Solutions makes no obligation under this license to support or
+upgrade Jez Toolkit (JTK) Free Edition, or assist in the use of Jez Toolkit (JTK)
+Free Edition.
+
+In no event shall OneCube Software Solutions be liable for any lost revenue or
+profits or other direct, indirect, special, incidental or consequential damages,
+even if OneCube Software Solutions has been advised of the possibility of such
+damages.
+
+Jez Toolkit (JTK) FREE EDITION IS PROVIDED AS IS WITH NO WARRANTY OF ANY KIND,
+INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.

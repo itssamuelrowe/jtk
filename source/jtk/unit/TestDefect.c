@@ -1,0 +1,84 @@
+/*
+ *                              Jez Toolkit (JTK)
+ *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
+ *
+ * This file is part of Jez Toolkit Free Edition, version 1.0.
+ *
+ * See the file "LICENSE" included in the distribution for the terms and conditions,
+ * or visit http://www.onecube.in/jtk/free-license.
+ *
+ * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
+ * or fully, into your source code.
+ */
+
+// Saturday, June 20, 2018
+
+#include <jtk/core/String.h>
+#include <jtk/unit/TestDefect.h>
+
+/*******************************************************************************
+ * TestDefect                                                                  *
+ *******************************************************************************/
+
+jtk_TestDefect_t* jtk_TestDefect_new(const uint8_t* sourceCodePath,
+    int32_t lineNumber, const uint8_t* message, jtk_TestDefectType_t type) {
+    jtk_TestDefect_t* defect = jtk_Memory_allocate(jtk_TestDefect_t, 1);
+    defect->m_sourceCodePath = (sourceCodePath == NULL)? NULL : jtk_String_new(sourceCodePath);
+    defect->m_lineNumber = lineNumber;
+    defect->m_message = (message == NULL)? NULL : jtk_String_new(message);
+    defect->m_type = type;
+
+    return defect;
+}
+
+jtk_TestDefect_t* jtk_TestDefect_newFailure(const uint8_t* sourceCodePath,
+    int32_t lineNumber, const uint8_t* message) {
+    return jtk_TestDefect_new(sourceCodePath, lineNumber, message, JTK_TEST_DEFECT_FAILURE);
+}
+
+jtk_TestDefect_t* jtk_TestDefect_newError(const uint8_t* sourceCodePath,
+    int32_t lineNumber, const uint8_t* message) {
+    return jtk_TestDefect_new(sourceCodePath, lineNumber, message, JTK_TEST_DEFECT_ERROR);
+}
+
+jtk_TestDefect_t* jtk_TestDefect_newUnknownError(const uint8_t* sourceCodePath,
+    int32_t lineNumber, const uint8_t* message) {
+    return jtk_TestDefect_new(sourceCodePath, lineNumber, message, JTK_TEST_DEFECT_UNKNOWN_ERROR);
+}
+
+void jtk_TestDefect_delete(jtk_TestDefect_t* defect) {
+    jtk_Assert_assertObject(defect, "The specified test defect is null.");
+
+    if (defect->m_sourceCodePath != NULL) {
+        jtk_String_delete(defect->m_sourceCodePath);
+    }
+
+    if (defect->m_message != NULL) {
+        jtk_String_delete(defect->m_message);
+    }
+
+    jtk_Memory_deallocate(defect);
+}
+
+const uint8_t* jtk_TestDefect_getMessage(jtk_TestDefect_t* defect) {
+    jtk_Assert_assertObject(defect, "The specified test defect is null.");
+
+    return defect->m_message;
+}
+
+const uint8_t* jtk_TestDefect_getSourceCodePath(jtk_TestDefect_t* defect) {
+    jtk_Assert_assertObject(defect, "The specified test defect is null.");
+
+    return defect->m_sourceCodePath;
+}
+int32_t jtk_TestDefect_getLineNumber(jtk_TestDefect_t* defect) {
+    jtk_Assert_assertObject(defect, "The specified test defect is null.");
+
+    return defect->m_lineNumber;
+}
+
+jtk_TestDefectType_t jtk_TestDefect_getType(jtk_TestDefect_t* defect) {
+    jtk_Assert_assertObject(defect, "The specified test defect is null.");
+
+    return defect->m_type;
+}

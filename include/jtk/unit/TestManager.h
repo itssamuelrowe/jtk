@@ -1,0 +1,140 @@
+/*
+ *                              Jez Toolkit (JTK)
+ *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
+ *
+ * This file is part of Jez Toolkit Free Edition, version 1.0.
+ *
+ * See the file "LICENSE" included in the distribution for the terms and conditions,
+ * or visit http://www.onecube.in/jtk/free-license.
+ *
+ * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
+ * or fully, into your source code.
+ */
+
+// Tuesday, May 22, 2018
+
+#ifndef JTK_UNIT_TEST_MANAGER_H
+#define JTK_UNIT_TEST_MANAGER_H
+
+#include <jtk/Configuration.h>
+#include <jtk/collection/list/ArrayList.h>
+#include <jtk/unit/TestCase.h>
+#include <jtk/unit/TestSuite.h>
+#include <jtk/unit/TestListener.h>
+
+/*******************************************************************************
+ * TestManager                                                                 *
+ *******************************************************************************/
+
+/**
+ * @class TestManager
+ * @ingroup jtk_unit
+ * @author Samuel Rowe
+ * @since JTK 1.0
+ */
+struct jtk_TestManager_t {
+    jtk_ArrayList_t* m_listeners;
+};
+
+/**
+ * @memberof TestManager
+ */
+typedef struct jtk_TestManager_t jtk_TestManager_t;
+
+/**
+ * @memberof TestManager
+ */
+jtk_TestManager_t* jtk_TestManager_new();
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_delete(jtk_TestManager_t* manager);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_addTestListener(jtk_TestManager_t* result, jtk_TestListener_t* listener);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_removeTestListener(jtk_TestManager_t* result, jtk_TestListener_t* listener);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnStartListeners(jtk_TestManager_t* manager);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnStopListeners(jtk_TestManager_t* manager);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnEnterSuiteListeners(jtk_TestManager_t* manager, jtk_TestSuite_t* suite);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnExitSuiteListeners(jtk_TestManager_t* manager, jtk_TestSuite_t* suite);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnEnterCaseListeners(jtk_TestManager_t* manager, jtk_TestCase_t* suite);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnExitCaseListeners(jtk_TestManager_t* manager, jtk_TestCase_t* suite);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnEnterCaseListeners(jtk_TestManager_t* manager, jtk_TestCase_t* testCase);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnExitCaseListeners(jtk_TestManager_t* manager, jtk_TestCase_t* testCase);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnCaseSuccessListeners(jtk_TestManager_t* manager, jtk_TestCase_t* testCase);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnCaseFailureListeners(jtk_TestManager_t* manager, jtk_TestCase_t* testCase);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnCaseErrorListeners(jtk_TestManager_t* manager, jtk_TestCase_t* testCase);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_notifyOnCaseUnknownErrorListeners(jtk_TestManager_t* manager, jtk_TestCase_t* testCase);
+
+/*
+jtk_TestPath_t* jtk_TestManager_resolve(jtk_TestManager_t* manager, const uint8_t* path);
+jtk_ArrayList_t* jtk_TestManager_resolveAll(jtk_TestManager_t* manager, const uint8_t* path);
+void jtk_TestManager_runPath(jtk_TestManager_t* manager, jtk_TestPath_t* path, jtk_TestResult_t* result);
+*/
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_runSuite(jtk_TestManager_t* manager, jtk_TestSuite_t* suite);
+
+/**
+ * @memberof TestManager
+ */
+void jtk_TestManager_runCase(jtk_TestManager_t* manager, jtk_TestCase_t* testCase);
+
+#endif /* JTK_UNIT_TEST_MANAGER_H */

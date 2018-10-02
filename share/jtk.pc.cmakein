@@ -1,0 +1,11 @@
+library_dir=@JTK_INSTALL_LIBRARY_DIR@
+include_dir=@JTK_INSTALL_INCLUDE_DIR@
+
+Name: Jezzy Toolkit (JTK)
+Description: A portable toolkit for developing applications.
+Version: @JTK_PROJECT_VERSION@
+Requires: 
+Cflags: -I${include_dir}
+Libs: -L${library_dir} -ljtk
+
+# icu-i18n >= 57.1, libani >= 1.0
