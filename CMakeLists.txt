@@ -12,7 +12,7 @@ project("Jez Toolkit (JTK)")
 
 # Project Version Number
 
-set(JTK_PROJECT_VERSION_MAJOR 1)
+set(JTK_PROJECT_VERSION_MAJOR 2)
 set(JTK_PROJECT_VERSION_MINOR 0)
 set(JTK_PROJECT_VERSION_PATCH 0)
 set(JTK_PROJECT_VERSION_TWEAK 0)
@@ -44,15 +44,37 @@ set(
 
     ${PROJECT_SOURCE_DIR}/source/jtk/Configuration.c
 
+    ${PROJECT_SOURCE_DIR}/source/jtk/core/CString.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/core/CStringObjectAdapter.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/core/DefaultErrorHandler.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Double.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Float.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Integer.c
-    ${PROJECT_SOURCE_DIR}/source/jtk/core/String.c
-    ${PROJECT_SOURCE_DIR}/source/jtk/core/StringObjectAdapter.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/PointerObjectAdapter.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/core/String.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/core/StringBuilder.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/core/StringObjectAdapter.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/core/System.c
+
+    # Input/Output Module
+
+    ${PROJECT_SOURCE_DIR}/source/jtk/io/DataInputStream.c
 
     # TODO: Move this to a separate module.
     ${PROJECT_SOURCE_DIR}/source/jtk/math/Math.c
+)
+
+set(
+    JTK_NATIVE_SOURCE
+
+    ${PROJECT_SOURCE_DIR}/source/linux/com/onecube/jtk/fs/NativeFileHandle.c
+    ${PROJECT_SOURCE_DIR}/source/linux/com/onecube/jtk/support/NativeError.c
+)
+
+set(
+    JTK_CLAP_SOURCE
+
+    ${PROJECT_SOURCE_DIR}/source/jtk/clap/ClapParser.c
 )
 
 set(
@@ -76,12 +98,44 @@ set(
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/map/HashMapEntryIterator.c
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/map/HashMapKeyIterator.c
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/map/HashMapValueIterator.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/collection/map/RBTreeMap.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/collection/map/RBTreeMapEntry.c
 
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/queue/ArrayQueue.c
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/queue/LinkedQueue.c
 
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/stack/ArrayStack.c
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/stack/LinkedStack.c
+)
+
+set(
+    JTK_FS_SOURCE
+
+    ${PROJECT_SOURCE_DIR}/source/jtk/fs/PathHandle.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/fs/Path.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/fs/FileInputStream.c
+)
+
+set(
+    JTK_HOKUM_SOURCE
+
+    ${PROJECT_SOURCE_DIR}/source/jtk/hokum/Tape.c
+)
+
+set(
+    JTK_IO_SOURCE
+
+    ${PROJECT_SOURCE_DIR}/source/jtk/io/BufferedInputStream.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/io/DataInputStream.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/io/InputStream.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/io/InputStreamHelper.c
+)
+
+set(
+    JTK_LOG_SOURCE
+
+    # ${PROJECT_SOURCE_DIR}/source/jtk/log/Logger.c
+    # ${PROJECT_SOURCE_DIR}/source/jtk/log/LogRecord.c
 )
 
 set(
@@ -101,30 +155,41 @@ set(
 
 set(CMAKE_VERBOSE_MAKEFILE off)
 
-add_library(jtk-core ${JTK_CORE_SOURCE})
-# target_compile_options(jtk-core PUBLIC -Wall -Wswitch -g)
-target_compile_options(jtk-core PUBLIC -w -g)
+add_library(
+    jtk-core
 
-add_library(jtk-collection ${JTK_COLLECTION_SOURCE})
-# target_compile_options(jtk-collection PUBLIC -Wall -Wswitch -g)
-target_compile_options(jtk-collection PUBLIC -w -g)
-target_link_libraries(jtk-collection jtk-core)
+    ${JTK_CORE_SOURCE}
+    ${JTK_COLLECTION_SOURCE}
+    ${JTK_LOG_SOURCE}
+    ${JTK_IO_SOURCE}
+    ${JTK_HOKUM_SOURCE}
+    ${JTK_UNIT_SOURCE}
+    ${JTK_CLAP_SOURCE}
+    ${JTK_NATIVE_SOURCE}
+    ${JTK_FS_SOURCE})
 
-add_library(jtk-unit ${JTK_UNIT_SOURCE})
+target_compile_options(jtk-core PUBLIC -Wall -g)
+# target_compile_options(jtk-core PUBLIC -w -g)
+
+# add_library(jtk-collection ${JTK_COLLECTION_SOURCE})
 # target_compile_options(jtk-collection PUBLIC -Wall -Wswitch -g)
-target_compile_options(jtk-collection PUBLIC -w -g)
-target_link_libraries(jtk-unit jtk-core jtk-collection)
+# target_compile_options(jtk-collection PUBLIC -w -g)
+# target_link_libraries(jtk-collection jtk-core)
+
+# add_library(jtk-log ${JTK_LOG_SOURCE})
+# target_compile_options(jtk-log PUBLIC -Wall -Wswitch -g)
+# target_compile_options(jtk-log PUBLIC -w -g)
+# target_link_libraries(jtk-log jtk-core jtk-collection)
+
+# add_library(jtk-unit ${JTK_UNIT_SOURCE})
+# target_compile_options(jtk-collection PUBLIC -Wall -Wswitch -g)
+# target_compile_options(jtk-collection PUBLIC -w -g)
+# target_link_libraries(jtk-unit jtk-core jtk-collection)
 
 # File Configuration
 
 set(JTK_PC "${CMAKE_CURRENT_BINARY_DIR}/jtk.pc")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/share/jtk.pc.cmakein" ${JTK_PC} @ONLY)
-
-# Installer
-
-# install(TARGETS jtk-core jtk-collection ARCHIVE DESTINATION ${JTK_INSTALL_LIBRARY_DIR})
-# install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/" DESTINATION ${JTK_INSTALL_INCLUDE_DIR} FILES_MATCHING PATTERN "*.h")
-# install(FILES ${JTK_PC} DESTINATION ${JTK_INSTALL_PKGCONFIG_DIR})
 
 #******************************************************************************#
 # Example                                                                      #
@@ -137,8 +202,17 @@ set(
 )
 add_executable(number ${EXAMPLE_UNIT_NUMBER_SOURCE})
 target_link_libraries(number jtk-core)
-target_link_libraries(number jtk-collection)
-target_link_libraries(number jtk-unit)
+# target_link_libraries(number jtk-collection)
+# target_link_libraries(number jtk-unit)
+
+set(
+    EXAMPLE_FS_READ_SOURCE
+    ${PROJECT_SOURCE_DIR}/example/fs/Read/read.c
+)
+add_executable(read ${EXAMPLE_FS_READ_SOURCE})
+target_link_libraries(read jtk-core)
+# target_link_libraries(number jtk-collection)
+# target_link_libraries(number jtk-unit)
 
 set(
     EXAMPLE_COLLECTION_NAMES_SOURCE
@@ -146,7 +220,7 @@ set(
 )
 add_executable(names ${EXAMPLE_COLLECTION_NAMES_SOURCE})
 target_link_libraries(names jtk-core)
-target_link_libraries(names jtk-collection)
+# target_link_libraries(names jtk-collection)
 
 #******************************************************************************#
 # Unit Tests                                                                   #
@@ -161,5 +235,16 @@ set(
 )
 add_executable(jtk-test ${JTK_UNIT_TEST_SOURCE})
 target_link_libraries(jtk-test jtk-core)
-target_link_libraries(jtk-test jtk-collection)
-target_link_libraries(jtk-test jtk-unit)
+# target_link_libraries(jtk-test jtk-collection)
+# target_link_libraries(jtk-test jtk-unit)
+
+# File Configuration
+
+set (JTK_PC "${CMAKE_CURRENT_BINARY_DIR}/jtk.pc")
+configure_file (${CMAKE_CURRENT_SOURCE_DIR}/share/jtk.pc.cmakein ${JTK_PC} @ONLY)
+
+# Installer
+
+install(TARGETS jtk-core ARCHIVE DESTINATION ${JTK_INSTALL_LIBRARY_DIR})
+install(DIRECTORY "${PROJECT_SOURCE_DIR}/include/" DESTINATION ${JTK_INSTALL_INCLUDE_DIR} FILES_MATCHING PATTERN "*.h")
+install(FILES ${JTK_PC} DESTINATION ${JTK_INSTALL_PKGCONFIG_DIR})

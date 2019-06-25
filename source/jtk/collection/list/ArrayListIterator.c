@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 #include <jtk/collection/list/ArrayList.h>
 #include <jtk/collection/list/ArrayListIterator.h>
 
@@ -70,7 +57,7 @@ jtk_Iterator_t* jtk_ArrayListIterator_getIterator(jtk_ArrayListIterator_t* itera
 bool jtk_ArrayListIterator_hasNext(jtk_ArrayListIterator_t* iterator) {
     jtk_Assert_assertObject(iterator, "The specified iterator is null.");
 
-    return iterator->m_index < (iterator->m_list->m_size - 1);
+    return iterator->m_index < iterator->m_list->m_size;
 }
 
 void* jtk_ArrayListIterator_getNext(jtk_ArrayListIterator_t* iterator) {

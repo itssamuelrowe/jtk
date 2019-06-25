@@ -1,63 +1,122 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
+// Saturday, May 11, 2019
 
-// Saturday, November 04, 2017
-
+#include <jtk/core/CString.h>
 #include <jtk/core/String.h>
+#include <jtk/core/StringBuilder.h>
 
 /*******************************************************************************
  * String                                                                      *
  *******************************************************************************/
 
-uint8_t* jtk_String_new(const uint8_t* string) {
-    return jtk_String_newWithSize(string, jtk_String_getLength(string));
+// Constructor
+
+jtk_String_t* jtk_String_wrap(uint8_t* value, int32_t size, int32_t hashCode) {
+    jtk_String_t* string = jtk_Memory_allocate(jtk_String_t, 1);
+    string->m_value = value;
+    string->m_size = size;
+    string->m_hashCode = hashCode;
+
+    return string;
 }
 
-uint8_t* jtk_String_newWithSize(const uint8_t* string, int32_t size) {
-    uint8_t* result = jtk_Memory_allocate(uint8_t, size + 1);
-    int32_t i;
-    for (i = 0; i < size; i++) {
-        result[i] = string[i];
-    }
-    result[size] = '\0';
+jtk_String_t* jtk_String_new(const uint8_t* value) {
+    jtk_Assert_assertObject(value, "The specified string is null.");
+
+    return jtk_String_newEx(value, jtk_CString_getSize(value));
+}
+
+jtk_String_t* jtk_String_newEx(const uint8_t* value, int32_t size) {
+    jtk_Assert_assertObject(value, "The specified string is null.");
+    jtk_Assert_assertTrue(size >= 0, "The specified string size is invalid.");
+
+    uint8_t* copy = jtk_CString_newWithSize(value, size);
+    return jtk_String_wrap(copy, size, -1);
+}
+
+jtk_String_t* jtk_String_newFromJoin(const uint8_t* value1, const uint8_t* value2) {
+    jtk_Assert_assertObject(value1, "The specified first string is null.");
+    jtk_Assert_assertObject(value2, "The specified second string is null.");
+    
+    jtk_StringBuilder_t* builder = jtk_StringBuilder_new();
+    jtk_StringBuilder_append_z(builder, value1);
+    jtk_StringBuilder_append_z(builder, value2);
+    
+    jtk_String_t* result = jtk_StringBuilder_toString(builder);
+    
+    jtk_StringBuilder_delete(builder);
+    
     return result;
 }
 
-void jtk_String_delete(uint8_t* string) {
+jtk_String_t* jtk_String_newFromJoinEx(const uint8_t* value1, int32_t size1,
+    const uint8_t* value2, int32_t size2) {
+    jtk_Assert_assertObject(value1, "The specified first string is null.");
+    jtk_Assert_assertTrue(size1 >= 0, "The specified first string size is invalid.");
+    jtk_Assert_assertObject(value2, "The specified second string is null.");
+    jtk_Assert_assertTrue(size2 >= 0, "The specified second string size is invalid.");
+    
+    jtk_StringBuilder_t* builder = jtk_StringBuilder_new();
+    jtk_StringBuilder_appendEx_z(builder, value1, size1);
+    jtk_StringBuilder_appendEx_z(builder, value2, size2);
+    
+    uint8_t* value = jtk_StringBuilder_toString(builder);
+    int32_t size = jtk_StringBuilder_getSize(builder);
+    jtk_String_t* result = jtk_String_wrap(value, size, -1);
+    
+    jtk_StringBuilder_delete(builder);
+    
+    return result;
+}
+
+// Destructor
+
+void jtk_String_delete(jtk_String_t* string) {
+    jtk_Assert_assertObject(string, "The specified string is null.");
+
+    jtk_CString_delete(string->m_value);
     jtk_Memory_deallocate(string);
 }
 
-bool jtk_String_equals(const uint8_t* string1, int32_t size1, const uint8_t* string2, int32_t size2) {
-    if (string1 == string2) {
-        return 1;
-    }
-    if ((string1 == NULL) ^ (string2 == NULL)) {
-        return false;
-    }
-    if (size1 == size2) {
-        int32_t i;
-        for (i = 0; i < size1; i++) {
-            if (string1[i] != string2[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-    return false;
+// Clone
+
+jtk_String_t* jtk_String_clone(jtk_String_t* string) {
+    jtk_Assert_assertObject(string, "The specified string is null.");
+
+    return jtk_String_newEx(string->m_value, string->m_size);
 }
 
-int32_t jtk_String_getLength(const uint8_t* string) {
-    int32_t i = 0;
-    while (string[i++] != '\0');
-    return i - 1;
+// Equals
+
+bool jtk_String_equals(jtk_String_t* string, jtk_String_t* other) {
+    jtk_Assert_assertObject(string, "The specified string is null.");
+
+    return jtk_CString_equals(string->m_value, string->m_size, other->m_value,
+        other->m_size);
+}
+
+// Hash
+
+int32_t jtk_String_hash(jtk_String_t* string) {
+    jtk_Assert_assertObject(string, "The specified string is null.");
+
+    if (string->m_hashCode == -1) {
+        string->m_hashCode = jtk_CString_hashEx(string->m_value, string->m_size);
+    }
+    return string->m_hashCode;
+}
+
+// Size
+
+int32_t jtk_String_getSize(jtk_String_t* string) {
+    jtk_Assert_assertObject(string, "The specified string is null.");
+    
+    return string->m_size;
+}
+
+// Value
+
+uint8_t* jtk_String_getValue(jtk_String_t* string) {
+    jtk_Assert_assertObject(string, "The specified string is null.");
+    
+    return string->m_value;
 }

@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 // Saturday, June 30, 2018
 
 #include <jtk/core/Double.h>
@@ -124,12 +111,17 @@ int32_t jtk_Double_compare(double value1, double value2) {
 /* Pack */
 
 double jtk_Double_pack(int64_t value) {
+    /* A double value can be packed with the following algorithm, too. */
+    /*
     union {
         int64_t asInteger;
         double asDecimal;
     } bitPattern;
     bitPattern.asInteger = value;
     return bitPattern.asDecimal;
+    */
+
+    return *((double*)(&value));
 }
 
 /* Power of Two */
@@ -137,7 +129,7 @@ double jtk_Double_pack(int64_t value) {
 double jtk_Double_powerOfTwo(int32_t n) {
     jtk_Assert_assertFalse((n < JTK_DOUBLE_MIN_EXPONENT) || (n > JTK_DOUBLE_MAX_EXPONENT),
         "The specified power is invalid (limited to -126..127).");
-    
+
     int64_t bits = ((int64_t)(n + JTK_DOUBLE_EXPONENT_BIAS) << JTK_DOUBLE_SIGNIFICAND_WIDTH) &
         JTK_DOUBLE_EXPONENT_BIT_MASK;
     return jtk_Double_pack(bits);
@@ -146,12 +138,17 @@ double jtk_Double_powerOfTwo(int32_t n) {
 /* Raw Unpack */
 
 int64_t jtk_Double_rawUnpack(double value) {
+    /* A double value can be unpacked with the following algorithm, too. */
+    /*
     union {
         int64_t asInteger;
         double asDecimal;
     } bitPattern;
     bitPattern.asDecimal = value;
     return bitPattern.asInteger;
+    */
+
+    return *((int64_t*)(&value));
 }
 
 /* Unordered */
@@ -163,12 +160,18 @@ bool jtk_Double_isUnordered(double value1, double value2) {
 /* Unpack */
 
 int64_t jtk_Double_unpack(double value) {
+    /* A double value can be unpacked with the following algorithm, too. */
+    /*
     union {
         int64_t asInteger;
         double asDecimal;
     } bitPattern;
     bitPattern.asDecimal = value;
     int64_t result = bitPattern.asInteger;
+    */
+
+    int64_t result = *((int64_t*)(&value));
+
     /* Collapse all the bit patterns encoding a NaN to a float "canonical"
      * Nan value.
      */

@@ -1,22 +1,9 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 // Tuesday, May 22, 2018
 
 #include <setjmp.h>
 #include <jtk/core/Double.h>
 #include <jtk/core/Float.h>
-#include <jtk/core/String.h>
+#include <jtk/core/CString.h>
 #include <jtk/unit/TestCase.h>
 
 /*******************************************************************************
@@ -30,7 +17,7 @@ jtk_TestCase_t* jtk_TestCase_new(const uint8_t* name,
     jtk_Assert_assertObject(name, "The specified name is null.");
 
     jtk_TestCase_t* testCase = jtk_Memory_allocate(jtk_TestCase_t, 1);
-    testCase->m_name = jtk_String_new(name);
+    testCase->m_name = jtk_CString_new(name);
     testCase->m_fixture = fixture;
     testCase->m_target = target;
     testCase->m_jumpBuffer = NULL;
@@ -49,7 +36,7 @@ void jtk_TestCase_delete(jtk_TestCase_t* testCase) {
         jtk_TestDefect_delete(testCase->m_defect);
     }
 
-    jtk_String_delete(testCase->m_name);
+    jtk_CString_delete(testCase->m_name);
     jtk_Memory_deallocate(testCase);
 }
 
@@ -143,7 +130,7 @@ void jtk_TestCase_assertEquals_utf80(jtk_TestCase_t* testCase,
     const uint8_t* sourceCodePath, int32_t lineNumber) {
     jtk_Assert_assertObject(testCase, "The specified test case is null.");
 
-    if (!jtk_String_equals(actualValue, jtk_String_getLength(actualValue), expectedValue, jtk_String_getLength(expectedValue))) {
+    if (!jtk_CString_equals(actualValue, jtk_CString_getSize(actualValue), expectedValue, jtk_CString_getSize(expectedValue))) {
         jtk_TestCase_fail(testCase, sourceCodePath, lineNumber, NULL);
     }
 }
@@ -246,7 +233,7 @@ void jtk_TestCase_assertEqualsEx_utf80(jtk_TestCase_t* testCase,
     const uint8_t* sourceCodePath, int32_t lineNumber, const uint8_t* message) {
     jtk_Assert_assertObject(testCase, "The specified test case is null.");
 
-    if (!jtk_String_equals(actualValue, jtk_String_getLength(actualValue), expectedValue, jtk_String_getLength(expectedValue))) {
+    if (!jtk_CString_equals(actualValue, jtk_CString_getSize(actualValue), expectedValue, jtk_CString_getSize(expectedValue))) {
         jtk_TestCase_fail(testCase, sourceCodePath, lineNumber, NULL);
     }
 }
@@ -341,7 +328,7 @@ void jtk_TestCase_assertNotEquals_utf80(jtk_TestCase_t* testCase,
     const uint8_t* sourceCodePath, int32_t lineNumber) {
     jtk_Assert_assertObject(testCase, "The specified test case is null.");
 
-    if (jtk_String_equals(actualValue, jtk_String_getLength(actualValue), expectedValue, jtk_String_getLength(expectedValue))) {
+    if (jtk_CString_equals(actualValue, jtk_CString_getSize(actualValue), expectedValue, jtk_CString_getSize(expectedValue))) {
         jtk_TestCase_fail(testCase, sourceCodePath, lineNumber, NULL);
     }
 }
@@ -444,7 +431,7 @@ void jtk_TestCase_assertNotEqualsEx_utf80(jtk_TestCase_t* testCase,
     const uint8_t* sourceCodePath, int32_t lineNumber, const uint8_t* message) {
     jtk_Assert_assertObject(testCase, "The specified test case is null.");
 
-    if (jtk_String_equals(actualValue, jtk_String_getLength(actualValue), expectedValue, jtk_String_getLength(expectedValue))) {
+    if (jtk_CString_equals(actualValue, jtk_CString_getSize(actualValue), expectedValue, jtk_CString_getSize(expectedValue))) {
         jtk_TestCase_fail(testCase, sourceCodePath, lineNumber, message);
     }
 }
@@ -644,8 +631,8 @@ void jtk_TestCase_setName(jtk_TestCase_t* testCase, const uint8_t* name) {
     jtk_Assert_assertObject(testCase, "The specified test case is null.");
     jtk_Assert_assertObject(name, "The specified name is null.");
 
-    jtk_String_delete(testCase->m_name);
-    testCase->m_name = jtk_String_new(name);
+    jtk_CString_delete(testCase->m_name);
+    testCase->m_name = jtk_CString_new(name);
 }
 
 const uint8_t* jtk_TestCase_getName(jtk_TestCase_t* testCase) {

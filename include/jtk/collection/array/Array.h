@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
- 
 // Sunday, June 03, 2018
 
 #ifndef JTK_COLLECTION_ARRAY_ARRAY_H
@@ -26,6 +13,16 @@
 
 #define JTK_ARRAY_INTERNAL_FLAG_WRAPPER (1 << 0)
 #define JTK_ARRAY_INTERNAL_FLAG_DESTROY_NATIVE_ARRAY (1 << 1)
+
+/**
+ * @memberof Array
+ */
+typedef struct jtk_Array_t jtk_Array_t;
+
+/**
+ * @memberof Arrays
+ */
+typedef void* (*jtk_Array_MigrateFunction_t)(void* value);
 
 /**
  * The Array class represents an ordered sequence of objects of the same type,
@@ -60,7 +57,7 @@
  *
  * @class  Array
  * @ingroup JtkCollectionModule
- * @author Samuel Rowe
+ * @author Samuel Rowe <samuelrowe1999@gmail.com>
  * @since JTK 1.0
  */
 struct jtk_Array_t {
@@ -90,8 +87,6 @@ struct jtk_Array_t {
      */
     jtk_ObjectAdapter_t* m_adapter;
 };
-
-typedef struct jtk_Array_t jtk_Array_t;
 
 /* Constructor */
 
@@ -451,6 +446,21 @@ void jtk_Array_fillEx(jtk_Array_t* array, int32_t startIndex, int32_t stopIndex,
  * @memberof Array
  */
 jtk_Iterator_t* jtk_Array_getIterator(jtk_Array_t* array);
+
+/* Migrate */
+
+/**
+ * @memberof Array
+ * @since JTK 1.1
+ */
+jtk_Array_t* jtk_Array_migrate(jtk_Array_t* array, jtk_Array_MigrateFunction_t migrate);
+
+/**
+ * @memberof Array
+ * @since JTK 1.1
+ */
+jtk_Array_t* jtk_Array_migrate_v(void** array, int32_t size,
+    jtk_Array_MigrateFunction_t migrate);
 
 /* Raw Array */
 

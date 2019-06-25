@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
- 
 // Thursday, ‎July ‎12, ‎2018
 
 #ifndef JTK_COLLECTION_HASH_MAP_VALUE_ITERATOR_H
@@ -26,7 +13,7 @@
 /**
  * @class HashMapValueIterator
  * @ingroup jtk_collection_map
- * @author Samuel Rowe
+ * @author Samuel Rowe <samuelrowe1999@gmail.com>
  * @since JTK 1.0
  */
 struct jtk_HashMapValueIterator_t {

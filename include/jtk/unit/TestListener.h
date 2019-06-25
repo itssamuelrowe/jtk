@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 // Wednesday, June 27, 2018
 
 #ifndef JTK_UNIT_TEST_LISTENER_H
@@ -85,7 +72,7 @@ typedef void (*jtk_TestListenerOnCaseUnknownError_t)(jtk_TestListener_t* listene
 /**
  * @class TestListener
  * @ingroup jtk_unit
- * @author Samuel Rowe
+ * @author Samuel Rowe <samuelrowe1999@gmail.com>
  * @since JTK 1.0
  */
 struct jtk_TestListener_t {

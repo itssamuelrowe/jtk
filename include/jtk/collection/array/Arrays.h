@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 // Sunday, December 03, 2017
 
 #ifndef JTK_COLLECTION_ARRAY_ARRAYS_H
@@ -1197,6 +1184,185 @@ float* jtk_Arrays_copyOf_f(float* source, int32_t sourceSize, int32_t newSize, f
  * @memberof Arrays
  */
 double* jtk_Arrays_copyOf_d(double* source, int32_t sourceSize, int32_t newSize, double defaultValue);
+
+/* Copy Of Extended */
+
+/**
+ * Returns a copy of the specified native array of pointers, truncated or
+ * padded to obtain the specified size.
+ *
+ * This function allows the user to skip the padding. It is always recommended
+ * to pad extended arrays. Skipping this step improves slight performance,
+ * especially when the difference between the old and new array sizes are very
+ * large. In case you choose to skip the padding, make sure your code is aware
+ * of the garbage values, which begins at `sourceSize`.
+ *
+ * @param  source
+ *         This argument specifies the native source array.
+ * @param  sourceSize
+ *         This argument specifies the size of the native array.
+ *         zero All negative values are considered illegal.
+ * @param  newSize
+ *         This argument specifies the size of the resulting native array.
+ *         Zero and all negative integers are considered illegal.
+ * @param  defaultValue
+ *         This argument specifies the value used for padding, if necessary.
+ * @param  overwrite
+ *         This argument specifies whether to pad with the specified default
+ *         value, or not.
+ * @return A copy of the specified native source array of the specified size,
+ *         if necessary, the returned native array is truncated or padded with
+ *         the specified default value so the copy has the specified
+ *         size. The user is responsible for destroying the returned
+ *         array.
+ * @memberof Arrays
+ * @since JTK 1.1
+ */
+void** jtk_Arrays_copyOfEx_v(void** source, int32_t sourceSize, int32_t newSize, void* defaultValue, bool overwrite);
+
+/**
+ * Returns a copy of the specified native array of 8-bit integers, truncated or
+ * padded to obtain the specified size.
+ *
+ * @param  source
+ *         This argument specifies the native source array.
+ * @param  sourceSize
+ *         This argument specifies the size of the native array.
+ *         zero All negative values are considered illegal.
+ * @param  newSize
+ *         This argument specifies the size of the resulting native array.
+ *         Zero and all negative integers are considered illegal.
+ * @param  defaultValue
+ *         This argument specifies the value used for padding, if necessary.
+ * @return A copy of the specified native source array of the specified size,
+ *         if necessary, the returned native array is truncated or padded with
+ *         the specified default value so the copy has the specified
+ *         size. The user is responsible for destroying the returned
+ *         array.
+ * @memberof Arrays
+ * @since JTK 1.1
+ */
+int8_t* jtk_Arrays_copyOfEx_b(int8_t* source, int32_t sourceSize, int32_t newSize, int8_t defaultValue, bool overwrite);
+
+/**
+ * Returns a copy of the specified native array of 16-bit integers, truncated or
+ * padded to obtain the specified size.
+ *
+ * @param  source
+ *         This argument specifies the native source array.
+ * @param  sourceSize
+ *         This argument specifies the size of the native array.
+ *         zero All negative values are considered illegal.
+ * @param  newSize
+ *         This argument specifies the size of the resulting native array.
+ *         Zero and all negative integers are considered illegal.
+ * @param  defaultValue
+ *         This argument specifies the value used for padding, if necessary.
+ * @return A copy of the specified native source array of the specified size,
+ *         if necessary, the returned native array is truncated or padded with
+ *         the specified default value so the copy has the specified
+ *         size. The user is responsible for destroying the returned
+ *         array.
+ * @memberof Arrays
+ * @since JTK 1.1
+ */
+int16_t* jtk_Arrays_copyOfEx_s(int16_t* source, int32_t sourceSize, int32_t newSize, int16_t defaultValue, bool overwrite);
+
+/**
+ * Returns a copy of the specified native array of 32-bit integers, truncated or
+ * padded to obtain the specified size.
+ *
+ * @param  source
+ *         This argument specifies the native source array.
+ * @param  sourceSize
+ *         This argument specifies the size of the native array.
+ *         zero All negative values are considered illegal.
+ * @param  newSize
+ *         This argument specifies the size of the resulting native array.
+ *         Zero and all negative integers are considered illegal.
+ * @param  defaultValue
+ *         This argument specifies the value used for padding, if necessary.
+ * @return A copy of the specified native source array of the specified size,
+ *         if necessary, the returned native array is truncated or padded with
+ *         the specified default value so the copy has the specified
+ *         size. The user is responsible for destroying the returned
+ *         array.
+ * @memberof Arrays
+ * @since JTK 1.1
+ */
+int32_t* jtk_Arrays_copyOfEx_i(int32_t* source, int32_t sourceSize, int32_t newSize, int32_t defaultValue, bool overwrite);
+
+/**
+ * Returns a copy of the specified native array of 64-bit integers, truncated or
+ * padded to obtain the specified size.
+ *
+ * @param  source
+ *         This argument specifies the native source array.
+ * @param  sourceSize
+ *         This argument specifies the size of the native array.
+ *         zero All negative values are considered illegal.
+ * @param  newSize
+ *         This argument specifies the size of the resulting native array.
+ *         Zero and all negative integers are considered illegal.
+ * @param  defaultValue
+ *         This argument specifies the value used for padding, if necessary.
+ * @return A copy of the specified native source array of the specified size,
+ *         if necessary, the returned native array is truncated or padded with
+ *         the specified default value so the copy has the specified
+ *         size. The user is responsible for destroying the returned
+ *         array.
+ * @memberof Arrays
+ * @since JTK 1.1
+ */
+int64_t* jtk_Arrays_copyOfEx_l(int64_t* source, int32_t sourceSize, int32_t newSize, int64_t defaultValue, bool overwrite);
+
+/**
+ * Returns a copy of the specified native array of 32-bit decimals, truncated or
+ * padded to obtain the specified size.
+ *
+ * @param  source
+ *         This argument specifies the native source array.
+ * @param  sourceSize
+ *         This argument specifies the size of the native array.
+ *         zero All negative values are considered illegal.
+ * @param  newSize
+ *         This argument specifies the size of the resulting native array.
+ *         Zero and all negative integers are considered illegal.
+ * @param  defaultValue
+ *         This argument specifies the value used for padding, if necessary.
+ * @return A copy of the specified native source array of the specified size,
+ *         if necessary, the returned native array is truncated or padded with
+ *         the specified default value so the copy has the specified
+ *         size. The user is responsible for destroying the returned
+ *         array.
+ * @memberof Arrays
+ * @since JTK 1.1
+ */
+float* jtk_Arrays_copyOfEx_f(float* source, int32_t sourceSize, int32_t newSize, float defaultValue, bool overwrite);
+
+/**
+ * Returns a copy of the specified native array of 64-bit decimals, truncated or
+ * padded to obtain the specified size.
+ *
+ * @param  source
+ *         This argument specifies the native source array.
+ * @param  sourceSize
+ *         This argument specifies the size of the native array.
+ *         zero All negative values are considered illegal.
+ * @param  newSize
+ *         This argument specifies the size of the resulting native array.
+ *         Zero and all negative integers are considered illegal.
+ * @param  defaultValue
+ *         This argument specifies the value used for padding, if necessary.
+ * @return A copy of the specified native source array of the specified size,
+ *         if necessary, the returned native array is truncated or padded with
+ *         the specified default value so the copy has the specified
+ *         size. The user is responsible for destroying the returned
+ *         array.
+ * @memberof Arrays
+ * @since JTK 1.1
+ */
+double* jtk_Arrays_copyOfEx_d(double* source, int32_t sourceSize, int32_t newSize, double defaultValue, bool overwrite);
 
 /* Copy Of Range */
 

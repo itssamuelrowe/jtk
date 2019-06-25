@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 // Sunday, December 03, 2017
 
 // TODO: Range checks are very buggy!
@@ -459,7 +446,7 @@ int32_t jtk_Arrays_copyEx_v(void** source, int32_t sourceSize, int32_t sourceInd
         jtk_Memory_deallocate(temporary);
     }
     else {
-        int32_t limit = destinationIndex + size;
+        int32_t limit = sourceIndex + size;
         int32_t j = destinationIndex;
         int32_t i;
         for (i = sourceIndex; i < limit; i++) {
@@ -504,7 +491,7 @@ int32_t jtk_Arrays_copyEx_b(int8_t* source, int32_t sourceSize, int32_t sourceIn
         jtk_Memory_deallocate(temporary);
     }
     else {
-        int32_t limit = destinationIndex + size;
+        int32_t limit = sourceIndex + size;
         int32_t j = destinationIndex;
         int32_t i;
         for (i = sourceIndex; i < limit; i++) {
@@ -549,7 +536,7 @@ int32_t jtk_Arrays_copyEx_s(int16_t* source, int32_t sourceSize, int32_t sourceI
         }
     }
     else {
-        int32_t limit = destinationIndex + size;
+        int32_t limit = sourceIndex + size;
         int32_t j = destinationIndex;
         int32_t i;
         for (i = sourceIndex; i < limit; i++) {
@@ -594,7 +581,7 @@ int32_t jtk_Arrays_copyEx_i(int32_t* source, int32_t sourceSize, int32_t sourceI
         }
     }
     else {
-        int32_t limit = destinationIndex + size;
+        int32_t limit = sourceIndex + size;
         int32_t j = destinationIndex;
         int32_t i;
         for (i = sourceIndex; i < limit; i++) {
@@ -639,7 +626,7 @@ int32_t jtk_Arrays_copyEx_l(int64_t* source, int32_t sourceSize, int32_t sourceI
         }
     }
     else {
-        int32_t limit = destinationIndex + size;
+        int32_t limit = sourceIndex + size;
         int32_t j = destinationIndex;
         int32_t i;
         for (i = sourceIndex; i < limit; i++) {
@@ -684,7 +671,7 @@ int32_t jtk_Arrays_copyEx_f(float* source, int32_t sourceSize, int32_t sourceInd
         }
     }
     else {
-        int32_t limit = destinationIndex + size;
+        int32_t limit = sourceIndex + size;
         int32_t j = destinationIndex;
         int32_t i;
         for (i = sourceIndex; i < limit; i++) {
@@ -729,7 +716,7 @@ int32_t jtk_Arrays_copyEx_d(double* source, int32_t sourceSize, int32_t sourceIn
         }
     }
     else {
-        int32_t limit = destinationIndex + size;
+        int32_t limit = sourceIndex + size;
         int32_t j = destinationIndex;
         int32_t i;
         for (i = sourceIndex; i < limit; i++) {
@@ -862,6 +849,140 @@ double* jtk_Arrays_copyOf_d(double* source, int32_t size, int32_t newSize,
     int32_t size0 = jtk_Integer_min(size, newSize);
     jtk_Arrays_copyEx_d(source, size, 0, result, newSize, 0, size0);
     if (newSize > size0) {
+        int32_t i;
+        for (i = size0; i < newSize; i++) {
+            result[i] = defaultValue;
+        }
+    }
+    return result;
+}
+
+/* Copy of Extended */
+
+/* NOTE: An ideal implementation for the jtk_Arrays_copyOf_*() functions would be to
+ * delegate the operation to their corresponding jtk_Arrays_copyOfEx_*() functions.
+ * Unfortunately, time does not permit for the rewrite of the code. End of the day,
+ * the code works and no changes will be made in the near future.
+ */
+
+void** jtk_Arrays_copyOfEx_v(void** source, int32_t size, int32_t newSize,
+    void* defaultValue, bool overwrite) {
+    jtk_Assert_assertObject(source, "The specified array is null.");
+    jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
+    jtk_Assert_assertTrue(newSize > 0, "The specified new array size is invalid.");
+
+    void** result = jtk_Memory_allocate(void*, newSize);
+    int32_t size0 = jtk_Integer_min(size, newSize);
+    jtk_Arrays_copyEx_v(source, size, 0, result, newSize, 0, size0);
+    if ((newSize > size0) && overwrite) {
+        int32_t i;
+        for (i = size0; i < newSize; i++) {
+            result[i] = defaultValue;
+        }
+    }
+    return result;
+}
+
+int8_t* jtk_Arrays_copyOfEx_b(int8_t* source, int32_t size, int32_t newSize,
+    int8_t defaultValue, bool overwrite) {
+    jtk_Assert_assertObject(source, "The specified array is null.");
+    jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
+    jtk_Assert_assertTrue(newSize > 0, "The specified new array size is invalid.");
+
+    int8_t* result = jtk_Memory_allocate(int8_t, newSize);
+    int32_t size0 = jtk_Integer_min(size, newSize);
+    jtk_Arrays_copyEx_b(source, size, 0, result, newSize, 0, size0);
+    if ((newSize > size0) && overwrite) {
+        int32_t i;
+        for (i = size0; i < newSize; i++) {
+            result[i] = defaultValue;
+        }
+    }
+    return result;
+}
+
+int16_t* jtk_Arrays_copyOfEx_s(int16_t* source, int32_t size, int32_t newSize,
+    int16_t defaultValue, bool overwrite) {
+    jtk_Assert_assertObject(source, "The specified array is null.");
+    jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
+    jtk_Assert_assertTrue(newSize > 0, "The specified new array size is invalid.");
+
+    int16_t* result = jtk_Memory_allocate(int16_t, newSize);
+    int32_t size0 = jtk_Integer_min(size, newSize);
+    jtk_Arrays_copyEx_s(source, size, 0, result, newSize, 0, size0);
+    if ((newSize > size0) && overwrite) {
+        int32_t i;
+        for (i = size0; i < newSize; i++) {
+            result[i] = defaultValue;
+        }
+    }
+    return result;
+}
+
+int32_t* jtk_Arrays_copyOfEx_i(int32_t* source, int32_t size, int32_t newSize,
+    int32_t defaultValue, bool overwrite) {
+    jtk_Assert_assertObject(source, "The specified array is null.");
+    jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
+    jtk_Assert_assertTrue(newSize > 0, "The specified new array size is invalid.");
+
+    int32_t* result = jtk_Memory_allocate(int32_t, newSize);
+    int32_t size0 = jtk_Integer_min(size, newSize);
+    jtk_Arrays_copyEx_i(source, size, 0, result, newSize, 0, size0);
+    if ((newSize > size0) && overwrite) {
+        int32_t i;
+        for (i = size0; i < newSize; i++) {
+            result[i] = defaultValue;
+        }
+    }
+    return result;
+}
+
+int64_t* jtk_Arrays_copyOfEx_l(int64_t* source, int32_t size, int32_t newSize,
+    int64_t defaultValue, bool overwrite) {
+    jtk_Assert_assertObject(source, "The specified array is null.");
+    jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
+    jtk_Assert_assertTrue(newSize > 0, "The specified new array size is invalid.");
+
+    int64_t* result = jtk_Memory_allocate(int64_t, newSize);
+    int32_t size0 = jtk_Integer_min(size, newSize);
+    jtk_Arrays_copyEx_l(source, size, 0, result, newSize, 0, size0);
+    if ((newSize > size0) && overwrite) {
+        int32_t i;
+        for (i = size0; i < newSize; i++) {
+            result[i] = defaultValue;
+        }
+    }
+    return result;
+}
+
+float* jtk_Arrays_copyOfEx_f(float* source, int32_t size, int32_t newSize,
+    float defaultValue, bool overwrite) {
+    jtk_Assert_assertObject(source, "The specified array is null.");
+    jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
+    jtk_Assert_assertTrue(newSize > 0, "The specified new array size is invalid.");
+
+    float* result = jtk_Memory_allocate(float, newSize);
+    int32_t size0 = jtk_Integer_min(size, newSize);
+    jtk_Arrays_copyEx_f(source, size, 0, result, newSize, 0, size0);
+    if ((newSize > size0) && overwrite) {
+        int32_t i;
+        for (i = size0; i < newSize; i++) {
+            result[i] = defaultValue;
+        }
+    }
+    return result;
+}
+
+double* jtk_Arrays_copyOfEx_d(double* source, int32_t size, int32_t newSize,
+    double defaultValue, bool overwrite) {
+    jtk_Assert_assertObject(source, "The specified array is null.");
+    jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
+    jtk_Assert_assertTrue(newSize > 0, "The specified new array size is invalid.");
+
+    double* result = jtk_Memory_allocate(double, newSize);
+    int32_t size0 = jtk_Integer_min(size, newSize);
+    jtk_Arrays_copyEx_d(source, size, 0, result, newSize, 0, size0);
+    if ((newSize > size0) && overwrite) {
         int32_t i;
         for (i = size0; i < newSize; i++) {
             result[i] = defaultValue;

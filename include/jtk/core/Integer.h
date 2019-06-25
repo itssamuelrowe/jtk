@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 // Monday, February 26, 2018
 
 #ifndef JTK_CORE_INTEGER_H
@@ -25,7 +12,7 @@
 /**
  * @class Integer
  * @ingroup jtk_core
- * @author Samuel Rowe
+ * @author Samuel Rowe <samuelrowe1999@gmail.com>
  * @since JTK 1.0
  */
 
@@ -79,7 +66,7 @@
  *
  * @memberof Integer
  */
-#define SIZE_IN_BYTES 4
+#define JTK_INTEGER_SIZE_IN_BYTES 4
 
 /* Radix */
 
@@ -92,6 +79,27 @@
  * @memberof Integer
  */
 #define JTK_INTEGER_MAX_RADIX 36
+
+/**
+ * @memberof Integer
+ */
+#define JTK_INTEGER_MAX_BINARY_STRING_SIZE 32
+
+/**
+ * @memberof Integer
+ */
+#define JTK_INTEGER_MAX_OCTAL_STRING_SIZE 32
+
+/**
+ * @memberof Integer
+ */
+#define JTK_INTEGER_MAX_DECIMAL_STRING_SIZE 32
+
+/**
+ * @memberof Integer
+ */
+#define JTK_INTEGER_MAX_HEXADECIMAL_STRING_SIZE 32
+
 
 /* Maximum */
 
@@ -210,5 +218,13 @@ int32_t jtk_Integer_parse(const uint8_t* text, int32_t radix);
  *         </ul>
  */
 // int32_t jtk_Integer_parseEx(const uint8_t* text, int32_t radix, bool* valid, int32_t defaultValue);
+
+/* Reverse */
+
+/**
+ * @memberof Integer
+ * @since JTK 1.1
+ */
+int32_t jtk_Integer_reverse(int32_t number);
 
 #endif /* JTK_CORE_INTEGER_H */

@@ -1,17 +1,4 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
-// Saturday, November 04, 2017
+// Saturday, May 11, 2019
 
 #ifndef JTK_CORE_STRING_H
 #define JTK_CORE_STRING_H
@@ -25,38 +12,70 @@
 /**
  * @class String
  * @ingroup jtk_core
- * @author Samuel Rowe
- * @since JTK 1.0
+ * @author Samuel Rowe <samuelrowe1999@gmail.com>
+ * @since JTK 1.1
  */
+struct jtk_String_t {
+    uint8_t* m_value;
+    int32_t m_size;
+    int32_t m_hashCode;
+};
 
 /**
  * @memberof String
  */
-uint8_t* jtk_String_new(const uint8_t* string);
+typedef struct jtk_String_t jtk_String_t;
+
+// Constructor
 
 /**
  * @memberof String
  */
-uint8_t* jtk_String_newWithSize(const uint8_t* string, int32_t size);
+jtk_String_t* jtk_String_new(const uint8_t* value);
+
+jtk_String_t* jtk_String_newFromJoin(const uint8_t* value1, const uint8_t* value2);
+
+jtk_String_t* jtk_String_newFromJoinEx(const uint8_t* value1, int32_t size1,
+    const uint8_t* value2, int32_t size2);
 
 /**
  * @memberof String
  */
-void jtk_String_delete(uint8_t* string);
+jtk_String_t* jtk_String_newEx(const uint8_t* value, int32_t size);
+
+// Destructor
 
 /**
  * @memberof String
  */
-bool jtk_String_equals(const uint8_t* string1, int32_t size1, const uint8_t* string2, int32_t size2);
+void jtk_String_delete(jtk_String_t* string);
+
+// Clone
 
 /**
  * @memberof String
  */
-int32_t jtk_String_getLength(const uint8_t* string);
+jtk_String_t* jtk_String_clone(jtk_String_t* string);
+
+// Equals
 
 /**
  * @memberof String
  */
-int32_t jtk_String_hash(const uint8_t* string);
+bool jtk_String_equals(jtk_String_t* string, jtk_String_t* other);
+
+// Hash
+
+/**
+ * @memberof String
+ */
+int32_t jtk_String_hash(jtk_String_t* string);
+
+// Size
+
+/**
+ * @memberof String
+ */
+int32_t jtk_String_getSize(jtk_String_t* string);
 
 #endif /* JTK_CORE_STRING_H */

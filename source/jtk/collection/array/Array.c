@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 // Thursday, June 28, 2018
 
 #include <jtk/collection/array/Array.h>
@@ -97,7 +84,7 @@ int32_t jtk_Array_copyEx(jtk_Array_t* source, int32_t sourceIndex,
     jtk_Assert_assertObject(destination, "The specified destination array is null.");
 
     // TODO: Assert index :)
-
+    
     return jtk_Arrays_copyEx_v(source->m_values, source->m_size, sourceIndex,
         destination->m_values, destination->m_size, destinationIndex, size);
 }
@@ -259,6 +246,30 @@ jtk_Iterator_t* jtk_Array_getIterator(jtk_Array_t* array) {
     return jtk_ArrayIterator_getIterator(iterator);
 }
 
+/* Migrate */
+
+jtk_Array_t* jtk_Array_migrate(jtk_Array_t* array, jtk_Array_MigrateFunction_t migrate) {
+    jtk_Array_t* result = jtk_Array_new(array->m_size);
+    int32_t i;
+    for (i = 0; i < array->m_size; i++) {
+        void* oldValue = array->m_values[i];
+        void* newValue = migrate(oldValue);
+        result->m_values[i] = newValue;
+    }
+    return result;
+}
+
+jtk_Array_t* jtk_Array_migrate_v(void** array, int32_t size, jtk_Array_MigrateFunction_t migrate) {
+    jtk_Array_t* result = jtk_Array_new(size);
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        void* oldValue = array[i];
+        void* newValue = migrate(oldValue);
+        result->m_values[i] = newValue;
+    }
+    return result;
+}
+
 /* Raw Array */
 
 void** getRawArray(jtk_Array_t* array) {
@@ -321,7 +332,7 @@ void jtk_Array_reverse(jtk_Array_t* array) {
 
 void jtk_Array_reverseEx(jtk_Array_t* array, int32_t startIndex, int32_t stopIndex) {
     jtk_Assert_assertObject(array, "The specified array is null.");
-
+    
     jtk_Arrays_reverseEx_v(array->m_values, array->m_size, startIndex, stopIndex);
 }
 
@@ -329,7 +340,7 @@ void jtk_Array_reverseEx(jtk_Array_t* array, int32_t startIndex, int32_t stopInd
 
 void jtk_Array_rotate(jtk_Array_t* array, int32_t distance) {
     jtk_Assert_assertObject(array, "The specified array is null.");
-
+    
     jtk_Arrays_rotate_v(array->m_values, array->m_size, distance);
 }
 

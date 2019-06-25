@@ -1,24 +1,19 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 // Monday, July 23, 2018
 
+#include <jtk/core/Character.h>
 #include <jtk/core/Integer.h>
-#include <jtk/core/String.h>
+#include <jtk/core/CString.h>
 
 /*******************************************************************************
  * Integer                                                                     *
  *******************************************************************************/
+
+static const uint8_t s_digits[] = {
+    0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,
+    0x39, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48,
+    0x49, 0x4A, 0x4B, 0x4C, 0x4D, 0x4E, 0x4F, 0x50, 0x51,
+    0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A
+};
 
 /* Maximum */
 
@@ -64,8 +59,8 @@ static int32_t jtk_Integer_digit(uint8_t character, int32_t radix) {
 
 int32_t jtk_Integer_parse(const uint8_t* text, int32_t radix) {
     jtk_Assert_assertObject(text, "The specified text is null.");
-    
-    int32_t length = jtk_String_getLength(text);
+
+    int32_t length = jtk_CString_getSize(text);
     int32_t result = -1;
     if ((length != 0) && (radix >= JTK_INTEGER_MIN_RADIX) &&
         (radix <= JTK_INTEGER_MAX_RADIX)) {
@@ -89,10 +84,10 @@ int32_t jtk_Integer_parse(const uint8_t* text, int32_t radix) {
             if (length == 1) {
                 result = -1;
             }
-            
+
             i++;
         }
-        
+
         if (result != -1) {
             int32_t m = limit / radix;
             while (i < length) {
@@ -115,4 +110,82 @@ int32_t jtk_Integer_parse(const uint8_t* text, int32_t radix) {
         }
     }
     return result;
+}
+
+/* Reverse */
+
+int32_t jtk_Integer_reverse(int32_t number) {
+    bool negative = number < 0;
+    int32_t copy = negative? -number : number;
+	int32_t reverse = 0;
+	while (copy != 0) {
+		int32_t digit = copy % 10;
+		reverse = (reverse * 10) + digit;
+		copy /= 10;
+	}
+	return negative? -reverse : reverse;
+}
+
+/* String */
+
+uint8_t* jtk_Integer_toStringEx(int32_t value, int32_t radix) {
+    if ((radix < JTK_CHARACTER_MIN_RADIX) || (radix > JTK_CHARACTER_MAX_RADIX)) {
+        radix = JTK_CHARACTER_DEFAULT_RADIX;
+    }
+    uint8_t buffer[33];
+    int32_t index = 32;
+    bool negative = value < 0;
+
+    if (negative) {
+        value = -value;
+    }
+    while (value >= radix) {
+        buffer[index--] = s_digits[value % radix];
+        value /= radix;
+    }
+    buffer[index] = s_digits[value];
+    if (negative) {
+        buffer[--index] = '-';
+    }
+
+    return jtk_String_newEx(buffer + index, 33 - index);
+}
+
+uint8_t* jtk_Integer_toString(int32_t value) {
+    return jtk_Integer_toStringEx(value, JTK_CHARACTER_DEFAULT_RADIX);
+}
+
+int32_t jtk_Integer_getString(int32_t value, uint8_t* buffer, int32_t size) {
+    return jtk_Integer_getStringEx(value, JTK_CHARACTER_DEFAULT_RADIX, buffer,
+        size, 0);
+}
+
+int32_t jtk_Integer_getStringEx(int32_t value, int32_t radix, uint8_t* destination,
+    int32_t destinationSize, int32_t destinationIndex) {
+    if ((radix < JTK_CHARACTER_MIN_RADIX) || (radix > JTK_CHARACTER_MAX_RADIX)) {
+        radix = JTK_CHARACTER_DEFAULT_RADIX;
+    }
+    uint8_t buffer[JTK_INTEGER_MAX_BINARY_STRING_SIZE];
+    int32_t index = JTK_INTEGER_MAX_BINARY_STRING_SIZE - 1;
+    bool negative = value < 0;
+
+    if (negative) {
+        value = -value;
+    }
+    while (value >= radix) {
+        buffer[index--] = s_digits[value % radix];
+        value /= radix;
+    }
+    buffer[index] = s_digits[value];
+    if (negative) {
+        buffer[--index] = '-';
+    }
+
+    uint8_t* result = buffer + index;
+    int32_t resultSize = JTK_INTEGER_MAX_BINARY_STRING_SIZE - index;
+    int32_t copyableSize = jtk_Integer_min(resultSize, destinationSize - destinationIndex);
+    jtk_Arrays_copyEx_b(result, resultSize, 0, destination, destinationSize,
+        destinationIndex, copyableSize);
+
+    return resultSize;
 }

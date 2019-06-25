@@ -1,16 +1,3 @@
-/*
- *                              Jez Toolkit (JTK)
- *     Copyright (C) 2018 OneCube Software Solutions. All rights reserved.
- *
- * This file is part of Jez Toolkit Free Edition, version 1.0.
- *
- * See the file "LICENSE" included in the distribution for the terms and conditions,
- * or visit http://www.onecube.in/jtk/free-license.
- *
- * IMPORTANT NOTE: You may NOT copy the content of this file, either partially
- * or fully, into your source code.
- */
-
 // Saturday, June 30, 2018
 
 #include <jtk/core/Float.h>
@@ -119,12 +106,17 @@ int32_t jtk_Float_compare(float value1, float value2) {
 /* Pack */
 
 float jtk_Float_pack(int32_t value) {
+    /* A float value can be packed with the following algorithm, too. */
+    /*
     union {
         int32_t asInteger;
         float asDecimal;
     } bitPattern;
     bitPattern.asInteger = value;
     return bitPattern.asDecimal;
+    */
+    
+    return *((float*)(&value));
 }
 
 /* Power Of Two */
@@ -138,12 +130,17 @@ float jtk_Float_powerOfTwo(int32_t n) {
 /* Raw Unpack */
 
 int32_t jtk_Float_rawUnpack(float value) {
+    /* A float value can be unpacked with the following algorithm, too. */
+    /*
     union {
         int32_t asInteger;
         int32_t asDecimal;
     } bitPattern;
     bitPattern.asDecimal = value;
     return bitPattern.asInteger;
+    */
+    
+    return *((int32_t*)(&value));
 }
 
 /* Unordered */
@@ -155,12 +152,17 @@ bool jtk_Float_isUnordered(float value1, float value2) {
 /* Unpack */
 
 int32_t jtk_Float_unpack(float value) {
+    /* A float value can be unpacked with the following algorithm, too. */
+    /*
     union {
         int32_t asInteger;
         float asDecimal;
     } bitPattern;
     bitPattern.asDecimal = value;
     int32_t result = bitPattern.asInteger;
+    */
+    
+    int32_t result = *((int32_t*)(&value));
 
     /* Collapse all the bit patterns encoding a NaN to a float "canonical"
      * Nan value.

@@ -1,0 +1,165 @@
+* Learn to use the Unit Test module. Write test cases for all the classes.
+* Write examples for all the classes.
+* Write documentation the classes which lack documentation.
+
+I've implemented a small part of an audio module. In particular for parsing WAVE streams.
+It'll be moved to another project.
+
+jtk::support
+------------
+
+RandomNumberGenerator - A class that implements a standard Random Number Generator algorithm.
+
+jtk::collection
+---------------
+
+RandomValueIterator - A *decorator for iterators* which produces values randomly.
+
+jtk::collection::bag
+--------------------
+
+HashBag
+
+jtk::collection::list
+---------------------
+
+XorLinkedList
+XorLinkedListIterator
+XorLinkedNode
+
+SinglyLinkedList
+SinglyLinkedListIterator
+SinglyLinkedNode
+
+jtk::collection::queue
+----------------------
+
+ArrayQueue - The implementation doesn't use a circular buffer. Reimplement to use circular buffer.
+
+jtk::collection::set
+--------------------
+
+HashSet
+
+jtk:collection::bst
+-------------------
+
+RedBlackTree - A source code called RBTreeMap.c exists in the "map" directory. Move it to this module. Rename the source code and all entities associated with it to RedBlackTree.
+AVLTree - Implement an AVL tree.
+BinaryTreeNode - Implement a generic class for binary tree nodes.
+
+jtk::text
+---------
+
+StringBuilder
+StringJoiner
+StringFormatter
+Locale
+
+jtk::fs
+-------
+
+Path
+PathHelper
+DirectoryIterator
+
+jtk::fs::stream
+---------------
+
+InputFileStream
+OutputFileStream
+
+jtk::support::log
+-----------------
+
+Logger - It exposes the API to the users.
+LogLevel - Every log has a level. It helps in filtering.
+LogFilter - A dynamic filter that filters log records. It can be customized according to the users needs.
+LogManager - The heart of the Logging Module. Every logger is attached to a global log manager. A logger simply delegates the logs to the log manager.
+Which in turn creates log records and forwards to the appropriate log handler
+after applying all the log filters.
+LogRecord - A single log record. It consists of message and level.
+
+jtk::support::log::format
+-------------------------
+
+LogFormatter
+XMLLogFormatter
+JSONLogFormatter
+SimpleLogFormatter
+
+jtk::support::log::handler
+--------------------------
+
+LogHandler
+ConsoleLogHandler
+FileLogHandler
+SocketLogHandler
+StreamLogHandler
+CircularBufferHandler
+
+
+jtk::function
+-------------
+
+jtk::net
+--------
+
+[Ignore this for now. We still need to design the module.]
+SocketInputStream
+SocketOutputStream
+
+jtk::digest
+-----------
+
+[Don't implement this right now. We need to design the Digest module first. ]
+
+MD5Digest
+SHA1Digest
+
+
+
+((The list modules JTK will include in the future.))
+
+jtk-collection
+jtk-core
+jtk-unit
+jtk-clip (Command Line Interface Parser)
+jtk-papi (Parsing API)
+jtk-text
+jtk-concurrent
+jtk-system
+jtk-net
+jtk-fs
+jtk-io
+jtk-xml
+jtk-json
+
+
+
+
+jtk_Thread_reportError();
+jtk_Thread_setOnError();
+jtk_Thread_setOnWarning();
+
+
+
+Automated suite generator
+{
+    'suite1' : {
+        'testCase1' : {
+            'target' : 'test_Class_function1',
+            'fixture' : {
+                'setUp' : 'fixture_Class_setUp',
+                'tearDown' : 'fixture_Class_tearDown'
+            }
+    }
+}
+
+int32_t jtk_DoublyLinkedList_removeIndexes(jtk_DoublyLinkedList_t* list, int32_t* indexes, int32_t size);
+int32_t jtk_ArrayList_removeIndexes(jtk_ArrayList_t* list, int32_t* indexes, int32_t size);
+
+Token
+CommonTokenStream
+Lexer
+Recognizer
