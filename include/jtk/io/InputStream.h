@@ -38,7 +38,7 @@ typedef void (*jtk_InputStream_CloseFunction_t)(void* implementation);
  * that is, either as input stream or output stream. A stream is considered as
  * an output stream if you are writing bytes to the stream. Similarly, a stream
  * is considered as an input stream if you are reading bytes from the stream.
- * In either case, streams are abstract in nature and may be associated with
+ * In either case, a stream is abstract in nature and may be associated with
  * files, sockets, strings, arrays, etc.
  *
  * The various input stream implementations support decoration pattern via
