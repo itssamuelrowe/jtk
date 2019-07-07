@@ -67,10 +67,6 @@ void jtk_BufferedInputStream_delete(jtk_BufferedInputStream_t* stream);
 
 int32_t jtk_BufferedInputStream_getAvailable(jtk_BufferedInputStream_t* stream);
 
-/* Destroy */
-
-void jtk_BufferedInputStream_destroy(jtk_BufferedInputStream_t* stream);
-
 /* Close */
 
 void jtk_BufferedInputStream_close(jtk_BufferedInputStream_t* stream);
