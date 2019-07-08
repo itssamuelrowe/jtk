@@ -19,6 +19,7 @@
 #ifndef JTK_IO_FILE_INPUT_STREAM_H
 #define JTK_IO_FILE_INPUT_STREAM_H
 
+#include <jtk/Configuration.h>
 #include <jtk/fs/PathHandle.h>
 #include <jtk/io/InputStream.h>
 
@@ -47,34 +48,61 @@ typedef struct jtk_FileInputStream_t jtk_FileInputStream_t;
 
 // Constructor
 
+/**
+ * @memberof FileInputStream
+ */
 jtk_FileInputStream_t* jtk_FileInputStream_newFromString(const uint8_t* path);
 
+/**
+ * @memberof FileInputStream
+ */
 jtk_FileInputStream_t* jtk_FileInputStream_newFromPath(jtk_Path_t* path);
 
 // Destructor
 
+/**
+ * @memberof FileInputStream
+ */
 void jtk_FileInputStream_delete(jtk_FileInputStream_t* stream);
 
 // Available
 
+/**
+ * @memberof FileInputStream
+ */
 int32_t jtk_FileInputStream_getAvailable(jtk_FileInputStream_t* stream);
 
 // Close
 
+/**
+ * @memberof FileInputStream
+ */
 void jtk_FileInputStream_close(jtk_FileInputStream_t* stream);
 
 // Read
 
+/**
+ * @memberof FileInputStream
+ */
 int32_t jtk_FileInputStream_read(jtk_FileInputStream_t* stream);
 
+/**
+ * @memberof FileInputStream
+ */
 int32_t jtk_FileInputStream_readBytes(jtk_FileInputStream_t* stream,
     uint8_t* buffer, int32_t size);
 
+/**
+ * @memberof FileInputStream
+ */
 int32_t jtk_FileInputStream_readBytesEx(jtk_FileInputStream_t* stream,
     uint8_t* buffer, int32_t size, int32_t startIndex, int32_t stopIndex);
 
 // Skip
 
+/**
+ * @memberof FileInputStream
+ */
 int64_t jtk_FileInputStream_skip(jtk_FileInputStream_t* stream, int64_t count);
 
 #endif /* JTK_IO_FILE_INPUT_STREAM_H */

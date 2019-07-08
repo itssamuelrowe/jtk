@@ -54,6 +54,10 @@ jtk_PathHandle_t* jtk_PathHandle_newFromString(const uint8_t* path);
 
 void jtk_PathHandle_delete(jtk_PathHandle_t* handle);
 
+// Close
+
+void jtk_PathHandle_close(jtk_PathHandle_t* handle);
+
 /* Directory */
 
 /**
