@@ -27,6 +27,11 @@
  *******************************************************************************/
 
 /**
+ * As of version 1.1, the previous algorithm has been updated. Previously, the
+ * elements were added at the beginning of the internal array list. This caused
+ * the "original" elements to be shifted causing a performance lag. However,
+ * this has been fixed by storing new elements at the end of the list.
+ *
  * @class ArrayStack
  * @ingroup jtk_collection_stack
  * @author Samuel Rowe <samuelrowe1999@gmail.com>

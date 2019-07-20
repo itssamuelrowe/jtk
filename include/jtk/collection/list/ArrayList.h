@@ -759,6 +759,17 @@ int32_t jtk_ArrayList_removeAllFromIterator(jtk_ArrayList_t* list, jtk_Iterator_
 void jtk_ArrayList_removeIndex(jtk_ArrayList_t* list, int32_t index);
 
 /**
+ * The removeLast() function removes the last element efficiently.
+ * Any subsequent elements to the left of the element, if any, remain untouched.
+ *
+ * @param  list
+ *         This argument specifies the list to modify.
+ * @memberof ArrayList
+ * @since JTK 1.1
+ */
+void jtk_ArrayList_removeLast(jtk_ArrayList_t* list);
+
+/**
  * The removeRange() function removes the elements in the specified range.
  * The range begins at the specified start index (inclusive) and extends
  * to the specified stop index (exclusive).

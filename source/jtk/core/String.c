@@ -75,10 +75,7 @@ jtk_String_t* jtk_String_newFromJoinEx(const uint8_t* value1, int32_t size1,
     jtk_StringBuilder_appendEx_z(builder, value1, size1);
     jtk_StringBuilder_appendEx_z(builder, value2, size2);
     
-    uint8_t* value = jtk_StringBuilder_toString(builder);
-    int32_t size = jtk_StringBuilder_getSize(builder);
-    jtk_String_t* result = jtk_String_wrap(value, size, -1);
-    
+    jtk_String_t* result = jtk_StringBuilder_toString(builder);
     jtk_StringBuilder_delete(builder);
     
     return result;

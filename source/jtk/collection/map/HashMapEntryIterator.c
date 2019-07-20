@@ -47,6 +47,8 @@ jtk_HashMapEntryIterator_t* jtk_HashMapEntryIterator_new(jtk_HashMap_t* map) {
     hashMapEntryIterator->m_iterator = iterator;
     hashMapEntryIterator->m_index = index;
     hashMapEntryIterator->m_next = next;
+    
+    return hashMapEntryIterator;
 }
 
 /* Destructor */
@@ -88,7 +90,7 @@ bool jtk_HashMapEntryIterator_hasNext(jtk_HashMapEntryIterator_t* iterator) {
 
 void* jtk_HashMapEntryIterator_getNext(jtk_HashMapEntryIterator_t* iterator) {
     jtk_Assert_assertObject(iterator, "The specified iterator is null.");
-    jtk_Assert_assertTrue(jtk_ArrayListIterator_hasNext(iterator), "The specified iterator is empty.");
+    jtk_Assert_assertTrue(jtk_HashMapEntryIterator_hasNext(iterator), "The specified iterator is empty.");
 
     jtk_HashMapEntry_t* entry = iterator->m_next;
     iterator->m_next = entry->m_next;

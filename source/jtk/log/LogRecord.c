@@ -29,8 +29,8 @@ jtk_LogRecord_t* jtk_LogRecord_new(int64_t identifier, jtk_String_t* tag,
     int64_t time) {
     jtk_LogRecord_t* record = jtk_Memory_allocate(jtk_LogRecord_t, 1);
     record->m_identifier = identifier;
-    record->m_tag = jtk_String_reference(tag);
-    record->m_message = jtk_String_reference(message);
+    record->m_tag = jtk_String_clone(tag);
+    record->m_message = jtk_String_clone(message);
     record->m_level = level;
     record->m_threadIdentifier = threadIdentifier;
     record->m_time = time;
@@ -44,8 +44,8 @@ jtk_LogRecord_t* jtk_LogRecord_new(int64_t identifier, jtk_String_t* tag,
 jtk_LogRecord_t* jtk_LogRecord_delete(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
     
-    jtk_String_release(record->m_message);
-    jtk_String_release(record->m_tag);
+    jtk_String_delete(record->m_message);
+    jtk_String_delete(record->m_tag);
     jtk_Memory_deallocate(record);
 }
 

@@ -2,6 +2,11 @@
 * Write examples for all the classes.
 * Write documentation the classes which lack documentation.
 
+* The array list is efficient when writes are less and reads are more. Similarly,
+ the linked list is efficient when writes are more and reads are less.
+ A circular list would provide both an efficient read and write, at the cost
+ of a complex code and evaluations.
+
 I've implemented a small part of an audio module. In particular for parsing WAVE streams.
 It'll be moved to another project.
 

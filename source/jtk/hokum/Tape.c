@@ -68,29 +68,34 @@ bool jtk_Tape_isAvailable(jtk_Tape_t* tape, int32_t required) {
 
 int8_t jtk_Tape_readUncheckedBoolean(jtk_Tape_t* tape) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
-    jtk_Assert_assertTrue((tape->m_index + 1) < tape->m_size, "No more bytes available.");
+    jtk_Assert_assertTrue((tape->m_index + 1) <= tape->m_size, "No more bytes available.");
 
     return tape->m_value[tape->m_index++] != 0;
 }
 
 int8_t jtk_Tape_readUncheckedByte(jtk_Tape_t* tape) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
-    jtk_Assert_assertTrue((tape->m_index + 1) < tape->m_size, "No more bytes available.");
+    jtk_Assert_assertTrue((tape->m_index + 1) <= tape->m_size, "No more bytes available.");
 
     return tape->m_value[tape->m_index++];
 }
 
 void jtk_Tape_readUncheckedBytes(jtk_Tape_t* tape, uint8_t* buffer, int32_t size) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
-    jtk_Assert_assertTrue((tape->m_index + size) < tape->m_size, "No more bytes available.");
+    /* The index is always at the current byte. Therefore, range checks subtract one
+     * from the current index. This can be written as `x lesser than or equal to y`.
+     */
+    jtk_Assert_assertTrue((tape->m_index + size) <= tape->m_size, "No more bytes available.");
 
     jtk_Arrays_copyEx_b(tape->m_value, tape->m_size, tape->m_index, buffer,
         size, 0, size);
+    
+    tape->m_index += size;
 }
 
 int16_t jtk_Tape_readUncheckedShort(jtk_Tape_t* tape) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
-    jtk_Assert_assertTrue((tape->m_index + 1) < tape->m_size, "No more bytes available.");
+    jtk_Assert_assertTrue((tape->m_index + 1) <= tape->m_size, "No more bytes available.");
 
     return (int16_t)(((uint32_t)(tape->m_value[tape->m_index++] & 0xFF) << 8) |
         (tape->m_value[tape->m_index++] & 0xFF));
@@ -98,7 +103,7 @@ int16_t jtk_Tape_readUncheckedShort(jtk_Tape_t* tape) {
 
 int32_t jtk_Tape_readUncheckedInteger(jtk_Tape_t* tape) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
-    jtk_Assert_assertTrue((tape->m_index + 1) < tape->m_size, "No more bytes available.");
+    jtk_Assert_assertTrue((tape->m_index + 1) <= tape->m_size, "No more bytes available.");
 
     return ((tape->m_value[tape->m_index++] & 0xFF) << 24) |
         ((tape->m_value[tape->m_index++] & 0xFF) << 16) |
@@ -108,7 +113,7 @@ int32_t jtk_Tape_readUncheckedInteger(jtk_Tape_t* tape) {
 
 int64_t jtk_Tape_readUncheckedLong(jtk_Tape_t* tape) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
-    jtk_Assert_assertTrue((tape->m_index + 1) < tape->m_size, "No more bytes available.");
+    jtk_Assert_assertTrue((tape->m_index + 1) <= tape->m_size, "No more bytes available.");
 
     return ((uint64_t)tape->m_value[tape->m_index++] << 56) |
            ((uint64_t)(tape->m_value[tape->m_index++] & 0xFF) << 48) |
@@ -122,7 +127,7 @@ int64_t jtk_Tape_readUncheckedLong(jtk_Tape_t* tape) {
 
 float jtk_Tape_readUncheckedFloat(jtk_Tape_t* tape) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
-    jtk_Assert_assertTrue((tape->m_index + 1) < tape->m_size, "No more bytes available.");
+    jtk_Assert_assertTrue((tape->m_index + 1) <= tape->m_size, "No more bytes available.");
 
 
     uint32_t bits = ((tape->m_value[tape->m_index++] & 0xFF) << 24) |
@@ -134,7 +139,7 @@ float jtk_Tape_readUncheckedFloat(jtk_Tape_t* tape) {
 
 double jtk_Tape_readUncheckedDouble(jtk_Tape_t* tape) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
-    jtk_Assert_assertTrue((tape->m_index + 1) < tape->m_size, "No more bytes available.");
+    jtk_Assert_assertTrue((tape->m_index + 1) <= tape->m_size, "No more bytes available.");
  
     uint64_t bits = ((uint64_t)tape->m_value[tape->m_index++] << 56) |
                    ((uint64_t)(tape->m_value[tape->m_index++] & 0xFF) << 48) |

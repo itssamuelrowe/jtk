@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,11 +35,11 @@ jtk_ArrayList_t* jtk_ArrayList_new() {
 jtk_ArrayList_t* jtk_ArrayList_newFromCollection(jtk_CollectionType_t type,
     void* collection) {
     jtk_Assert_assertObject(collection, "The specified collection is empty.");
-    
+
     jtk_Iterator_t* iterator = jtk_CollectionHelper_getIterator(type, collection);
     jtk_ArrayList_t* result = jtk_ArrayList_newEx(JTK_ARRAY_LIST_DEFAULT_CAPACITY, iterator, NULL);
     jtk_Iterator_delete(iterator);
-    
+
     return result;
 }
 
@@ -612,6 +612,13 @@ void jtk_ArrayList_removeIndex(jtk_ArrayList_t* list, int32_t index) {
             index, moved);
     }
     list->m_size--;
+}
+
+void jtk_ArrayList_removeLat(jtk_ArrayList_t* list) {
+    jtk_Assert_assertObject(list, "The specified array list is null.");
+    jtk_Assert_assertTrue(list->m_size >= 1, "The specified index is invalid.");
+
+    list->m_values[--list->m_size] = NULL;
 }
 
 int32_t jtk_ArrayList_removeRange(jtk_ArrayList_t* list, int32_t startIndex,

@@ -18,6 +18,26 @@
 
 #include <jtk/log/Logger.h>
 
+bool jtk_LogFilter_apply(jtk_LogFilter_t* filter, jtk_LogRecord_t* record) {
+    return (int32_t)record->m_level >= JTK_LOG_LEVEL_ALL; // (int32_t)record->m_logger->m_level;
+}
+
+jtk_LogRecord_t* jtk_LogRecordFactory_createLogRecord(
+    jtk_LogRecordFactory_t* factory, jtk_Logger_t* logger, jtk_LogLevel_t level,
+    jtk_String_t* tag, jtk_String_t* message, int64_t threadIdentifier, int64_t time) {
+    jtk_LogRecord_t* result = jtk_LogRecord_new(1, tag, message, level, threadIdentifier, time);
+    
+    return result;
+}
+
+jtk_LogRecordFactory_t* jtk_LogRecordFactory_getInstance() {
+    jtk_LogRecordFactory_t* factory = jtk_Memory_allocate(jtk_LogRecordFactory_t, 1);
+    factory->m_userData = NULL;
+    factory->m_createLogRecord = NULL;
+    
+    return factory;
+}
+
 /*******************************************************************************
  * Logger                                                                      *
  *******************************************************************************/
@@ -32,7 +52,7 @@ jtk_Logger_t* jtk_Logger_new(jtk_Logger_LogFunction_t log) {
 jtk_Logger_t* jtk_Logger_newEx(jtk_String_t* name,
     jtk_LogRecordFactory_t* logRecordFactory, jtk_Logger_LogFunction_t log) {
     jtk_Logger_t* logger = jtk_Memory_allocate(jtk_Logger_t, 1);
-    logger->m_name = jtk_String_new(name);
+    logger->m_name = (name != NULL)? jtk_String_clone(name) : jtk_String_newEx("Unknown", 7);
     logger->m_userData = NULL;
     logger->m_level = JTK_LOG_LEVEL_ALL;
     logger->m_filters = jtk_ArrayList_new();
@@ -71,19 +91,23 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
     int32_t length = vsnprintf(buffer, capacity, format, arguments);
 
     jtk_String_t* message = jtk_String_newEx(buffer, length);
+    jtk_String_t* tag0 = jtk_String_new(tag);
     int64_t time = 0; // TODO: Get the current time
     int64_t threadIdentifier = 0; // TODO: Get the thread identifier
 
     jtk_LogRecord_t* record = jtk_LogRecordFactory_createLogRecord(
-            logger->m_logRecordFactory, logger, level, tag, message, threadIdentifier,
+            logger->m_logRecordFactory, logger, level, tag0, message, threadIdentifier,
             time);
+            
+    jtk_String_delete(tag0);
+    jtk_String_delete(message);
     
     // if (logger->m_keepRecords) {
         // TODO: Implement a circular buffer that automatically removes records.
         // jtk_DoublyLinkedList_addLast(logger->m_records, record);
     // }
     
-    jtk_Iterator_t* iterator = jtk_DoublyLinkedList_getIterator(logger->m_filters);
+    jtk_Iterator_t* iterator = jtk_ArrayList_getIterator(logger->m_filters);
     while (jtk_Iterator_hasNext(iterator)) {
         jtk_LogFilter_t* filter = (jtk_LogFilter_t*)jtk_Iterator_getNext(iterator);
         if (!jtk_LogFilter_apply(filter, record)) {

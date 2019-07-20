@@ -134,8 +134,8 @@ set(
 set(
     JTK_LOG_SOURCE
 
-    # ${PROJECT_SOURCE_DIR}/source/jtk/log/Logger.c
-    # ${PROJECT_SOURCE_DIR}/source/jtk/log/LogRecord.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/log/Logger.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/log/LogRecord.c
 )
 
 set(
