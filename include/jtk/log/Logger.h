@@ -67,7 +67,7 @@ struct jtk_Logger_t {
     jtk_LogLevel_t m_level;
     jtk_ArrayList_t* m_filters;
     jtk_Logger_LogFunction_t m_log;
-    jtk_LogRecordFactory_t* m_logRecordFactory;
+    // jtk_LogRecordFactory_t* m_logRecordFactory;
     // jtk_DoublyLinkedList_t* m_records;
     // bool m_keepHistory;
 };
@@ -82,8 +82,7 @@ jtk_Logger_t* jtk_Logger_new(jtk_Logger_LogFunction_t log);
 /**
  * @memberof Logger
  */
-jtk_Logger_t* jtk_Logger_newEx(jtk_String_t* name, jtk_LogRecordFactory_t* factory,
-    jtk_Logger_LogFunction_t log);
+jtk_Logger_t* jtk_Logger_newEx(jtk_String_t* name, jtk_Logger_LogFunction_t log);
 
 // Destructor
 
@@ -156,6 +155,13 @@ void jtk_Logger_setLevel(jtk_Logger_t* logger, jtk_LogLevel_t level);
  * @memberof Logger
  */
 jtk_LogLevel_t jtk_Logger_getLevel(jtk_Logger_t* logger);
+
+// Log Record
+
+jtk_LogRecord_t* jtk_Logger_createLogRecord(jtk_Logger_t* logger, jtk_LogLevel_t level,
+    jtk_String_t* tag, jtk_String_t* message, int64_t threadIdentifier, int64_t time);
+
+void jtk_Logger_destroyLogRecord(jtk_Logger_t* logger, jtk_LogRecord_t* record);
 
 // Keep Records
 

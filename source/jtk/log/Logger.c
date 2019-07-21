@@ -23,14 +23,6 @@ bool jtk_LogFilter_apply(jtk_LogFilter_t* filter, jtk_Logger_t* logger,
     return (int32_t)record->m_level <= (int32_t)logger->m_level;
 }
 
-jtk_LogRecord_t* jtk_LogRecordFactory_createLogRecord(
-    jtk_LogRecordFactory_t* factory, jtk_Logger_t* logger, jtk_LogLevel_t level,
-    jtk_String_t* tag, jtk_String_t* message, int64_t threadIdentifier, int64_t time) {
-    jtk_LogRecord_t* result = jtk_LogRecord_new(1, tag, message, level, threadIdentifier, time);
-    
-    return result;
-}
-
 jtk_LogRecordFactory_t* jtk_LogRecordFactory_getInstance() {
     jtk_LogRecordFactory_t* factory = jtk_Memory_allocate(jtk_LogRecordFactory_t, 1);
     factory->m_userData = NULL;
@@ -46,19 +38,16 @@ jtk_LogRecordFactory_t* jtk_LogRecordFactory_getInstance() {
 // Constructor
 
 jtk_Logger_t* jtk_Logger_new(jtk_Logger_LogFunction_t log) {
-    jtk_LogRecordFactory_t* logRecordFactory = jtk_LogRecordFactory_getInstance();
-    return jtk_Logger_newEx(NULL, logRecordFactory, log);
+    return jtk_Logger_newEx(NULL, log);
 }
 
-jtk_Logger_t* jtk_Logger_newEx(jtk_String_t* name,
-    jtk_LogRecordFactory_t* logRecordFactory, jtk_Logger_LogFunction_t log) {
+jtk_Logger_t* jtk_Logger_newEx(jtk_String_t* name, jtk_Logger_LogFunction_t log) {
     jtk_Logger_t* logger = jtk_Memory_allocate(jtk_Logger_t, 1);
     logger->m_name = (name != NULL)? jtk_String_clone(name) : jtk_String_newEx("Unknown", 7);
     logger->m_userData = NULL;
     logger->m_level = JTK_LOG_LEVEL_ALL;
     logger->m_filters = jtk_ArrayList_new();
     logger->m_log = log;
-    logger->m_logRecordFactory = logRecordFactory;
     // logger->m_records = jtk_DoublyLinkedList_new();
     // logger->m_keepHistory = true;
 
@@ -70,13 +59,14 @@ jtk_Logger_t* jtk_Logger_newEx(jtk_String_t* name,
 void jtk_Logger_delete(jtk_Logger_t* logger) {
     jtk_Assert_assertObject(logger, "The specified logger is null.");
 
-    // jtk_Iterator_t* iterator = jtk_DoublyLinkedList_getIterator(logger->m_records);
+    // jtk_Iterator_t* iterator = jtk_ArrayList_getIterator(logger->m_records);
     // while (jtk_Iterator_hasNext(iterator)) {
     //     jtk_LogRecord_t* record = (jtk_LogRecord_t*)jtk_Iterator_getNext(iterator);
     //     jtk_LogRecordFactory_destroyLogRecord(logger->m_logRecordFactory, record);
     // }
     // jtk_Iterator_delete(iterator);
-
+    
+    jtk_ArrayList_delete(logger->m_filters);
     jtk_String_delete(logger->m_name);
     jtk_Memory_deallocate(logger);
 }
@@ -102,9 +92,8 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
     int64_t time = 0; // TODO: Get the current time
     int64_t threadIdentifier = 0; // TODO: Get the thread identifier
 
-    jtk_LogRecord_t* record = jtk_LogRecordFactory_createLogRecord(
-            logger->m_logRecordFactory, logger, level, tag0, message, threadIdentifier,
-            time);
+    jtk_LogRecord_t* record = jtk_Logger_createLogRecord(logger, level,
+        tag0, message, threadIdentifier, time);
             
     jtk_String_delete(tag0);
     jtk_String_delete(message);
@@ -144,6 +133,8 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
          */
         logger->m_log(logger, record);
     // }
+
+    jtk_Logger_destroyLogRecord(logger, record);
 
     /* Destroy the previously allocated temporary buffer. */
     jtk_Memory_deallocate(buffer);
@@ -341,4 +332,17 @@ jtk_LogLevel_t jtk_Logger_getLevel(jtk_Logger_t* logger) {
     jtk_Assert_assertObject(logger, "The specified logger is null.");
 
     return logger->m_level;
+}
+
+// Log Record
+
+jtk_LogRecord_t* jtk_Logger_createLogRecord(jtk_Logger_t* logger, jtk_LogLevel_t level,
+    jtk_String_t* tag, jtk_String_t* message, int64_t threadIdentifier, int64_t time) {
+    jtk_LogRecord_t* result = jtk_LogRecord_new(1, tag, message, level, threadIdentifier, time);
+    
+    return result;
+}
+
+void jtk_Logger_destroyLogRecord(jtk_Logger_t* logger, jtk_LogRecord_t* record) {
+    jtk_LogRecord_delete(record);
 }
