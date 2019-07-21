@@ -18,8 +18,9 @@
 
 #include <jtk/log/Logger.h>
 
-bool jtk_LogFilter_apply(jtk_LogFilter_t* filter, jtk_LogRecord_t* record) {
-    return (int32_t)record->m_level >= JTK_LOG_LEVEL_ALL; // (int32_t)record->m_logger->m_level;
+bool jtk_LogFilter_apply(jtk_LogFilter_t* filter, jtk_Logger_t* logger,
+    jtk_LogRecord_t* record) {
+    return (int32_t)record->m_level <= (int32_t)logger->m_level;
 }
 
 jtk_LogRecord_t* jtk_LogRecordFactory_createLogRecord(
@@ -80,6 +81,12 @@ void jtk_Logger_delete(jtk_Logger_t* logger) {
     jtk_Memory_deallocate(logger);
 }
 
+// Filter
+
+bool jtk_Logger_filter(jtk_Logger_t* logger, jtk_LogRecord_t* record) {
+    return (int32_t)record->m_level >= (int32_t)logger->m_level;
+}
+
 // Log
 
 void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
@@ -107,16 +114,21 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
         // jtk_DoublyLinkedList_addLast(logger->m_records, record);
     // }
     
+    /* The default filter is always active. This behaviour can be overriden
+     * with a custom filter.
+     */
+    filtered = !jtk_Logger_filter(logger, record);
+
     jtk_Iterator_t* iterator = jtk_ArrayList_getIterator(logger->m_filters);
     while (jtk_Iterator_hasNext(iterator)) {
         jtk_LogFilter_t* filter = (jtk_LogFilter_t*)jtk_Iterator_getNext(iterator);
-        if (!jtk_LogFilter_apply(filter, record)) {
+        if (!jtk_LogFilter_apply(filter, logger, record)) {
             filtered = true;
             break;
         }
     }
     jtk_Iterator_delete(iterator);
-
+    
     jtk_LogRecord_setFiltered(record, filtered);
 
     /* Previously, the logger prevented filtered logs from being delegated to

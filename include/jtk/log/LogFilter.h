@@ -28,6 +28,8 @@
 
 // Forward Reference
 
+typedef struct jtk_Logger_t jtk_Logger_t;
+
 /**
  * @memberof LogFilter
  */
@@ -39,7 +41,7 @@ typedef struct jtk_LogFilter_t jtk_LogFilter_t;
  * @memberof LogFilter
  */
 typedef bool (*jtk_LogFilter_ApplyFunction_t)(jtk_LogFilter_t* filter,
-    jtk_LogRecord_t* record);
+    jtk_Logger_t* logger, jtk_LogRecord_t* record);
 
 /**
  * @class LogFilter

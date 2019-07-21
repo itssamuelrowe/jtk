@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -106,7 +106,7 @@ enum jtk_LogLevel_t {
      * This level is initialized to {@code 6000}.
      */
     JTK_LOG_LEVEL_INFORMATION = 6000,
-    
+
     /**
      * {@code JTK_LOG_LEVEL_WARNING} indicates that all the messages that
      * specify potential problems should be logged.
@@ -114,19 +114,19 @@ enum jtk_LogLevel_t {
      * This level is initialized to {@code 7000}.
      */
     JTK_LOG_LEVEL_WARNING = 7000,
-    
+
     /**
      * {@code JTK_LOG_LEVEL_SEVERE} indicates that all the messages that
      * specify serious failures should be logged.
      *
      * In general, messages that inform serious failures that may prevent normal
-     * execution of the application are usually traced at this level. Such events 
+     * execution of the application are usually traced at this level. Such events
      * may include module initialization failure and other relevant events.
      *
      * This level is initialized to {@code 8000}.
      */
     JTK_LOG_LEVEL_SEVERE = 8000,
-    
+
     /**
      * {@code JTK_LOG_LEVEL_ERROR} indicates that all the messages that
      * specify serious errors should be logged.
@@ -136,8 +136,8 @@ enum jtk_LogLevel_t {
      *
      * This level is initialized to {@code 9000}.
      */
-    JTK_LOG_LEVEL_ERROR = 9000,    
-    
+    JTK_LOG_LEVEL_ERROR = 9000,
+
     /**
      * {@code JTK_LOG_LEVEL_NONE} indicates that none of the messages are
      * logged.
