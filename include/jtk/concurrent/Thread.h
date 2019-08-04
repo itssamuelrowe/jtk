@@ -71,7 +71,7 @@
  *  message queue
  *    ^-------- message from some other thread (say thread_1)
  *    ^----------------- message from some other thread (say thread_2)
- *    ^------------------------- message from some other thread (say thread_2)
+ *    ^------------------------- message from some other thread (say thread_3)
  *
  * A looper may encounter two types of messages in the message queue:
  * -- A message holding a predefined message code.
@@ -150,7 +150,7 @@ struct jtk_Thread_t {
      */
     jtk_ThreadEntryFunction_t m_entry;
 
-	int32_T m_flags;
+	int32_t m_flags;
 
     /**
      * The looper associated with this thread. By default, a thread is

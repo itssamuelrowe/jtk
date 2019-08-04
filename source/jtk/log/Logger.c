@@ -105,6 +105,10 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
     
     /* The default filter is always active. This behaviour can be overriden
      * with a custom filter.
+     *
+     * The filter returns true if the record should be retained. However, the
+     * "filtered" flag indicates if the record should be discarded. Therefore,
+     * negate the result of the filter.
      */
     filtered = !jtk_Logger_filter(logger, record);
 

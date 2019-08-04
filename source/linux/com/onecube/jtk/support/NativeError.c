@@ -89,6 +89,12 @@ jtk_Error_t jtk_NativeError_translate(int32_t code) {
             error = JTK_ERROR_EXPECTED_DIRECTORY;
             break;
         }
+        
+        /* A low-level I/O error during an I/O operation. */
+        case EIO: {
+            error = JTK_ERROR_LOW_LEVEL_IO;
+            break;
+        }
     }
     return error;
 }
