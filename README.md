@@ -11,7 +11,7 @@ at OneCube Software Solutions. We observed a need for a library that could be
 reused in other projects. Therefore, we refactored the reusable components
 and called it JTK.
 
-JTK is aims to provide a better alternative to libraries such as Glib. It was
+JTK aims to provide a better alternative to libraries such as Glib. It was
 designed with flexibility and performance in mind.
 
 Installation
