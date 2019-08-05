@@ -2,13 +2,17 @@ What is JTK?
 ------------
 
 JTK is a library designed for writing applications and libraries in C. It provides
-the core utilities such as collections, unit testing, I/O streams, and much more.
+core utilities such as collections, unit testing, I/O streams, threads and much
+more.
 
 Initially, the development of the library began within an other project, a
 compiler for Zen. Zen is a programming language currently under development
 at OneCube Software Solutions. We observed a need for a library that could be
 reused in other projects. Therefore, we refactored the reusable components
 and called it JTK.
+
+JTK is aims to provide a better alternative to libraries such as Glib. It was
+designed with flexibility and performance in mind.
 
 Installation
 ------------
@@ -44,10 +48,46 @@ Installation
    ```
    make
    ```
-   This should compile the framework. Archives and executable files should be  
+   This should compile the library. Archives and executable files should be  
    produced in your current working directory. You can link the library to  
    your project. As of this version, a plethora of warnings are generated.  
    We are working to eradicate these warnings.
+
+[Linux]
+
+1. For compiling JTK on Linux, you need CMake and GNU Make (or any other make
+   utility that CMake is compatible with).
+2. Extract the source code to any directory of your choice, for the sake of this  
+   documentation we will refer this location as '/mnt/g/jtk'.
+3. Change the directory to '/mnt/g/jtk'.
+    ```
+    cd '/mnt/g/jtk'
+    ```
+4. Create a temporary directory for compiling the source code. For the sake of this
+   documentation we will refer to this directory as 'build'.
+   ```
+   mkdir build
+   ```
+5. Change directory to the newly created directory.
+   ```
+   cd build
+   ```
+6. Invoke CMake to generate make files. In this documentation, we show the  
+   commands to generate the default Makefiles, on my system GNU Makefiles is
+   the default target. You can easily generate other makefiles by specifying
+   the target make files using the `-G` flag.
+   ```
+   cmake ..
+   ```
+7. Invoke the GNU Make program.
+   ```
+   make
+   ```
+   This should compile the library. Archives and executable files should be  
+   produced in your current working directory. You can link the library to  
+   your project. As of this version, a plethora of warnings are generated.  
+   We are working to eradicate these warnings.
+
 
 Structure of JTK
 ----------------
@@ -115,10 +155,10 @@ Style Guidelines
 #### [example]
 This directory consists of example programs. It is intended for beginners,
 intermidiate users, and advanced users. It showcases a variety of examples of
-using the framework.
+using the library.
 
 #### [include]
-This directory consists of all the header files exported by the JTK Framework.
+This directory consists of all the header files exported by JTK.
 
 #### [share]
 This directory consists of misc files for tools such as pkg-config, etc.
@@ -128,7 +168,7 @@ This directory consists of all the source files that is compiled into library
 archives.
 
 #### [test]
-This directory consits of unit tests for the framework.
+This directory consits of unit tests for the library.
 
 #### [CMakeLists.txt]
 The rules for compiling the library, unit tests, etc. Feed this file to CMake
@@ -161,7 +201,7 @@ with a unique suffix. The suffixes are listed above.
 ### TODO.txt
 
 
-It lists all the features yet to be implemented by the framework.
+It lists all the features yet to be implemented by the library.
 
 
 ## License
