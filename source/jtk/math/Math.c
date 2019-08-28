@@ -39,11 +39,12 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
     int32_t result = 0;
     switch (method) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
-            result = jtk_DistanceMetric_applyEucliedeanMethod_d(array1, array2, size);
+            result = jtk_DistanceMetric_findEucliedeanDistance_d(array1, array2, size);
             break;
         }
         
         JTK_DISTANCE_METRIC_MANHATTAN: {
+            result = jtk_DistanceMetric_findManhattanDistance_d(array1, array2, size);
             break;
         }
         

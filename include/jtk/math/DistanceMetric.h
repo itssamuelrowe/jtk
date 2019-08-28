@@ -32,20 +32,37 @@
 enum jtk_DistanceMetric_t {
     
     /**
-     * The Euclidean distance is the "ordinary" straight-line distance between
-     * two points in Euclidean space.
+     * The Manhattan distance is the "ordinary" straight-line distance between
+     * two points in Manhattan space.
      *
-     * The Euclidean distance between points p and q is the length of the line
+     * The Manhattan distance between points p and q is the length of the line
      * segment connecting them. In Cartesian coordinates, if p = (p1, p2,..., pN)
-     * and q = (q1, q2,..., qN) are two points in Euclidean n-space, then the
+     * and q = (q1, q2,..., qN) are two points in Manhattan n-space, then the
      * distance from p to q, or from q to p is given by the the following formula:
      * d(p, q) = d(q, p) = ((q1 - p1) ^ 2 + (q2 - p2) ^ 2 + ... + (qN - pN) ^ 2) ^ (1 / 2)
      *
-     * Please visit the page <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>
+     * Please visit the page <a href="https://en.wikipedia.org/wiki/Manhattan_distance">Manhattan distance</a>
      * on Wikipedia for more information.
      */
     JTK_DISTANCE_METRIC_EUCLIDEAN,
+    
+    /**
+     * The Manhattan distance between two vectors p and q in an n-dimensional
+     * real vector space with fixed Cartesian coordinate system, is the sum of
+     * the lengths of the projections of the line segment between the points
+     * onto the coordinate axes. In other words, the Manhattan distance between
+     * two points is measured along axes at right angles. In a plane with p1 at
+     * (x1, y1) and p2 at (x2, y2), it is |x1 - x2| + |y1 - y2|.
+     * More generally in Cartesian coordinates, if p = (p1, p2,..., pN) and q = (q1, q2,..., qN)
+     * are two points, then the distance from p to q, or from q to p is given by
+     * the the following formula:
+     * d(p, q) = d(q, p) = |p1 - q1| + |p2 - q2| + ... + |pN - qN|     
+     * 
+     * Manhattan distance is often used in integrated circuits where wires only
+     * run parallel to the X or Y axis.
+     */
     JTK_DISTANCE_METRIC_MANHATTAN,
+    
     JTK_DISTANCE_METRIC_CHEBYSHEV,
     JTK_DISTANCE_METRIC_MINKOWSKI,
     JTK_DISTANCE_METRIC_W_MINKOWSKI,
@@ -74,30 +91,56 @@ enum jtk_DistanceMetric_t {
  */
 typedef enum jtk_DistanceMetric_t jtk_DistanceMetric_t;
 
-// Euclidean
+// Manhattan
 
 /**
  * @memberof DistanceMetric
  */
-int32_t jtk_DistanceMetric_applyEuclideanMethod_i(int32_t* array1, int32_t* array2,
+int32_t jtk_DistanceMetric_findManhattanDistance_i(int32_t* array1, int32_t* array2,
     int32_t size);
 
 /**
  * @memberof DistanceMetric
  */
-int64_t jtk_DistanceMetric_applyEuclideanMethod_l(int64_t* array1, int64_t* array2,
+int64_t jtk_DistanceMetric_findManhattanDistance_l(int64_t* array1, int64_t* array2,
     int32_t size);
 
 /**
  * @memberof DistanceMetric
  */
-float jtk_DistanceMetric_applyEuclideanMethod_f(float* array1, float* array2,
+float jtk_DistanceMetric_findManhattanDistance_f(float* array1, float* array2,
     int32_t size);
 
 /**
  * @memberof DistanceMetric
  */
-double jtk_DistanceMetric_applyEuclideanMethod_d(double* array1, double* array2,
+double jtk_DistanceMetric_findManhattanDistance_d(double* array1, double* array2,
+    int32_t size);
+    
+// Manhattan
+
+/**
+ * @memberof DistanceMetric
+ */
+int32_t jtk_DistanceMetric_findManhattanDistance_i(int32_t* array1, int32_t* array2,
+    int32_t size);
+
+/**
+ * @memberof DistanceMetric
+ */
+int64_t jtk_DistanceMetric_findManhattanDistance_l(int64_t* array1, int64_t* array2,
+    int32_t size);
+
+/**
+ * @memberof DistanceMetric
+ */
+float jtk_DistanceMetric_findManhattanDistance_f(float* array1, float* array2,
+    int32_t size);
+
+/**
+ * @memberof DistanceMetric
+ */
+double jtk_DistanceMetric_findManhattanDistance_d(double* array1, double* array2,
     int32_t size);
 
 #endif /* JTK_MATH_DISTANCE_METRIC_H */

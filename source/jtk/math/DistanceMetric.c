@@ -23,9 +23,9 @@
  * DistanceMetric                                                              *
  *******************************************************************************/
 
-// Euclidean Method
+// Euclidean Distance
 
-int32_t jtk_DistanceMetric_applyEuclideanMethod_i(int32_t* array1, int32_t* array2,
+int32_t jtk_DistanceMetric_findEuclideanDistance_i(int32_t* array1, int32_t* array2,
     int32_t size) {
     int32_t result = 0;
     int32_t i;
@@ -36,7 +36,7 @@ int32_t jtk_DistanceMetric_applyEuclideanMethod_i(int32_t* array1, int32_t* arra
     return jtk_Math_squareRoot_i(result);
 }
 
-int64_t jtk_DistanceMetric_applyEuclideanMethod_l(int64_t* array1, int64_t* array2,
+int64_t jtk_DistanceMetric_findEuclideanDistance_l(int64_t* array1, int64_t* array2,
     int32_t size) {
     int64_t result = 0;
     int32_t i;
@@ -47,7 +47,7 @@ int64_t jtk_DistanceMetric_applyEuclideanMethod_l(int64_t* array1, int64_t* arra
     return jtk_Math_squareRoot_l(result);
 }
 
-float jtk_DistanceMetric_applyEuclideanMethod_f(float* array1, float* array2,
+float jtk_DistanceMetric_findEuclideanDistance_f(float* array1, float* array2,
     int32_t size) {
     float result = 0;
     int32_t i;
@@ -59,7 +59,7 @@ float jtk_DistanceMetric_applyEuclideanMethod_f(float* array1, float* array2,
 }
 
 
-double jtk_DistanceMetric_applyEuclideanMethod_d(double* array1, double* array2,
+double jtk_DistanceMetric_findEuclideanDistance_d(double* array1, double* array2,
     int32_t size) {
     double result = 0;
     int32_t i;
@@ -68,4 +68,47 @@ double jtk_DistanceMetric_applyEuclideanMethod_d(double* array1, double* array2,
         result += difference * difference;
     }
     return jtk_Math_squareRoot_d(result);
+}
+
+// Manhattan Distance
+
+int32_t jtk_DistanceMetric_findManhattanDistance_i(int32_t* array1, int32_t* array2,
+    int32_t size) {
+    int32_t result = 0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        result += jtk_Math_absolute_i(array1[i] - array2[i]);
+    }
+    return result;
+    
+}
+
+int64_t jtk_DistanceMetric_findManhattanDistance_l(int64_t* array1, int64_t* array2,
+    int32_t size) {
+    int64_t result = 0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        result += jtk_Math_absolute_l(array1[i] - array2[i]);
+    }
+    return result;
+}
+
+float jtk_DistanceMetric_findManhattanDistance_f(float* array1, float* array2,
+    int32_t size) {
+    float result = 0.0f;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        result += jtk_Math_absolute_f(array1[i] - array2[i]);
+    }
+    return result;
+}
+
+double jtk_DistanceMetric_findManhattanDistance_d(double* array1, double* array2,
+    int32_t size) {
+    double result = 0.0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        result += jtk_Math_absolute_d(array1[i] - array2[i]);
+    }
+    return result;
 }
