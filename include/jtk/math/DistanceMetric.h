@@ -32,16 +32,16 @@
 enum jtk_DistanceMetric_t {
     
     /**
-     * The Manhattan distance is the "ordinary" straight-line distance between
-     * two points in Manhattan space.
+     * The Euclidean distance is the "ordinary" straight-line distance between
+     * two points in Euclidean space.
      *
-     * The Manhattan distance between points p and q is the length of the line
+     * The Euclidean distance between points p and q is the length of the line
      * segment connecting them. In Cartesian coordinates, if p = (p1, p2,..., pN)
-     * and q = (q1, q2,..., qN) are two points in Manhattan n-space, then the
+     * and q = (q1, q2,..., qN) are two points in Euclidean n-space, then the
      * distance from p to q, or from q to p is given by the the following formula:
      * d(p, q) = d(q, p) = ((q1 - p1) ^ 2 + (q2 - p2) ^ 2 + ... + (qN - pN) ^ 2) ^ (1 / 2)
      *
-     * Please visit the page <a href="https://en.wikipedia.org/wiki/Manhattan_distance">Manhattan distance</a>
+     * Please visit the page <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>
      * on Wikipedia for more information.
      */
     JTK_DISTANCE_METRIC_EUCLIDEAN,
@@ -60,6 +60,9 @@ enum jtk_DistanceMetric_t {
      * 
      * Manhattan distance is often used in integrated circuits where wires only
      * run parallel to the X or Y axis.
+     *
+     * Please visit the page <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">Taxicab geometry</a>
+     * on Wikipedia for more information.
      */
     JTK_DISTANCE_METRIC_MANHATTAN,
     
