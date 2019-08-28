@@ -23,6 +23,60 @@
  * DistanceMetric                                                              *
  *******************************************************************************/
 
+// Chebyshev Distance
+
+int32_t jtk_DistanceMetric_findChebyshevDistance_i(int32_t* array1, int32_t array2
+    int32_t size) {
+    int32_t result = 0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        int32_t difference = jtk_Math_absolute_i(array1[i] - array2[i]);
+        if (result < difference) {
+            result = difference;
+        }
+    }
+    return result;
+}
+
+int64_t jtk_DistanceMetric_findChebyshevDistance_l(int64_t* array1, int64_t array2
+    int32_t size) {
+    int64_t result = 0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        int64_t difference = jtk_Math_absolute_l(array1[i] - array2[i]);
+        if (result < difference) {
+            result = difference;
+        }
+    }
+    return result;
+}
+
+float jtk_DistanceMetric_findChebyshevDistance_f(float* array1, float array2
+    int32_t size) {
+    float result = 0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        float difference = jtk_Math_absolute_f(array1[i] - array2[i]);
+        if (jtk_Float_compare(result, difference) < 0) {
+            result = difference;
+        }
+    }
+    return result;
+}
+
+double jtk_DistanceMetric_findChebyshevDistance_d(double* array1, double array2
+    int32_t size) {
+    double result = 0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        double difference = jtk_Math_absolute_d(array1[i] - array2[i]);
+        if (jtk_Double_compare(result, difference) < 0) {
+            result = difference;
+        }
+    }
+    return result;
+}
+
 // Euclidean Distance
 
 int32_t jtk_DistanceMetric_findEuclideanDistance_i(int32_t* array1, int32_t* array2,

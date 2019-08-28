@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,12 +25,12 @@
 
 /**
  * @class DistanceMetric
- * @ingroup 
+ * @ingroup
  * @author Samuel Rowe <samuelrowe1999@gmail.com>
  * @since JTK 1.1
  */
 enum jtk_DistanceMetric_t {
-    
+
     /**
      * The Euclidean distance is the "ordinary" straight-line distance between
      * two points in Euclidean space.
@@ -45,7 +45,7 @@ enum jtk_DistanceMetric_t {
      * on Wikipedia for more information.
      */
     JTK_DISTANCE_METRIC_EUCLIDEAN,
-    
+
     /**
      * The Manhattan distance between two vectors p and q in an n-dimensional
      * real vector space with fixed Cartesian coordinate system, is the sum of
@@ -56,8 +56,8 @@ enum jtk_DistanceMetric_t {
      * More generally in Cartesian coordinates, if p = (p1, p2,..., pN) and q = (q1, q2,..., qN)
      * are two points, then the distance from p to q, or from q to p is given by
      * the the following formula:
-     * d(p, q) = d(q, p) = |p1 - q1| + |p2 - q2| + ... + |pN - qN|     
-     * 
+     * d(p, q) = d(q, p) = |p1 - q1| + |p2 - q2| + ... + |pN - qN|
+     *
      * Manhattan distance is often used in integrated circuits where wires only
      * run parallel to the X or Y axis.
      *
@@ -65,20 +65,36 @@ enum jtk_DistanceMetric_t {
      * on Wikipedia for more information.
      */
     JTK_DISTANCE_METRIC_MANHATTAN,
-    
+
+    /**
+     * The Chebyshev distance between two vectors p and q in an n-dimensional
+     * real vector space with fixed Cartesian coordinate system, is the
+     * maximum of the absolute magnitude of the differences between the coordinate
+     * dimensions. Chebyshev distance is also called the maximum value distance,
+     * or chessboard distance.
+     *
+     * Generally in Cartesian coordinates, if p = (p1, p2,..., pN) and q = (q1, q2,..., qN)
+     * are two points, then the Chebyshev distance from p to q is given by the
+     * following formula:
+     * d(p, q) = max(|p1 - q1|, |p2 - q2|, ..., |pN - qN|)
+     *
+     * Please visit the page <a href="https://en.wikipedia.org/wiki/Chebyshev_distance">Chebyshev distance</a>
+     * on Wikipedia for more information.
+     */
     JTK_DISTANCE_METRIC_CHEBYSHEV,
+    
     JTK_DISTANCE_METRIC_MINKOWSKI,
     JTK_DISTANCE_METRIC_W_MINKOWSKI,
     JTK_DISTANCE_METRIC_S_EUCLIDEAN,
     JTK_DISTANCE_METRIC_MAHALANOBIS,
-    
+
     JTK_DISTANCE_METRIC_HAMMING,
     JTK_DISTANCE_METRIC_CANBERRA,
     JTK_DISTANCE_METRIC_BRAYCURTIS,
-    
+
     JTK_DISTANCE_METRIC_EARTH_MOVERS,
     JTK_DISTANCE_METRIC_HAVERSINE,
-    
+
     JTK_DISTANCE_METRIC_JACCARD,
     JTK_DISTANCE_METRIC_MATCHING,
     JTK_DISTANCE_METRIC_DICE,
@@ -119,7 +135,7 @@ float jtk_DistanceMetric_findManhattanDistance_f(float* array1, float* array2,
  */
 double jtk_DistanceMetric_findManhattanDistance_d(double* array1, double* array2,
     int32_t size);
-    
+
 // Manhattan
 
 /**

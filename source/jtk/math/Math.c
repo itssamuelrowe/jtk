@@ -39,16 +39,17 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
     int32_t result = 0;
     switch (method) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
-            result = jtk_DistanceMetric_findEucliedeanDistance_d(array1, array2, size);
+            result = jtk_DistanceMetric_findEuclideanDistance_i(array1, array2, size);
             break;
         }
         
         JTK_DISTANCE_METRIC_MANHATTAN: {
-            result = jtk_DistanceMetric_findManhattanDistance_d(array1, array2, size);
+            result = jtk_DistanceMetric_findManhattanDistance_i(array1, array2, size);
             break;
         }
         
         JTK_DISTANCE_METRIC_CHEBYSHEV: {
+            result = jtk_DistanceMetric_findChebyshevDistance_i(array1, array2, size);
             break;
         }
         
@@ -137,15 +138,17 @@ int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
     int64_t result = 0;
     switch (method) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
-            result = jtk_DistanceMetric_applyEucliedeanMethod_d(array1, array2, size);
+            result = jtk_DistanceMetric_findEuclideanMethod_l(array1, array2, size);
             break;
         }
         
         JTK_DISTANCE_METRIC_MANHATTAN: {
+            result = jtk_DistanceMetric_findManhattanDistance_l(array1, array2, size);
             break;
         }
         
         JTK_DISTANCE_METRIC_CHEBYSHEV: {
+            result = jtk_DistanceMetric_findChebyshevDistance_l(array1, array2, size);
             break;
         }
         
@@ -233,15 +236,17 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
     float result = JTK_FLOAT_NAN;
     switch (method) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
-            result = jtk_DistanceMetric_applyEucliedeanMethod_d(array1, array2, size);
+            result = jtk_DistanceMetric_findEuclideanDistance_f(array1, array2, size);
             break;
         }
         
         JTK_DISTANCE_METRIC_MANHATTAN: {
+            result = jtk_DistanceMetric_findManhattanDistance_f(array1, array2, size);
             break;
         }
         
         JTK_DISTANCE_METRIC_CHEBYSHEV: {
+            result = jtk_DistanceMetric_findChebyshevDistance_l(array1, array2, size);
             break;
         }
         
@@ -330,15 +335,17 @@ double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
     double result = JTK_DOUBLE_NAN;
     switch (method) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
-            result = jtk_DistanceMetric_applyEucliedeanMethod_d(array1, array2, size);
+            result = jtk_DistanceMetric_findEuclideanDistance_d(array1, array2, size);
             break;
         }
         
         JTK_DISTANCE_METRIC_MANHATTAN: {
+            result = jtk_DistanceMetric_findManhattanDistance_d(array1, array2, size);
             break;
         }
         
         JTK_DISTANCE_METRIC_CHEBYSHEV: {
+            result = jtk_DistanceMetric_findChebyshevDistance_d(array1, array2, size);
             break;
         }
         
