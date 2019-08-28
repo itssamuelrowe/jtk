@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,6 +32,20 @@
  * @since JTK 1.0
  */
 
+/* Distance */
+
+int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
+    jtk_DistanceMethod_t method);
+
+int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
+    jtk_DistanceMethod_t method);
+
+float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
+    jtk_DistanceMethod_t method);
+
+double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
+    jtk_DistanceMethod_t method);
+
 /* Palindrome */
 
 /**
@@ -45,7 +59,7 @@ bool jtk_Math_isPalindrome_i(int32_t number);
  * @since JTK 1.1
  */
 bool jtk_Math_isPalindrome_l(int64_t number);
- 
+
 /* Prime */
 
 /**
@@ -78,5 +92,7 @@ bool jtk_Math_isPrimeFast_l(int64_t number);
  * @memberof Math
  */
 int32_t jtk_Math_findPowerOfTwo(int32_t n);
+
+
 
 #endif /* JTK_CORE_MATH_H */

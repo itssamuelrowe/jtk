@@ -62,6 +62,7 @@ set(
 
     # TODO: Move this to a separate module.
     ${PROJECT_SOURCE_DIR}/source/jtk/math/Math.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/math/DistanceMetric.c
 )
 
 set(

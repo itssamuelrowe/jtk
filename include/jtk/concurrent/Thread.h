@@ -23,16 +23,6 @@
  * Thread                                                                      *
  *******************************************************************************/
 
-#define JTK_THREAD_FLAG_WRAPPER (1 << 0)
-#define JTK_THREAD_FLAG_INTERRUPTIBLE (1 << 1)
-
-#define JTK_THREAD_STATE_INTERRUPTED
-
-/**
- * Determines whether this thread has begun execution.
- */
-#define JTK_THREAD_STATE_ALIVE
-
 /**
  * A thread is an independent path of execution within a process. Multiple
  * threads can run concurrently within a process, either synchronously or
