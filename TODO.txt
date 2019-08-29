@@ -1,3 +1,6 @@
+ * Make sure that the distance metric use double for internal calculations, even
+   if they return integer values. This improves the accuracy of the result.
+
 * Learn to use the Unit Test module. Write test cases for all the classes.
 * Write examples for all the classes.
 * Write documentation the classes which lack documentation.

@@ -31,7 +31,7 @@
 /* Distance */
 
 int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
-    jtk_DistanceMethod_t method) {
+    jtk_DistanceMethod_t method, ...) {
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -54,6 +54,14 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
         }
         
         JTK_DISTANCE_METRIC_MINKOWSKI: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+            
+            int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
+            result = jtk_DistanceMetric_findMinkowskiDistance_i(array1, array2, size, order);
+            
+            jtk_VariableArguments_end(arguments);
+            
             break;
         }
         
@@ -130,7 +138,7 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
 
 
 int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
-    jtk_DistanceMethod_t method) {
+    jtk_DistanceMethod_t method, ...) {
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -153,6 +161,14 @@ int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
         }
         
         JTK_DISTANCE_METRIC_MINKOWSKI: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+            
+            int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
+            result = jtk_DistanceMetric_findMinkowskiDistance_l(array1, array2, size, order);
+            
+            jtk_VariableArguments_end(arguments);
+            
             break;
         }
         
@@ -228,7 +244,7 @@ int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
 }
 
 float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
-    jtk_DistanceMethod_t method) {
+    jtk_DistanceMethod_t method, ...) {
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -251,6 +267,14 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
         }
         
         JTK_DISTANCE_METRIC_MINKOWSKI: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+            
+            int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
+            result = jtk_DistanceMetric_findMinkowskiDistance_f(array1, array2, size, order);
+            
+            jtk_VariableArguments_end(arguments);
+            
             break;
         }
         
@@ -327,7 +351,7 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
 
 
 double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
-    jtk_DistanceMethod_t method) {
+    jtk_DistanceMethod_t method, ...) {
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -350,6 +374,14 @@ double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
         }
         
         JTK_DISTANCE_METRIC_MINKOWSKI: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+            
+            int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
+            result = jtk_DistanceMetric_findMinkowskiDistance_d(array1, array2, size, order);
+            
+            jtk_VariableArguments_end(arguments);
+            
             break;
         }
         

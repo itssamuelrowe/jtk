@@ -28,6 +28,7 @@
 
 #define jtk_VariableArguments_start va_start
 #define jtk_VariableArguments_end va_end
+#define jtk_VariableArguments_argument
 
 typedef va_list jtk_VariableArguments_t;
 

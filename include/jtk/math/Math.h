@@ -35,16 +35,16 @@
 /* Distance */
 
 int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
-    jtk_DistanceMethod_t method);
+    jtk_DistanceMethod_t method, ...);
 
 int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
-    jtk_DistanceMethod_t method);
+    jtk_DistanceMethod_t method, ...);
 
 float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
-    jtk_DistanceMethod_t method);
+    jtk_DistanceMethod_t method, ...);
 
 double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
-    jtk_DistanceMethod_t method);
+    jtk_DistanceMethod_t method, ...);
 
 /* Palindrome */
 

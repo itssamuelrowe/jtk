@@ -166,3 +166,49 @@ double jtk_DistanceMetric_findManhattanDistance_d(double* array1, double* array2
     }
     return result;
 }
+
+// Minkowski Distance
+
+int32_t jtk_DistanceMetric_findMinkowskiDistance_i(int32_t* array1, int32_t* array2,
+    int32_t size, int32_t order) {
+    double sum = 0.0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        double difference = jtk_Math_absolute_i(array1[i] - array2[i]);
+        sum += jtk_Math_power_d(difference, order);
+    }
+    return jtk_Math_power_d(sum, 1.0 / order);
+}
+
+int64_t jtk_DistanceMetric_findMinkowskiDistance_l(int64_t* array1, int64_t* array2,
+    int32_t size, int32_t order) {
+    double sum = 0.0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        double difference = jtk_Math_absolute_l(array1[i] - array2[i]);
+        sum += jtk_Math_power_d(difference, order);
+    }
+    return jtk_Math_power_d(sum, 1.0 / order);
+}
+
+float jtk_DistanceMetric_findMinkowskiDistance_f(float* array1, float* array2,
+    int32_t size, int32_t order) {
+    double sum = 0.0f;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        double difference = jtk_Math_absolute_d(array1[i] - array2[i]);
+        sum += jtk_Math_power_d(difference, order);
+    }
+    return (float)jtk_Math_power_d(sum, 1.0 / order);
+}
+
+double jtk_DistanceMetric_findMinkowskiDistance_d(double* array1, double* array2,
+    int32_t size, int32_t order) {
+    double sum = 0;
+    int32_t i;
+    for (i = 0; i < size; i++) {
+        double difference = jtk_Math_absolute_d(array1[i] - array2[i]);
+        sum += jtk_Math_power_d(difference, order);
+    }
+    return jtk_Math_power_d(sum, 1.0 / order);
+}
