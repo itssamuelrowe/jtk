@@ -32,6 +32,45 @@
  * @since JTK 1.0
  */
 
+/* ------------------------------ Trignometry ------------------------------ */
+
+/* Cosine */
+
+/**
+ * @memberof Math
+ */
+double jtk_Math_cosine(double angle);
+
+/* Cotangent */
+
+/**
+ * @memberof Math
+ */
+double jtk_Math_cotangent(double angle);
+
+/* Secant */
+
+/**
+ * @memberof Math
+ */
+double jtk_Math_secant(double angle);
+
+/* Sine */
+
+/**
+ * @memberof Math
+ */
+double jtk_Math_sine(double angle);
+
+/* Tangent */
+
+/**
+ * @memberof Math
+ */
+double jtk_Math_tangent(double angle);
+
+/* ------------------------------  ------------------------------ */
+
 /* Distance */
 
 int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
