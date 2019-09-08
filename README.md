@@ -1,4 +1,4 @@
-**Hi, there. We are working on the next version of JTK. Please look at the developmenet branch for the latest updates.**
+**Hi, there. We are working on the next version of JTK. Please look at the [development](https://github.com/itssamuelrowe/jtk/tree/dev) branch for the latest updates.**
 
 --------------------------------------------------------------------------------
 What is Jez Toolkit (JTK) Framework?
