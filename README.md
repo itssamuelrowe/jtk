@@ -1,3 +1,5 @@
+**Hi, there. We are working on the next version of JTK. Please look at the developmenet branch for the latest updates.**
+
 --------------------------------------------------------------------------------
 What is Jez Toolkit (JTK) Framework?
 --------------------------------------------------------------------------------
@@ -14,3 +16,5 @@ and called it Jez Toolkit (JTK).
 As of this version, JTK is quite unstable. It lacks detailed documentation and
 examples. We recommend you not to integrate it with your projects. We have
 published the framework only for the sake of testing it.
+
+
