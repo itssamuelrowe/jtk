@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,100 +35,110 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
-    
+
     int32_t result = 0;
     switch (method) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
             result = jtk_DistanceMetric_findEuclideanDistance_i(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MANHATTAN: {
             result = jtk_DistanceMetric_findManhattanDistance_i(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_CHEBYSHEV: {
             result = jtk_DistanceMetric_findChebyshevDistance_i(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
             jtk_VariableArguments_start(arguments);
-            
+
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             result = jtk_DistanceMetric_findMinkowskiDistance_i(array1, array2, size, order);
-            
+
             jtk_VariableArguments_end(arguments);
-            
+
             break;
         }
-        
-        JTK_DISTANCE_METRIC_W_MINKOWSKI: {
+
+        JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+
+            int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
+            double* weights = jtk_VariableArguments_argument(arguments, double*);
+            result = jtk_DistanceMetric_findWeightedMinkowskiDistance_i(array1,
+                array2, size, order, weights);
+
+            jtk_VariableArguments_end(arguments);
+
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_S_EUCLIDEAN: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MAHALANOBIS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_HAMMING: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_CANBERRA: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_BRAYCURTIS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_EARTH_MOVERS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_HAVERSINE: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_JACCARD: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MATCHING: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_DICE: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_KULSINSKI: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_ROGERS_TANIMOTO: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_RUSSELL_RAO: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_SOKAL_MICHENER: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_SOKAL_SNEATH: {
             break;
         }
-        
+
         default: {
             // Error!
         }
@@ -142,100 +152,110 @@ int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
-    
+
     int64_t result = 0;
     switch (method) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
             result = jtk_DistanceMetric_findEuclideanMethod_l(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MANHATTAN: {
             result = jtk_DistanceMetric_findManhattanDistance_l(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_CHEBYSHEV: {
             result = jtk_DistanceMetric_findChebyshevDistance_l(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
             jtk_VariableArguments_start(arguments);
-            
+
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             result = jtk_DistanceMetric_findMinkowskiDistance_l(array1, array2, size, order);
-            
+
             jtk_VariableArguments_end(arguments);
-            
+
             break;
         }
-        
-        JTK_DISTANCE_METRIC_W_MINKOWSKI: {
+
+        JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+
+            int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
+            double* weights = jtk_VariableArguments_argument(arguments, double*);
+            result = jtk_DistanceMetric_findWeightedMinkowskiDistance_l(array1,
+                array2, size, order, weights);
+
+            jtk_VariableArguments_end(arguments);
+
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_S_EUCLIDEAN: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MAHALANOBIS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_HAMMING: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_CANBERRA: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_BRAYCURTIS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_EARTH_MOVERS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_HAVERSINE: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_JACCARD: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MATCHING: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_DICE: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_KULSINSKI: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_ROGERS_TANIMOTO: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_RUSSELL_RAO: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_SOKAL_MICHENER: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_SOKAL_SNEATH: {
             break;
         }
-        
+
         default: {
             // Error!
         }
@@ -248,100 +268,110 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
-    
+
     float result = JTK_FLOAT_NAN;
     switch (method) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
             result = jtk_DistanceMetric_findEuclideanDistance_f(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MANHATTAN: {
             result = jtk_DistanceMetric_findManhattanDistance_f(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_CHEBYSHEV: {
             result = jtk_DistanceMetric_findChebyshevDistance_l(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
             jtk_VariableArguments_start(arguments);
-            
+
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             result = jtk_DistanceMetric_findMinkowskiDistance_f(array1, array2, size, order);
-            
+
             jtk_VariableArguments_end(arguments);
-            
+
             break;
         }
-        
-        JTK_DISTANCE_METRIC_W_MINKOWSKI: {
+
+        JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+
+            int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
+            double* weights = jtk_VariableArguments_argument(arguments, double*);
+            result = jtk_DistanceMetric_findWeightedMinkowskiDistance_f(array1,
+                array2, size, order, weights);
+
+            jtk_VariableArguments_end(arguments);
+
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_S_EUCLIDEAN: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MAHALANOBIS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_HAMMING: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_CANBERRA: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_BRAYCURTIS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_EARTH_MOVERS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_HAVERSINE: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_JACCARD: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MATCHING: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_DICE: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_KULSINSKI: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_ROGERS_TANIMOTO: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_RUSSELL_RAO: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_SOKAL_MICHENER: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_SOKAL_SNEATH: {
             break;
         }
-        
+
         default: {
             // Error!
         }
@@ -349,106 +379,115 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
     return result;
 }
 
-
 double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
     jtk_DistanceMethod_t method, ...) {
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
-    
+
     double result = JTK_DOUBLE_NAN;
     switch (method) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
             result = jtk_DistanceMetric_findEuclideanDistance_d(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MANHATTAN: {
             result = jtk_DistanceMetric_findManhattanDistance_d(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_CHEBYSHEV: {
             result = jtk_DistanceMetric_findChebyshevDistance_d(array1, array2, size);
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
             jtk_VariableArguments_start(arguments);
-            
+
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             result = jtk_DistanceMetric_findMinkowskiDistance_d(array1, array2, size, order);
-            
+
             jtk_VariableArguments_end(arguments);
-            
+
             break;
         }
-        
-        JTK_DISTANCE_METRIC_W_MINKOWSKI: {
+
+        JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+
+            int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
+            double* weights = jtk_VariableArguments_argument(arguments, double*);
+            result = jtk_DistanceMetric_findWeightedMinkowskiDistance_d(array1,
+                array2, size, order, weights);
+
+            jtk_VariableArguments_end(arguments);
+
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_S_EUCLIDEAN: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MAHALANOBIS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_HAMMING: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_CANBERRA: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_BRAYCURTIS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_EARTH_MOVERS: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_HAVERSINE: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_JACCARD: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_MATCHING: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_DICE: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_KULSINSKI: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_ROGERS_TANIMOTO: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_RUSSELL_RAO: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_SOKAL_MICHENER: {
             break;
         }
-        
+
         JTK_DISTANCE_METRIC_SOKAL_SNEATH: {
             break;
         }
-        
+
         default: {
             // Error!
         }
@@ -482,7 +521,7 @@ bool jtk_Math_isPrime_i(int32_t number) {
 	bool result = false;
 	if (number > 0) {
 		result = true;
-		
+
 		int32_t limit = number / 2;
 		int32_t i;
 		for (i = 2; i <= limit; i++) {
@@ -499,7 +538,7 @@ bool jtk_Math_isPrime_l(int64_t number) {
 	bool result = false;
 	if (number > 0) {
 		result = true;
-		
+
 		int64_t limit = number / 2;
 		int64_t i;
 		for (i = 2; i <= limit; i++) {
@@ -566,12 +605,12 @@ void jtk_Math_retainPrime_i(int32_t* numbers, int32_t size, int32_t x, int32_t y
     int32_t** result, int32_t* resultSize) {
     jtk_Assert_assertObject(numbers, "The specified numbers is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
-    
+
     int32_t limit = jtk_Math_squareRoot(y) + 1;
-    
+
     bool* flags = jtk_Memory_allocate(bool, size);
     jtk_Arrays_fill_b(flags, true);
-    
+
     int32_t i;
     for (i = 2; i <= limit; i++) {
         int32_t j;
@@ -581,15 +620,15 @@ void jtk_Math_retainPrime_i(int32_t* numbers, int32_t size, int32_t x, int32_t y
             }
         }
     }
-    
+
     int32_t resultSize0 = 0;
     for (i = 0; i < size; i++) {
         resultSize0 += flags[i]? 1 : 0;
     }
-    
+
     *resultSize = resultSize0;
     *result = jtk_Memory_allocate(int32_t, resultSize);
-    
+
     jtk_Array_select_i(numbers, size, flags, *result, resultSize0);
 }
 

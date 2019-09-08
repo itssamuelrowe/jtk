@@ -99,7 +99,22 @@ enum jtk_DistanceMetric_t {
      */
     JTK_DISTANCE_METRIC_MINKOWSKI,
 
-    JTK_DISTANCE_METRIC_W_MINKOWSKI,
+    /**
+     * The Minkowski distance is a generalized metric distance in a normed vector
+     * space. When the order is 1, it evaluates the Manhattan distance. Similarly,
+     * when the order is 2, it evaluates the Euclidean distance. The Chebyshev
+     * distance is a special case of Minkowski distance where the order is infinite.
+     *
+     * The Minkowski distance of order p between two points p and q, with
+     * p = (p1, p2,..., pN) and q = (q1, q2,..., qN), then the Minkowski distance
+     * from p to q is given by the following formula:
+     * d(p, q) = ((|x1 - y1| ^ p) + (|x2 - y2| ^ p) + ... + (|xN - yN| ^ p)) ^ (1 / p)
+     *
+     * Please visit the page <a href="https://en.wikipedia.org/wiki/Minkowski_distance">Minkowski distance</a>
+     * on Wikipedia for more information.
+     */
+    JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI,
+    
     JTK_DISTANCE_METRIC_S_EUCLIDEAN,
     JTK_DISTANCE_METRIC_MAHALANOBIS,
 

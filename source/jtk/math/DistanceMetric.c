@@ -212,3 +212,81 @@ double jtk_DistanceMetric_findMinkowskiDistance_d(double* array1, double* array2
     }
     return jtk_Math_power_d(sum, 1.0 / order);
 }
+
+// Weighted Minkowski Distance
+
+int32_t jtk_DistanceMetric_findWeightedMinkowskiDistance_i(int32_t* array1,
+    int32_t* array2, int32_t size, int32_t order, double* weights) {
+    int32_t result = 0;
+    if (weights == NULL) {
+        result = jtk_DistanceMetric_findMinkowskiDistance_i(array1, array2,
+            size, order);
+    }
+    else {
+        double sum = 0.0;
+        int32_t i;
+        for (i = 0; i < size; i++) {
+            double difference = jtk_Math_absolute_i(array1[i] - array2[i]);
+            sum += weights[i] * jtk_Math_power_d(difference, order);
+        }
+        result = jtk_Math_power_d(sum, 1.0 / order);
+    }
+    return result;
+}
+
+int64_t jtk_DistanceMetric_findWeightedMinkowskiDistance_l(int64_t* array1, int64_t* array2,
+    int32_t size, int32_t order, double* weights) {
+    int64_t result = 0;
+    if (weights == NULL) {
+        result = jtk_DistanceMetric_findMinkowskiDistance_l(array1, array2,
+            size, order);
+    }
+    else {
+        double sum = 0.0;
+        int32_t i;
+        for (i = 0; i < size; i++) {
+            double difference = jtk_Math_absolute_l(array1[i] - array2[i]);
+            sum += weights[i] * jtk_Math_power_d(difference, order);
+        }
+        result = jtk_Math_power_d(sum, 1.0 / order);
+    }
+    return result;
+}
+
+float jtk_DistanceMetric_findWeightedMinkowskiDistance_f(float* array1, float* array2,
+    int32_t size, int32_t order, double* weights) {
+    float result = JTK_FLOAT_NAN;
+    if (weights == NULL) {
+        result = jtk_DistanceMetric_findMinkowskiDistance_f(array1, array2,
+            size, order);
+    }
+    else {
+        double sum = 0.0f;
+        int32_t i;
+        for (i = 0; i < size; i++) {
+            double difference = jtk_Math_absolute_d(array1[i] - array2[i]);
+            sum += weights[i] * jtk_Math_power_d(difference, order);
+        }
+        result = (float)jtk_Math_power_d(sum, 1.0 / order);
+    }
+    return result;
+}
+
+double jtk_DistanceMetric_findWeightedMinkowskiDistance_d(double* array1, double* array2,
+    int32_t size, int32_t order, double* weights) {
+    double result = JTK_DOUBLE_NAN;
+    if (weights == NULL) {
+        result = jtk_DistanceMetric_findMinkowskiDistance_d(array1, array2,
+            size, order);
+    }
+    else {
+        double sum = 0;
+        int32_t i;
+        for (i = 0; i < size; i++) {
+            double difference = jtk_Math_absolute_d(array1[i] - array2[i]);
+            sum += weights[i] * jtk_Math_power_d(difference, order);
+        }
+        result = jtk_Math_power_d(sum, 1.0 / order);
+    }
+    return result;
+}
