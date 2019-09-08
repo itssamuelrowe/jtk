@@ -290,3 +290,78 @@ double jtk_DistanceMetric_findWeightedMinkowskiDistance_d(double* array1, double
     }
     return result;
 }
+
+
+// Weighted Euclidean Distance
+
+int32_t jtk_DistanceMetric_findWeightedEuclideanDistance_i(int32_t* array1,
+    int32_t* array2, int32_t size, double* weights) {
+    int32_t result = 0;
+    if (weights == NULL) {
+        result = jtk_DistanceMetric_findEuclideanDistance_i(array1, array2,
+            size);
+    }
+    else {
+        int32_t i;
+        for (i = 0; i < size; i++) {
+            int32_t difference = array1[i] - array2[i];
+            result +=  weights[i] * (difference * difference);
+        }
+        result = jtk_Math_squareRoot_i(result);
+    }
+    return result;
+}
+
+int64_t jtk_DistanceMetric_findWeightedEuclideanDistance_l(int64_t* array1,
+    int64_t* array2, int32_t size, double* weights) {
+    int64_t result = 0;
+    if (weights == NULL) {
+        result = jtk_DistanceMetric_findEuclideanDistance_l(array1, array2,
+            size);
+    }
+    else {
+        int32_t i;
+        for (i = 0; i < size; i++) {
+            int64_t difference = array1[i] - array2[i];
+            result += weights[i] * (difference * difference);
+        }
+        result = jtk_Math_squareRoot_l(result);
+    }
+    return result;
+}
+
+float jtk_DistanceMetric_findWeightedEuclideanDistance_f(float* array1,
+    float* array2, int32_t size, double* weights) {
+    float result = 0;
+    if (weights == NULL) {
+        result = jtk_DistanceMetric_findEuclideanDistance_l(array1, array2,
+            size);
+    }
+    else {
+        int32_t i;
+        for (i = 0; i < size; i++) {
+            float difference = array1[i] - array2[i];
+            result += weights[i] * (difference * difference);
+        }
+        result = jtk_Math_squareRoot_f(result);
+    }
+    return result;
+}
+
+double jtk_DistanceMetric_findWeightedEuclideanDistance_d(double* array1,
+    double* array2, int32_t size, double* weights) {
+    double result = 0;
+    if (weights == NULL) {
+        result = jtk_DistanceMetric_findEuclideanDistance_l(array1, array2,
+            size);
+    }
+    else {
+        int32_t i;
+        for (i = 0; i < size; i++) {
+            double difference = array1[i] - array2[i];
+            result += weights[i] * (difference * difference);
+        }
+        result = jtk_Math_squareRoot_d(result);
+    }
+    return result;
+}

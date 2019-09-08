@@ -79,7 +79,16 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
             break;
         }
 
-        JTK_DISTANCE_METRIC_S_EUCLIDEAN: {
+        JTK_DISTANCE_METRIC_WEIGHTED_EUCLIDEAN: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+
+            double* weights = jtk_VariableArguments_argument(arguments, double*);
+            result = jtk_DistanceMetric_findWeightedEuclideanDistance_i(array1,
+                array2, size, weights);
+
+            jtk_VariableArguments_end(arguments);
+
             break;
         }
 
@@ -196,7 +205,16 @@ int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
             break;
         }
 
-        JTK_DISTANCE_METRIC_S_EUCLIDEAN: {
+        JTK_DISTANCE_METRIC_WEIGHTED_EUCLIDEAN: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+
+            double* weights = jtk_VariableArguments_argument(arguments, double*);
+            result = jtk_DistanceMetric_findWeightedEuclideanDistance_l(array1,
+                array2, size, weights);
+
+            jtk_VariableArguments_end(arguments);
+
             break;
         }
 
@@ -312,7 +330,16 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
             break;
         }
 
-        JTK_DISTANCE_METRIC_S_EUCLIDEAN: {
+        JTK_DISTANCE_METRIC_WEIGHTED_EUCLIDEAN: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+
+            double* weights = jtk_VariableArguments_argument(arguments, double*);
+            result = jtk_DistanceMetric_findWeightedEuclideanDistance_f(array1,
+                array2, size, weights);
+
+            jtk_VariableArguments_end(arguments);
+
             break;
         }
 
@@ -428,7 +455,16 @@ double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
             break;
         }
 
-        JTK_DISTANCE_METRIC_S_EUCLIDEAN: {
+        JTK_DISTANCE_METRIC_WEIGHTED_EUCLIDEAN: {
+            jtk_VariableArguments_t arguments;
+            jtk_VariableArguments_start(arguments);
+
+            double* weights = jtk_VariableArguments_argument(arguments, double*);
+            result = jtk_DistanceMetric_findWeightedEuclideanDistance_d(array1,
+                array2, size, weights);
+
+            jtk_VariableArguments_end(arguments);
+
             break;
         }
 

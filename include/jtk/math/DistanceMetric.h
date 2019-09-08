@@ -114,8 +114,22 @@ enum jtk_DistanceMetric_t {
      * on Wikipedia for more information.
      */
     JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI,
-    
-    JTK_DISTANCE_METRIC_S_EUCLIDEAN,
+
+    /**
+     * The Euclidean distance is the "ordinary" straight-line distance between
+     * two points in Euclidean space.
+     *
+     * The Euclidean distance between points p and q is the length of the line
+     * segment connecting them. In Cartesian coordinates, if p = (p1, p2,..., pN)
+     * and q = (q1, q2,..., qN) are two points in Euclidean n-space, then the
+     * distance from p to q, or from q to p is given by the the following formula:
+     * d(p, q) = d(q, p) = ((q1 - p1) ^ 2 + (q2 - p2) ^ 2 + ... + (qN - pN) ^ 2) ^ (1 / 2)
+     *
+     * Please visit the page <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>
+     * on Wikipedia for more information.
+     */
+    JTK_DISTANCE_METRIC_WEIGHTED_EUCLIDEAN,
+
     JTK_DISTANCE_METRIC_MAHALANOBIS,
 
     JTK_DISTANCE_METRIC_HAMMING,
