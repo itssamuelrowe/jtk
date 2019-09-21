@@ -411,7 +411,7 @@ void jtk_DoublyLinkedList_addLast(jtk_DoublyLinkedList_t* list, void* value) {
 /* Add Predicatively */
 
 void jtk_DoublyLinkedList_addPredicatively(jtk_DoublyLinkedList_t* list,
-    void* value, jtk_PredicateFunction_t predicate) {
+    void* value, jtk_MixedPredicateFunction_t predicate) {
     jtk_Assert_assertObject(list, "The specified doubly-linked list is null.");
     jtk_Assert_assertObject((void*)predicate, "The specified predicate function is null.");
 
@@ -421,7 +421,7 @@ void jtk_DoublyLinkedList_addPredicatively(jtk_DoublyLinkedList_t* list,
 }
 
 void jtk_DoublyLinkedList_addFirstPredicatively(jtk_DoublyLinkedList_t* list,
-    void* value, jtk_PredicateFunction_t predicate) {
+    void* value, jtk_MixedPredicateFunction_t predicate) {
     jtk_Assert_assertObject(list, "The specified doubly-linked list is null.");
     jtk_Assert_assertObject((void*)predicate, "The specified predicate function is null.");
 
@@ -431,7 +431,7 @@ void jtk_DoublyLinkedList_addFirstPredicatively(jtk_DoublyLinkedList_t* list,
 }
 
 void jtk_DoublyLinkedList_addLastPredicatively(jtk_DoublyLinkedList_t* list,
-    void* value, jtk_PredicateFunction_t predicate) {
+    void* value, jtk_MixedPredicateFunction_t predicate) {
     jtk_Assert_assertObject(list, "The specified doubly-linked list is null.");
     jtk_Assert_assertObject((void*)predicate, "The specified predicate function is null.");
 

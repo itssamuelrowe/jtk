@@ -60,10 +60,10 @@ void jtk_HashBag_addCopies(jtk_HashBag_t* bag, void* element, int32_t copies);
 
 /* Add Predicatively */
 
-void jtk_HashBag_addPredicatively(jtk_HashBag_t* bag, void* element, jtk_PredicateFunction_t predicate);
-void jtk_HashBag_addAllPredicatively(jtk_HashBag_t* bag, jtk_CollectionType_t type, void* collection, jtk_PredicateFunction_t predicate);
-void jtk_HashBag_addAllFromIteratorPredicatively(jtk_HashBag_t* bag, jtk_Iterator_t* iterator, jtk_PredicateFunction_t predicate);
-void jtk_HashBag_addCopiesPredicatively(jtk_HashBag_t* bag, void* element, int32_t copies, jtk_PredicateFunction_t predicate);
+void jtk_HashBag_addPredicatively(jtk_HashBag_t* bag, void* element, jtk_MixedPredicateFunction_t predicate);
+void jtk_HashBag_addAllPredicatively(jtk_HashBag_t* bag, jtk_CollectionType_t type, void* collection, jtk_MixedPredicateFunction_t predicate);
+void jtk_HashBag_addAllFromIteratorPredicatively(jtk_HashBag_t* bag, jtk_Iterator_t* iterator, jtk_MixedPredicateFunction_t predicate);
+void jtk_HashBag_addCopiesPredicatively(jtk_HashBag_t* bag, void* element, int32_t copies, jtk_MixedPredicateFunction_t predicate);
 
 /* Copy to Array */
 

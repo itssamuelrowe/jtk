@@ -354,21 +354,21 @@ void jtk_ArrayList_addLast(jtk_ArrayList_t* list, void* value);
 /**
  * @memberof ArrayList
  */
-void jtk_ArrayList_addPredicatively(jtk_ArrayList_t* list, void* value, jtk_PredicateFunction_t predicate);
+void jtk_ArrayList_addPredicatively(jtk_ArrayList_t* list, void* value, jtk_MixedPredicateFunction_t predicate);
 
-// void jtk_ArrayList_addAllPredicatively(jtk_ArrayList_t* list, jtk_CollectionType_t type, void* collection, jtk_PredicateFunction_t predicate);
+// void jtk_ArrayList_addAllPredicatively(jtk_ArrayList_t* list, jtk_CollectionType_t type, void* collection, jtk_MixedPredicateFunction_t predicate);
 
-// void jtk_ArrayList_addAllFromIteratorPredicatively(jtk_ArrayList_t* list, jtk_Iterator_t* iterator, jtk_PredicateFunction_t predicate);
-
-/**
- * @memberof ArrayList
- */
-void jtk_ArrayList_addFirstPredicatively(jtk_ArrayList_t* list, void* value, jtk_PredicateFunction_t predicate);
+// void jtk_ArrayList_addAllFromIteratorPredicatively(jtk_ArrayList_t* list, jtk_Iterator_t* iterator, jtk_MixedPredicateFunction_t predicate);
 
 /**
  * @memberof ArrayList
  */
-void jtk_ArrayList_addLastPredicatively(jtk_ArrayList_t* list, void* value, jtk_PredicateFunction_t predicate);
+void jtk_ArrayList_addFirstPredicatively(jtk_ArrayList_t* list, void* value, jtk_MixedPredicateFunction_t predicate);
+
+/**
+ * @memberof ArrayList
+ */
+void jtk_ArrayList_addLastPredicatively(jtk_ArrayList_t* list, void* value, jtk_MixedPredicateFunction_t predicate);
 
 /* ArrayList-to-Array */
 

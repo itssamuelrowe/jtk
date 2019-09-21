@@ -386,21 +386,21 @@ void jtk_DoublyLinkedList_addLast(jtk_DoublyLinkedList_t* list, void* value);
 /**
  * @memberof DoublyLinkedList
  */
-void jtk_DoublyLinkedList_addPredicatively(jtk_DoublyLinkedList_t* list, void* value, jtk_PredicateFunction_t predicate);
+void jtk_DoublyLinkedList_addPredicatively(jtk_DoublyLinkedList_t* list, void* value, jtk_MixedPredicateFunction_t predicate);
 
-// void jtk_DoublyLinkedList_addAllPredicatively(jtk_DoublyLinkedList_t* list, jtk_CollectionType_t type, void* collection, jtk_PredicateFunction_t predicate);
+// void jtk_DoublyLinkedList_addAllPredicatively(jtk_DoublyLinkedList_t* list, jtk_CollectionType_t type, void* collection, jtk_MixedPredicateFunction_t predicate);
 
-// void jtk_DoublyLinkedList_addAllFromIteratorPredicatively(jtk_DoublyLinkedList_t* list, jtk_Iterator_t* iterator, jtk_PredicateFunction_t predicate);
-
-/**
- * @memberof DoublyLinkedList
- */
-void jtk_DoublyLinkedList_addFirstPredicatively(jtk_DoublyLinkedList_t* list, void* value, jtk_PredicateFunction_t predicate);
+// void jtk_DoublyLinkedList_addAllFromIteratorPredicatively(jtk_DoublyLinkedList_t* list, jtk_Iterator_t* iterator, jtk_MixedPredicateFunction_t predicate);
 
 /**
  * @memberof DoublyLinkedList
  */
-void jtk_DoublyLinkedList_addLastPredicatively(jtk_DoublyLinkedList_t* list, void* value, jtk_PredicateFunction_t predicate);
+void jtk_DoublyLinkedList_addFirstPredicatively(jtk_DoublyLinkedList_t* list, void* value, jtk_MixedPredicateFunction_t predicate);
+
+/**
+ * @memberof DoublyLinkedList
+ */
+void jtk_DoublyLinkedList_addLastPredicatively(jtk_DoublyLinkedList_t* list, void* value, jtk_MixedPredicateFunction_t predicate);
 
 /* DoublyLinkedList-to-Array */
 

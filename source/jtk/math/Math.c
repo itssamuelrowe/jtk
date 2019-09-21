@@ -668,28 +668,3 @@ void jtk_Math_retainPrime_i(int32_t* numbers, int32_t size, int32_t x, int32_t y
 
     jtk_Array_select_i(numbers, size, flags, *result, resultSize0);
 }
-
-// TODO: Move the select function to Arrays.c
-jtk_Array_select_i(int32_t* source, int32_t sourceSize, bool* selection,
-    int32_t* destination, int32_t destinationSize) {
-    int32_t j = 0;
-    int32_t i;
-    for (i = 0; i < sourceSize; i++) {
-        if (selection[i]) {
-            destination[j] = source[i];
-            j++;
-        }
-    }
-}
-
-void jtk_Array_filter_i(int32_t* source, int32_t sourceSize, jtk_FilterFunction_t filter,
-    int32_t* destination, int32_t destinationSize) {
-    int32_t j = 0;
-    int32_t i;
-    for (i = 0; i < sourceSize; i++) {
-        if (filter(source[i])) {
-            destination[j] = source[i];
-            j++;
-        }
-    }
-}

@@ -28,8 +28,36 @@
 /**
  * @ingroup jtk_function
  * @author Samuel Rowe <samuelrowe1999@gmail.com>
- * @since JTK 1.0
+ * @since JTK 1.1
  */
-typedef bool (*jtk_PredicateFunction_t)(void* argument);
+typedef bool (*jtk_MixedPredicateFunction_t)(void* argument);
+
+/**
+ * @ingroup jtk_function
+ * @author Samuel Rowe <samuelrowe1999@gmail.com>
+ * @since JTK 1.1
+ */
+typedef bool (*jtk_IntegerPredicateFunction_t)(int32_t argument);
+
+/**
+ * @ingroup jtk_function
+ * @author Samuel Rowe <samuelrowe1999@gmail.com>
+ * @since JTK 1.1
+ */
+typedef bool (*jtk_LongPredicateFunction_t)(int64_t argument);
+
+/**
+ * @ingroup jtk_function
+ * @author Samuel Rowe <samuelrowe1999@gmail.com>
+ * @since JTK 1.1
+ */
+typedef bool (*jtk_FloatPredicateFunction_t)(float argument);
+
+/**
+ * @ingroup jtk_function
+ * @author Samuel Rowe <samuelrowe1999@gmail.com>
+ * @since JTK 1.1
+ */
+typedef bool (*jtk_DoublePredicateFunction_t)(double argument);
 
 #endif /* JTK_FUNCTION_PREDICATE_FUNCTION_H */

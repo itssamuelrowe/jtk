@@ -441,11 +441,11 @@ void jtk_Array_fillEx(jtk_Array_t* array, int32_t startIndex, int32_t stopIndex,
 
 /* Filter */
 
-// void** jtk_Array_filter(jtk_Array_t* array, jtk_PredicateFunction_t predicate);
+// void** jtk_Array_filter(jtk_Array_t* array, jtk_MixedPredicateFunction_t predicate);
 
 /* Filter Extended */
 
-// void** jtk_Array_filterEx(jtk_Array_t* array, int32_t startIndex, int32_t stopIndex, jtk_PredicateFunction_t predicate);
+// void** jtk_Array_filterEx(jtk_Array_t* array, int32_t startIndex, int32_t stopIndex, jtk_MixedPredicateFunction_t predicate);
 
 /* Iterator */
 

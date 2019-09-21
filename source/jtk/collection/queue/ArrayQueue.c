@@ -162,7 +162,7 @@ void jtk_ArrayQueue_enqueueAllFromIterator(jtk_ArrayQueue_t* queue,
 /* Enqueue Predicatively */
 
 void jtk_ArrayQueue_enqueuePredicatively(jtk_ArrayQueue_t* queue, void* value,
-    jtk_PredicateFunction_t predicate) {
+    jtk_MixedPredicateFunction_t predicate) {
     jtk_Assert_assertObject(queue, "The specified queue is null.");
     jtk_Assert_assertObject((void*)predicate, "The specified predicate is null.");
 

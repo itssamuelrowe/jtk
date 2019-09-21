@@ -81,7 +81,7 @@ void jtk_TestSuite_applyFixture(jtk_TestSuite_t* suite, jtk_TestFixture_t* fixtu
 }
 
 void jtk_TestSuite_applyFixturePredicatively(jtk_TestSuite_t* suite,
-    jtk_TestFixture_t* fixture, jtk_PredicateFunction_t predicate) {
+    jtk_TestFixture_t* fixture, jtk_MixedPredicateFunction_t predicate) {
     jtk_Assert_assertObject(suite, "The specified test suite is null.");
 
     jtk_LinkedStack_t* stack = jtk_LinkedStack_new();

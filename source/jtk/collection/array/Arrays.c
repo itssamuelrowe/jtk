@@ -1664,7 +1664,7 @@ void jtk_Arrays_fillEx_d(double* array, int32_t size, int32_t startIndex,
 
 /* Filter */
 
-void jtk_Array_filter_v(void** source, int32_t sourceSize, jtk_MixedPredicate_t predicate,
+void jtk_Array_filter_v(void** source, int32_t sourceSize, jtk_MixedPredicateFunction_t predicate,
     void** destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1676,8 +1676,8 @@ void jtk_Array_filter_v(void** source, int32_t sourceSize, jtk_MixedPredicate_t 
     }
 }
 
-void jtk_Array_filter_b(int8_t* array, int32_t sourceSize, jtk_IntegerPredicate_t predicate,
-    int8_t* array, int32_t destinationSize) {
+void jtk_Array_filter_b(int8_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
+    int8_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
     for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
@@ -1688,8 +1688,8 @@ void jtk_Array_filter_b(int8_t* array, int32_t sourceSize, jtk_IntegerPredicate_
     }
 }
 
-void jtk_Array_filter_s(int16_t* array, int32_t sourceSize, jtk_IntegerPredicate_t predicate,
-    int16_t* array, int32_t destinationSize) {
+void jtk_Array_filter_s(int16_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
+    int16_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
     for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
@@ -1700,7 +1700,7 @@ void jtk_Array_filter_s(int16_t* array, int32_t sourceSize, jtk_IntegerPredicate
     }
 }
 
-void jtk_Array_filter_i(int32_t* source, int32_t sourceSize, jtk_IntegerPredicate_t predicate,
+void jtk_Array_filter_i(int32_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
     int32_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1712,7 +1712,7 @@ void jtk_Array_filter_i(int32_t* source, int32_t sourceSize, jtk_IntegerPredicat
     }
 }
 
-void jtk_Array_filter_l(int64_t* source, int32_t sourceSize, jtk_LongPredicate_t predicate,
+void jtk_Array_filter_l(int64_t* source, int32_t sourceSize, jtk_LongPredicateFunction_t predicate,
     int64_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1724,7 +1724,7 @@ void jtk_Array_filter_l(int64_t* source, int32_t sourceSize, jtk_LongPredicate_t
     }
 }
 
-void jtk_Array_filter_f(float* source, int32_t sourceSize, jtk_FloatPredicate_t predicate,
+void jtk_Array_filter_f(float* source, int32_t sourceSize, jtk_FloatPredicateFunction_t predicate,
     float* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1736,7 +1736,7 @@ void jtk_Array_filter_f(float* source, int32_t sourceSize, jtk_FloatPredicate_t 
     }
 }
 
-void jtk_Array_filter_d(double* source, int32_t sourceSize, jtk_DoublePredicate_t predicate,
+void jtk_Array_filter_d(double* source, int32_t sourceSize, jtk_DoublePredicateFunction_t predicate,
     double* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2372,7 +2372,7 @@ void jtk_Array_select_d(double* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Array_select_d(void** source, int32_t sourceSize, bool* selection,
+void jtk_Array_select_v(void** source, int32_t sourceSize, bool* selection,
     void** destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;

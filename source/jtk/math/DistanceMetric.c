@@ -16,8 +16,10 @@
 
 // Wednesday, August 28, 2019
 
-#include <jtk/math/.h>
+#include <jtk/core/Double.h>
+#include <jtk/core/Float.h>
 #include <jtk/math/DistanceMetric.h>
+#include <jtk/math/Math.h>
 
 /*******************************************************************************
  * DistanceMetric                                                              *
@@ -25,7 +27,7 @@
 
 // Chebyshev Distance
 
-int32_t jtk_DistanceMetric_findChebyshevDistance_i(int32_t* array1, int32_t array2
+int32_t jtk_DistanceMetric_findChebyshevDistance_i(int32_t* array1, int32_t* array2,
     int32_t size) {
     int32_t result = 0;
     int32_t i;
@@ -38,7 +40,7 @@ int32_t jtk_DistanceMetric_findChebyshevDistance_i(int32_t* array1, int32_t arra
     return result;
 }
 
-int64_t jtk_DistanceMetric_findChebyshevDistance_l(int64_t* array1, int64_t array2
+int64_t jtk_DistanceMetric_findChebyshevDistance_l(int64_t* array1, int64_t* array2,
     int32_t size) {
     int64_t result = 0;
     int32_t i;
@@ -51,7 +53,7 @@ int64_t jtk_DistanceMetric_findChebyshevDistance_l(int64_t* array1, int64_t arra
     return result;
 }
 
-float jtk_DistanceMetric_findChebyshevDistance_f(float* array1, float array2
+float jtk_DistanceMetric_findChebyshevDistance_f(float* array1, float* array2,
     int32_t size) {
     float result = 0;
     int32_t i;
@@ -64,7 +66,7 @@ float jtk_DistanceMetric_findChebyshevDistance_f(float* array1, float array2
     return result;
 }
 
-double jtk_DistanceMetric_findChebyshevDistance_d(double* array1, double array2
+double jtk_DistanceMetric_findChebyshevDistance_d(double* array1, double* array2,
     int32_t size) {
     double result = 0;
     int32_t i;

@@ -79,11 +79,11 @@ void jtk_XorLinkedList_addLast(jtk_XorLinkedList_t* list, void* element);
 
 /* Add Predicatively */
 
-void jtk_XorLinkedList_addPredicatively(jtk_XorLinkedList_t* list, void* element, jtk_PredicateFunction_t predicate);
-void jtk_XorLinkedList_addAllPredicatively(jtk_XorLinkedList_t* list, jtk_CollectionType_t type, void* collection, jtk_PredicateFunction_t predicate);
-void jtk_XorLinkedList_addAllFromIteratorPredicatively(jtk_XorLinkedList_t* list, jtk_Iterator_t* iterator, jtk_PredicateFunction_t predicate);
-void jtk_XorLinkedList_addFirstPredicatively(jtk_XorLinkedList_t* list, void* value, jtk_PredicateFunction_t predicate);
-void jtk_XorLinkedList_addLastPredicatively(jtk_XorLinkedList_t* list, void* value, jtk_PredicateFunction_t predicate);
+void jtk_XorLinkedList_addPredicatively(jtk_XorLinkedList_t* list, void* element, jtk_MixedPredicateFunction_t predicate);
+void jtk_XorLinkedList_addAllPredicatively(jtk_XorLinkedList_t* list, jtk_CollectionType_t type, void* collection, jtk_MixedPredicateFunction_t predicate);
+void jtk_XorLinkedList_addAllFromIteratorPredicatively(jtk_XorLinkedList_t* list, jtk_Iterator_t* iterator, jtk_MixedPredicateFunction_t predicate);
+void jtk_XorLinkedList_addFirstPredicatively(jtk_XorLinkedList_t* list, void* value, jtk_MixedPredicateFunction_t predicate);
+void jtk_XorLinkedList_addLastPredicatively(jtk_XorLinkedList_t* list, void* value, jtk_MixedPredicateFunction_t predicate);
 
 /* XorLinkedList-to-Array */
 

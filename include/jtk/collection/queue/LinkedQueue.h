@@ -160,7 +160,7 @@ void jtk_LinkedQueue_enqueueAllFromIterator(jtk_LinkedQueue_t* queue, jtk_Iterat
 /**
  * @memberof LinkedQueue
  */
-void jtk_LinkedQueue_enqueuePredicatively(jtk_LinkedQueue_t* queue, void* value, jtk_PredicateFunction_t predicate);
+void jtk_LinkedQueue_enqueuePredicatively(jtk_LinkedQueue_t* queue, void* value, jtk_MixedPredicateFunction_t predicate);
 
 /* Peek */
 
