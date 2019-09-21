@@ -614,10 +614,16 @@ void jtk_ArrayList_removeIndex(jtk_ArrayList_t* list, int32_t index) {
     list->m_size--;
 }
 
-void jtk_ArrayList_removeLat(jtk_ArrayList_t* list) {
+void jtk_ArrayList_removeLast(jtk_ArrayList_t* list) {
     jtk_Assert_assertObject(list, "The specified array list is null.");
     jtk_Assert_assertTrue(list->m_size >= 1, "The specified index is invalid.");
 
+    /* This function is efficient in removing the last elements. Because it simply
+     * decrements the size of the list, without actually moving any elements.
+     * Further, the slot of the last element is updated to NULL. Although, this
+     * is not necessary it adds an extra layer of knowledge, which could probably
+     * help in debugging.
+     */
     list->m_values[--list->m_size] = NULL;
 }
 

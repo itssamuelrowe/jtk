@@ -100,6 +100,16 @@ void jtk_StringBuilder_appendCodePoint(jtk_StringBuilder_t* builder,
 }
 */
 
+// TODO: Right now this function works only for ASCII characters (within 255 codepoints.)
+void jtk_StringBuilder_appendCodePoint(jtk_StringBuilder_t* builder,
+    int32_t codePoint) {
+    jtk_Assert_assertObject(builder, "The specified string builder is null.");
+
+    jtk_StringBuilder_ensureSpace(builder, 1);
+    builder->m_value[builder->m_size] = codePoint;
+    builder->m_size++;
+}
+
 void jtk_StringBuilder_append_c(jtk_StringBuilder_t* builder,
     uint8_t value) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");

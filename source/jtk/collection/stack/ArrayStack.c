@@ -55,6 +55,12 @@ bool jtk_ArrayStack_isEmpty(jtk_ArrayStack_t* stack) {
     return jtk_ArrayList_isEmpty(stack->m_list);
 }
 
+jtk_Iterator_t* jtk_ArrayStack_getIterator(jtk_ArrayStack_t* stack) {
+    jtk_Assert_assertObject(stack, "The specified stack is null.");
+    
+    return jtk_ArrayList_getIterator(stack);
+}
+
 int32_t jtk_ArrayStack_getSize(jtk_ArrayStack_t* stack) {
     jtk_Assert_assertObject(stack, "The specified stack is null.");
     return jtk_ArrayList_getSize(stack->m_list);
