@@ -133,6 +133,12 @@ bool jtk_Math_isPrimeFast_l(int64_t number);
  */
 int32_t jtk_Math_findPowerOfTwo(int32_t n);
 
+/* Square Root */
 
+/**
+ * @memberof Math
+ * @since JTK 1.1
+ */
+double jtk_Math_squareRoot(double n);
 
 #endif /* JTK_CORE_MATH_H */

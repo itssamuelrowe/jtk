@@ -220,7 +220,7 @@ set(
     ${PROJECT_SOURCE_DIR}/example/collection/names/Names.c
 )
 add_executable(names ${EXAMPLE_COLLECTION_NAMES_SOURCE})
-target_link_libraries(names jtk-core)
+target_link_libraries(names jtk-core m)
 # target_link_libraries(names jtk-collection)
 
 #******************************************************************************#

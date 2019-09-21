@@ -668,3 +668,9 @@ void jtk_Math_retainPrime_i(int32_t* numbers, int32_t size, int32_t x, int32_t y
 
     jtk_Array_select_i(numbers, size, flags, *result, resultSize0);
 }
+
+// Square Root
+
+double jtk_Math_squareRoot(double n) {
+    return sqrt(n);
+}
