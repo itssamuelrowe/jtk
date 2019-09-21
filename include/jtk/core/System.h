@@ -74,7 +74,7 @@ void jtk_System_initialize();
 
 // Instance
 
-void jtk_System_getInstance();
+jtk_System_t* jtk_System_getInstance();
 
 // Shutdown
 

@@ -20,6 +20,7 @@
 #include <jtk/core/Float.h>
 #include <jtk/core/Integer.h>
 #include <jtk/core/Long.h>
+#include <jtk/core/VariableArguments.h>
 #include <jtk/math/Math.h>
 
 #include <math.h>
@@ -31,13 +32,13 @@
 /* Distance */
 
 int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
-    jtk_DistanceMethod_t method, ...) {
+    jtk_DistanceMetric_t metric, ...) {
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
 
     int32_t result = 0;
-    switch (method) {
+    switch (metric) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
             result = jtk_DistanceMetric_findEuclideanDistance_i(array1, array2, size);
             break;
@@ -55,7 +56,7 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             result = jtk_DistanceMetric_findMinkowskiDistance_i(array1, array2, size, order);
@@ -67,7 +68,7 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             double* weights = jtk_VariableArguments_argument(arguments, double*);
@@ -81,7 +82,7 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_WEIGHTED_EUCLIDEAN: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             double* weights = jtk_VariableArguments_argument(arguments, double*);
             result = jtk_DistanceMetric_findWeightedEuclideanDistance_i(array1,
@@ -157,15 +158,15 @@ int32_t jtk_Math_findDistance_i(int32_t* array1, int32_t* array2, int32_t size,
 
 
 int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
-    jtk_DistanceMethod_t method, ...) {
+    jtk_DistanceMetric_t metric, ...) {
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
 
     int64_t result = 0;
-    switch (method) {
+    switch (metric) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
-            result = jtk_DistanceMetric_findEuclideanMethod_l(array1, array2, size);
+            result = jtk_DistanceMetric_findEuclideanmetric_l(array1, array2, size);
             break;
         }
 
@@ -181,7 +182,7 @@ int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             result = jtk_DistanceMetric_findMinkowskiDistance_l(array1, array2, size, order);
@@ -193,7 +194,7 @@ int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             double* weights = jtk_VariableArguments_argument(arguments, double*);
@@ -207,7 +208,7 @@ int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_WEIGHTED_EUCLIDEAN: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             double* weights = jtk_VariableArguments_argument(arguments, double*);
             result = jtk_DistanceMetric_findWeightedEuclideanDistance_l(array1,
@@ -282,13 +283,13 @@ int64_t jtk_Math_findDistance_l(int64_t* array1, int64_t* array2, int32_t size,
 }
 
 float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
-    jtk_DistanceMethod_t method, ...) {
+    jtk_DistanceMetric_t metric, ...) {
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
 
     float result = JTK_FLOAT_NAN;
-    switch (method) {
+    switch (metric) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
             result = jtk_DistanceMetric_findEuclideanDistance_f(array1, array2, size);
             break;
@@ -306,7 +307,7 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             result = jtk_DistanceMetric_findMinkowskiDistance_f(array1, array2, size, order);
@@ -318,7 +319,7 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             double* weights = jtk_VariableArguments_argument(arguments, double*);
@@ -332,7 +333,7 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_WEIGHTED_EUCLIDEAN: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             double* weights = jtk_VariableArguments_argument(arguments, double*);
             result = jtk_DistanceMetric_findWeightedEuclideanDistance_f(array1,
@@ -407,13 +408,13 @@ float jtk_Math_findDistance_f(float* array1, float* array2, int32_t size,
 }
 
 double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
-    jtk_DistanceMethod_t method, ...) {
+    jtk_DistanceMetric_t metric, ...) {
     jtk_Assert_assertObject(array1, "The specified array (1) is null.");
     jtk_Assert_assertObject(array1, "The specified array (2) is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
 
     double result = JTK_DOUBLE_NAN;
-    switch (method) {
+    switch (metric) {
         JTK_DISTANCE_METRIC_EUCLIDEAN: {
             result = jtk_DistanceMetric_findEuclideanDistance_d(array1, array2, size);
             break;
@@ -431,7 +432,7 @@ double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             result = jtk_DistanceMetric_findMinkowskiDistance_d(array1, array2, size, order);
@@ -443,7 +444,7 @@ double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_WEIGHTED_MINKOWSKI: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             int32_t order = jtk_VariableArguments_argument(arguments, int32_t);
             double* weights = jtk_VariableArguments_argument(arguments, double*);
@@ -457,7 +458,7 @@ double jtk_Math_findDistance_d(double* array1, double* array2, int32_t size,
 
         JTK_DISTANCE_METRIC_WEIGHTED_EUCLIDEAN: {
             jtk_VariableArguments_t arguments;
-            jtk_VariableArguments_start(arguments);
+            jtk_VariableArguments_start(arguments, metric);
 
             double* weights = jtk_VariableArguments_argument(arguments, double*);
             result = jtk_DistanceMetric_findWeightedEuclideanDistance_d(array1,
@@ -651,7 +652,7 @@ void jtk_Math_retainPrime_i(int32_t* numbers, int32_t size, int32_t x, int32_t y
     for (i = 2; i <= limit; i++) {
         int32_t j;
         for (j = 0; j < size; j++) {
-            if ((i != array[j]) && ((i % array[j]) == 0)) {
+            if ((i != numbers[j]) && ((i % numbers[j]) == 0)) {
                 flags[j] = false;
             }
         }
@@ -663,11 +664,12 @@ void jtk_Math_retainPrime_i(int32_t* numbers, int32_t size, int32_t x, int32_t y
     }
 
     *resultSize = resultSize0;
-    *result = jtk_Memory_allocate(int32_t, resultSize);
+    *result = jtk_Memory_allocate(int32_t, resultSize0);
 
     jtk_Array_select_i(numbers, size, flags, *result, resultSize0);
 }
 
+// TODO: Move the select function to Arrays.c
 jtk_Array_select_i(int32_t* source, int32_t sourceSize, bool* selection,
     int32_t* destination, int32_t destinationSize) {
     int32_t j = 0;

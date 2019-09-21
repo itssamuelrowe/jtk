@@ -2364,15 +2364,49 @@ void jtk_Arrays_fillEx_f(float* array, int32_t size, int32_t startIndex, int32_t
 void jtk_Arrays_fillEx_d(double* array, int32_t size, int32_t startIndex, int32_t stopIndex, double value);
 
 /* Filter */
-/*
-void** jtk_Arrays_filter_v(void** array, int32_t size, jtk_PredicateFunction_t predicate);
-int8_t* jtk_Arrays_filter_b(int8_t* array, int32_t size, jtk_BytePredicateFunction_t predicate);
-int16_t* jtk_Arrays_filter_s(int16_t* array, int32_t size, jtk_ShortPredicateFunction_t predicate);
-int32_t* jtk_Arrays_filter_i(int32_t* array, int32_t size, jtk_IntegerPredicateFunction_t predicate);
-int64_t* jtk_Arrays_filter_l(int64_t* array, int32_t size, jtk_LongPredicateFunction_t predicate);
-float* jtk_Arrays_filter_f(float* array, int32_t size, jtk_FloatPredicateFunction_t predicate);
-double* jtk_Arrays_filter_d(double* array, int32_t size, jtk_DoublePredicateFunction_t predicate);
-*/
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_filter_v(void** source, int32_t sourceSize, jtk_MixedPredicate_t predicate,
+    void** destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_filter_b(int8_t* array, int32_t sourceSize, jtk_IntegerPredicate_t predicate,
+    int8_t* array, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_filter_s(int16_t* array, int32_t sourceSize, jtk_IntegerPredicate_t predicate,
+    int16_t* array, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_filter_i(int32_t* source, int32_t sourceSize, jtk_IntegerPredicate_t predicate,
+    int32_t* destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_filter_l(int64_t* source, int32_t sourceSize, jtk_LongPredicate_t predicate,
+    int64_t* destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_filter_f(float* source, int32_t sourceSize, jtk_FloatPredicate_t predicate,
+    float* destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_filter_d(double* source, int32_t sourceSize, jtk_DoublePredicate_t predicate,
+    double* destination, int32_t destinationSize);
+
 /* Filter Extended */
 /*
 void** jtk_Arrays_filterEx_v(void** array, int32_t size, int32_t startIndex, int32_t stopIndex, jtk_PredicateFunction_t predicate);

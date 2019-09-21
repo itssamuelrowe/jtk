@@ -1662,6 +1662,92 @@ void jtk_Arrays_fillEx_d(double* array, int32_t size, int32_t startIndex,
     }
 }
 
+/* Filter */
+
+void jtk_Array_filter_v(void** source, int32_t sourceSize, jtk_MixedPredicate_t predicate,
+    void** destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (predicate(source[i])) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_filter_b(int8_t* array, int32_t sourceSize, jtk_IntegerPredicate_t predicate,
+    int8_t* array, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (predicate(source[i])) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_filter_s(int16_t* array, int32_t sourceSize, jtk_IntegerPredicate_t predicate,
+    int16_t* array, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (predicate(source[i])) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_filter_i(int32_t* source, int32_t sourceSize, jtk_IntegerPredicate_t predicate,
+    int32_t* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (predicate(source[i])) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_filter_l(int64_t* source, int32_t sourceSize, jtk_LongPredicate_t predicate,
+    int64_t* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (predicate(source[i])) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_filter_f(float* source, int32_t sourceSize, jtk_FloatPredicate_t predicate,
+    float* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (predicate(source[i])) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_filter_d(double* source, int32_t sourceSize, jtk_DoublePredicate_t predicate,
+    double* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (predicate(source[i])) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
 /* Reverse */
 
 /* I wrote the jtk_Arrays_reverse_*() and jtk_Arrays_reverseEx_*()
@@ -2210,4 +2296,18 @@ void jtk_Arrays_swap_d(double* array, int32_t size, int32_t index1, int32_t inde
     double temporary = array[index1];
     array[index1] = array[index2];
     array[index2] = temporary;
+}
+
+// Select
+
+jtk_Array_select_i(int32_t* source, int32_t sourceSize, bool* selection,
+    int32_t* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (selection[i]) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
 }

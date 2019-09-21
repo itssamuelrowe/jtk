@@ -23,12 +23,12 @@
  * OutputStream                                                                *
  *******************************************************************************/
 
-typedef void (jtk_OutputStream_DeleteFunction_t)(void* implementation);
-typedef void (jtk_OutputStream_CloseFunction_t)(void* implementation);
-typedef void (jtk_OutputStream_FlushFunction_t)(void* implementation);
-typedef void (jtk_OutputStream_WriteFunction_t)(void* implementation, uint8_t byte);
-typedef void (jtk_OutputStream_WriteBytesFunction_t)(void* implementation, uint8_t* bytes, int32_t size);
-typedef void (jtk_OutputStream_WriteBytesExFunction_t)(void* implementation, uint8_t* bytes, int32_t size, int32_t startIndex, int32_t stopIndex);
+typedef void (*jtk_OutputStream_DeleteFunction_t)(void* implementation);
+typedef void (*jtk_OutputStream_CloseFunction_t)(void* implementation);
+typedef void (*jtk_OutputStream_FlushFunction_t)(void* implementation);
+typedef void (*jtk_OutputStream_WriteFunction_t)(void* implementation, uint8_t byte);
+typedef void (*jtk_OutputStream_WriteBytesFunction_t)(void* implementation, uint8_t* bytes, int32_t size);
+typedef void (*jtk_OutputStream_WriteBytesExFunction_t)(void* implementation, uint8_t* bytes, int32_t size, int32_t startIndex, int32_t stopIndex);
 
 /**
  * A stream represents a sequence of bytes flowing in a particular direction,

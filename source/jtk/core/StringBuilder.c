@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -176,8 +176,8 @@ void jtk_StringBuilder_appendSubsequence(jtk_StringBuilder_t* builder,
     const uint8_t* sequence, int32_t size, int32_t startIndex, int32_t stopIndex) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
     jtk_Assert_assertTrue(size >= 0, "The specified size is invalid.");
-    
-    
+
+
     jtk_StringBuilder_
 }
 */
@@ -210,7 +210,7 @@ void jtk_StringBuilder_appendNull(jtk_StringBuilder_t* builder) {
 
 bool jtk_StringBuilder_ensureSpace(jtk_StringBuilder_t* builder, int32_t capacity) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
-    
+
     bool result = false;
     if (capacity > 0) {
         int32_t currentCapacity = builder->m_capacity;
@@ -221,7 +221,7 @@ bool jtk_StringBuilder_ensureSpace(jtk_StringBuilder_t* builder, int32_t capacit
             if ((newCapacity - minimumCapacity) < 0) {
                 newCapacity = minimumCapacity;
             }
-            
+
             if (newCapacity < 0) {
                 if (minimumCapacity < 0) {
                     /* Report an error, the requested capacity is too big. */
@@ -234,7 +234,7 @@ bool jtk_StringBuilder_ensureSpace(jtk_StringBuilder_t* builder, int32_t capacit
                     newCapacity = JTK_INTEGER_MAX_VALUE;
                 }
             }
-            
+
             /* Do not allocate a new buffer if an out-of-memory error was
              * reported.
              */
@@ -252,7 +252,7 @@ bool jtk_StringBuilder_ensureSpace(jtk_StringBuilder_t* builder, int32_t capacit
 
 int32_t jtk_StringBuilder_getCapacity(jtk_StringBuilder_t* builder) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
-    
+
     return builder->m_capacity;
 }
 
@@ -260,7 +260,7 @@ int32_t jtk_StringBuilder_getCapacity(jtk_StringBuilder_t* builder) {
 
 void jtk_StringBuilder_clear(jtk_StringBuilder_t* builder) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
-    
+
     builder->m_size = 0;
 }
 
