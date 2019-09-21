@@ -197,9 +197,7 @@ Certain functions within the library are overloaded, that is, they perform the
 same operation but on different data types. Such functions share a same name  
 with a unique suffix. The suffixes are listed above.
 
-
 ### TODO.txt
-
 
 It lists all the features yet to be implemented by the library.
 
