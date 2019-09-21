@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -176,7 +176,7 @@ int32_t jtk_Arrays_binarySearch_d(double* array, int32_t size, double key);
  * where `startIndex}, `stopIndex`, and `size` mean
  * the starting index of the range, the stopping index of the range, and the
  * size of the array, respectively.
- * 
+ *
  * If a comparator function is specified, then is it employed to compare elements
  * within the array; otherwise the comparison operators are employed.
  *
@@ -214,7 +214,7 @@ int32_t jtk_Arrays_binarySearchEx_v(void** array, int32_t size, int32_t startInd
  * where `startIndex}, `stopIndex`, and `size` mean
  * the starting index of the range, the stopping index of the range, and the
  * size of the array, respectively.
- * 
+ *
  * @param array
  *         This argument specifies the array to search.
  * @param  startIndex
@@ -247,7 +247,7 @@ int32_t jtk_Arrays_binarySearchEx_b(int8_t* array, int32_t size, int32_t startIn
  * where `startIndex}, `stopIndex`, and `size` mean
  * the starting index of the range, the stopping index of the range, and the
  * size of the array, respectively.
- * 
+ *
  * @param array
  *         This argument specifies the array to search.
  * @param  startIndex
@@ -280,7 +280,7 @@ int32_t jtk_Arrays_binarySearchEx_s(int16_t* array, int32_t size, int32_t startI
  * where `startIndex}, `stopIndex`, and `size` mean
  * the starting index of the range, the stopping index of the range, and the
  * size of the array, respectively.
- * 
+ *
  * @param array
  *         This argument specifies the array to search.
  * @param  startIndex
@@ -313,7 +313,7 @@ int32_t jtk_Arrays_binarySearchEx_i(int32_t* array, int32_t size, int32_t startI
  * where `startIndex}, `stopIndex`, and `size` mean
  * the starting index of the range, the stopping index of the range, and the
  * size of the array, respectively.
- * 
+ *
  * @param array
  *         This argument specifies the array to search.
  * @param  startIndex
@@ -346,7 +346,7 @@ int32_t jtk_Arrays_binarySearchEx_l(int64_t* array, int32_t size, int32_t startI
  * where `startIndex}, `stopIndex`, and `size` mean
  * the starting index of the range, the stopping index of the range, and the
  * size of the array, respectively.
- * 
+ *
  * @param array
  *         This argument specifies the array to search.
  * @param  startIndex
@@ -379,7 +379,7 @@ int32_t jtk_Arrays_binarySearchEx_f(float* array, int32_t size, int32_t startInd
  * where `startIndex}, `stopIndex`, and `size` mean
  * the starting index of the range, the stopping index of the range, and the
  * size of the array, respectively.
- * 
+ *
  * @param array
  *         This argument specifies the array to search.
  * @param  startIndex
@@ -402,7 +402,7 @@ int32_t jtk_Arrays_binarySearchEx_d(double* array, int32_t size, int32_t startIn
  * Checks whether the specified index is within the bounds an array with
  * the specified size. An assertion failure is triggered if the index is invalid,
  * when enabled.
- * 
+ *
  * An index is considered valid if the index is greater or equal to zero and
  * lesser than the size of the array.
  *
@@ -421,7 +421,7 @@ void jtk_Arrays_checkIndex(int32_t size, int32_t index);
  * Checks whether the specified range is within the bounds an array with
  * the specified size. An assertion failure is triggered if the range is invalid,
  * when enabled.
- * 
+ *
  * The specified range is subjected to the following constraints; on failure
  * an assertion failure is triggered. The starting index should
  * greater than or equal to zero. The starting index should be lesser than
@@ -2971,6 +2971,50 @@ void jtk_Arrays_swap_f(float* array, int32_t size, int32_t index1, int32_t index
  * @memberof Arrays
  */
 void jtk_Arrays_swap_d(double* array, int32_t size, int32_t index1, int32_t index2);
+
+/* Select */
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_select_b(int8_t* source, int32_t sourceSize, bool* selection,
+    int8_t* destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_select_s(int16_t* source, int32_t sourceSize, bool* selection,
+    int16_t* destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_select_i(int32_t* source, int32_t sourceSize, bool* selection,
+    int32_t* destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_select_l(int64_t* source, int32_t sourceSize, bool* selection,
+    int64_t* destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_select_f(float* source, int32_t sourceSize, bool* selection,
+    float* destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_select_d(double* source, int32_t sourceSize, bool* selection,
+    double* destination, int32_t destinationSize);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Array_select_d(void** source, int32_t sourceSize, bool* selection,
+    void** destination, int32_t destinationSize);
 
 #endif /* JTK_COLLECTION_ARRAY_ARRAYS_H */
 

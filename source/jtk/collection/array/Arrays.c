@@ -2300,8 +2300,80 @@ void jtk_Arrays_swap_d(double* array, int32_t size, int32_t index1, int32_t inde
 
 // Select
 
-jtk_Array_select_i(int32_t* source, int32_t sourceSize, bool* selection,
+void jtk_Array_select_b(int8_t* source, int32_t sourceSize, bool* selection,
+    int8_t* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (selection[i]) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_select_s(int16_t* source, int32_t sourceSize, bool* selection,
+    int16_t* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (selection[i]) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_select_i(int32_t* source, int32_t sourceSize, bool* selection,
     int32_t* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (selection[i]) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_select_l(int64_t* source, int32_t sourceSize, bool* selection,
+    int64_t* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (selection[i]) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_select_f(float* source, int32_t sourceSize, bool* selection,
+    float* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (selection[i]) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_select_d(double* source, int32_t sourceSize, bool* selection,
+    double* destination, int32_t destinationSize) {
+    int32_t j = 0;
+    int32_t i;
+    for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
+        if (selection[i]) {
+            destination[j] = source[i];
+            j++;
+        }
+    }
+}
+
+void jtk_Array_select_d(void** source, int32_t sourceSize, bool* selection,
+    void** destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
     for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
