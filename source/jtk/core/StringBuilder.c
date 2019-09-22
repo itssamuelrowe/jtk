@@ -297,3 +297,9 @@ jtk_String_t* jtk_StringBuilder_toString(jtk_StringBuilder_t* builder) {
 
     return jtk_String_newEx(builder->m_value, builder->m_size);
 }
+
+uint8_t* jtk_StringBuilder_toCString(jtk_StringBuilder_t* builder) {
+    jtk_Assert_assertObject(builder, "The specified string builder is null.");
+
+    return jtk_CString_newWithSize(builder->m_value, builder->m_size);
+}
