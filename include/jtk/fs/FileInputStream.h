@@ -27,7 +27,8 @@
  * FileInputStream                                                             *
  *******************************************************************************/
 
-#define JTK_FILE_INPUT_STREAM_FLAG_EXTERNAL_HANDLE (1 << 0)
+#define JTK_FILE_INPUT_STREAM_FLAG_REACHED_EOF (1 << 0)
+#define JTK_FILE_INPUT_STREAM_FLAG_EXTERNAL_HANDLE (1 << 1)
 
 /**
  * @class FileInputStream
@@ -71,6 +72,11 @@ void jtk_FileInputStream_delete(jtk_FileInputStream_t* stream);
  * @memberof FileInputStream
  */
 int32_t jtk_FileInputStream_getAvailable(jtk_FileInputStream_t* stream);
+
+/**
+ * @memberof FileInputStream
+ */
+bool jtk_FileInputStream_isAvailable(jtk_FileInputStream_t* stream);
 
 // Close
 

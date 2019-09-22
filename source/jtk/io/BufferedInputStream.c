@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,7 +33,7 @@
 jtk_BufferedInputStream_t* jtk_BufferedInputStream_new(
     jtk_InputStream_t* sourceInputStream) {
     jtk_Assert_assertObject(sourceInputStream, "The specified source input stream is null.");
-    
+
     return jtk_BufferedInputStream_newEx(sourceInputStream, JTK_BUFFERED_INPUT_STREAM_DEFAULT_CAPACITY);
 }
 
@@ -46,6 +46,7 @@ jtk_BufferedInputStream_t* jtk_BufferedInputStream_newEx(
         jtk_BufferedInputStream_readBytesEx,
         jtk_BufferedInputStream_skip,
         jtk_BufferedInputStream_getAvailable,
+        jtk_BufferedInputStream_isAvailable,
         jtk_BufferedInputStream_delete,
         jtk_BufferedInputStream_close,
         stream
@@ -83,8 +84,18 @@ void jtk_BufferedInputStream_delete(jtk_BufferedInputStream_t* stream) {
 
 int32_t jtk_BufferedInputStream_getAvailable(jtk_BufferedInputStream_t* stream) {
     jtk_Assert_assertObject(stream, "The specified buffered input stream is null.");
-    
+
     return stream->m_size;
+}
+
+bool jtk_BufferedInputStream_isAvailable(jtk_BufferedInputStream_t* stream) {
+    jtk_Assert_assertObject(stream, "The specified buffered input stream is null.");
+
+    /* The underlying input stream may have already hit end-of-stream. But a few
+     * bytes may be in the buffer. Therefore, make sure to test both the buffer
+     * and the underlying input stream, in that order.
+     */
+    return (stream->m_size > 0) || jtk_InputStream_isAvailable(stream->m_sourceInputStream);
 }
 
 // Buffer
@@ -154,7 +165,7 @@ void jtk_BufferedInputStream_buffer(jtk_BufferedInputStream_t* stream) {
             if (limit > 0) {
                 read = jtk_BufferedInputStream_bufferWithLimit(stream, limit);
             }
-            
+
             /* If the number of bytes read is equal to the limit, the stop index
              * has reached the maximum index. It can be reset to 0 if the start
              * index is greater than 0, i.e., some bytes in the beginning
@@ -180,7 +191,7 @@ void jtk_BufferedInputStream_buffer(jtk_BufferedInputStream_t* stream) {
 
 void jtk_BufferedInputStream_close(jtk_BufferedInputStream_t* stream) {
     jtk_Assert_assertObject(stream, "The specified buffered input stream is null.");
-    
+
     jtk_InputStream_close(stream->m_sourceInputStream);
 }
 
@@ -204,7 +215,7 @@ bool jtk_BufferedInputStream_isBufferFull(jtk_BufferedInputStream_t* stream) {
 
 int32_t jtk_BufferedInputStream_read(jtk_BufferedInputStream_t* stream) {
     jtk_Assert_assertObject(stream, "The specified buffered input stream is null.");
-    
+
     printf("(start = %d, stop = %d)\n", stream->m_startIndex, stream->m_stopIndex);
 
     /* If the buffer is empty, then fill the buffer. */
@@ -222,7 +233,7 @@ int32_t jtk_BufferedInputStream_read(jtk_BufferedInputStream_t* stream) {
      * input stream may have reached end-of-stream long back.
      */
     if (stream->m_size != 0) {
-        
+
         result = stream->m_buffer[stream->m_startIndex];
         /* The start index is incremented by 1 if the sum is less than the capacity
          * of the internal buffer. If the new start index is equal to the stop
@@ -282,7 +293,7 @@ int32_t jtk_BufferedInputStream_readBytesEx(jtk_BufferedInputStream_t* stream,
          * long back.
          */
         if (stream->m_size != 0) {
-            
+
             /* When the start index is lesser than the stop index, the data
              * between these indexes should be read. Otherwise, the data
              * between the start index and the maximum index should be read.

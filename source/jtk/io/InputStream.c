@@ -30,6 +30,7 @@ jtk_InputStream_t* jtk_InputStream_new(
     jtk_InputStream_ReadBytesExFunction_t readBytesEx,
     jtk_InputStream_SkipFunction_t skip,
     jtk_InputStream_GetAvailableFunction_t getAvailable,
+    jtk_InputStream_IsAvailableFunction_t isAvailable,
     jtk_InputStream_DeleteFunction_t delete0,
     jtk_InputStream_CloseFunction_t close,
     void* implementation) {
@@ -39,6 +40,7 @@ jtk_InputStream_t* jtk_InputStream_new(
     stream->m_readBytesEx = readBytesEx;
     stream->m_skip = skip;
     stream->m_getAvailable = getAvailable;
+    stream->m_isAvailable = isAvailable;
     stream->m_delete = delete0;
     stream->m_close = close;
     stream->m_implementation = implementation;
@@ -60,6 +62,12 @@ int32_t jtk_InputStream_getAvailable(jtk_InputStream_t* stream) {
     jtk_Assert_assertObject(stream, "The specified input stream is null.");
 
     return stream->m_getAvailable(stream->m_implementation);
+}
+
+bool jtk_InputStream_isAvailable(jtk_InputStream_t* stream) {
+    jtk_Assert_assertObject(stream, "The specified input stream is null.");
+    
+    return stream->m_isAvailable(stream->m_implementation);
 }
 
 /* Destroy */

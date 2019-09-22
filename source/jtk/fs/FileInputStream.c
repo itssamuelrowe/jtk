@@ -28,6 +28,10 @@ bool jtk_FileInputStreamFlag_isExternalHandle(uint32_t flags) {
     return (flags & JTK_FILE_INPUT_STREAM_FLAG_EXTERNAL_HANDLE) != 0;
 }
 
+bool jtk_FileInputStreamFlag_hasReachedEOF(uint32_t flags) {
+    return (flags & JTK_FILE_INPUT_STREAM_FLAG_REACHED_EOF) != 0;
+}
+
 /*******************************************************************************
  * FileInputStream                                                             *
  *******************************************************************************/
@@ -42,6 +46,7 @@ jtk_FileInputStream_t* jtk_FileInputStream_new0() {
         jtk_FileInputStream_readBytesEx,
         jtk_FileInputStream_skip,
         jtk_FileInputStream_getAvailable,
+        jtk_FileInputStream_isAvailable,
         jtk_FileInputStream_delete,
         jtk_FileInputStream_close,
         stream
@@ -112,7 +117,15 @@ void jtk_FileInputStream_close(jtk_FileInputStream_t* stream) {
 // Available
 
 int32_t jtk_FileInputStream_getAvailable(jtk_FileInputStream_t* stream) {
+    jtk_Assert_assertObject(stream, "The specified file input stream is null.");
+
     return 0;
+}
+
+bool jtk_FileInputStream_isAvailable(jtk_FileInputStream_t* stream) {
+    jtk_Assert_assertObject(stream, "The specified file input stream is null.");
+
+    return !jtk_FileInputStreamFlag_hasReachedEOF(stream->m_flags);
 }
 
 // Read
@@ -139,17 +152,24 @@ int32_t jtk_FileInputStream_readBytesEx(jtk_FileInputStream_t* stream,
     uint8_t* buffer, int32_t size, int32_t startIndex, int32_t stopIndex) {
     jtk_Assert_assertObject(stream, "The specified file input stream is null.");
 
-    jtk_Error_t error = JTK_ERROR_INVALID_PATH_HANDLE;
-    int32_t read = -1;
-    if (stream->m_handle != NULL) {
-        error = JTK_ERROR_NONE;
-        read = jtk_NativeFileHandle_readBytes(stream->m_handle->m_descriptor, buffer, size,
-            startIndex, stopIndex, &error);
-    }
+    int32_t read = 0;
+    if (!jtk_FileInputStreamFlag_hasReachedEOF(stream->m_flags)) {
+        jtk_Error_t error = JTK_ERROR_INVALID_PATH_HANDLE;
+        if (stream->m_handle != NULL) {
+            error = JTK_ERROR_NONE;
+            read = jtk_NativeFileHandle_readBytes(stream->m_handle->m_descriptor, buffer, size,
+                startIndex, stopIndex, &error);
 
-    if (error != JTK_ERROR_NONE) {
-        jtk_System_t* system = jtk_System_getInstance();
-        jtk_System_setErrorEx(system, error, JTK_ERROR_FLAG_SOURCE_NATIVE);
+            if (read == 0) {
+                stream->m_flags |= JTK_FILE_INPUT_STREAM_FLAG_REACHED_EOF;
+            }
+        }
+
+        if (error != JTK_ERROR_NONE) {
+            jtk_System_t* system = jtk_System_getInstance();
+            jtk_System_setErrorEx(system, error, JTK_ERROR_FLAG_SOURCE_NATIVE);
+            read = -1;
+        }
     }
 
     return read;

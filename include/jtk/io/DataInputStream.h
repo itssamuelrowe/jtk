@@ -61,6 +61,8 @@ void jtk_DataInputStream_delete(jtk_DataInputStream_t* stream);
 
 int32_t jtk_DataInputStream_getAvailable(jtk_DataInputStream_t* stream);
 
+bool jtk_DataInputStream_isAvailable(jtk_DataInputStream_t* stream);
+
 /* Close */
 
 void jtk_DataInputStream_close(jtk_DataInputStream_t* stream);

@@ -30,6 +30,7 @@ typedef int32_t (*jtk_InputStream_ReadBytesFunction_t)(void* implementation, uin
 typedef int32_t (*jtk_InputStream_ReadBytesExFunction_t)(void* implementation, uint8_t* bytes, int32_t size, int32_t index, int32_t limit);
 typedef int64_t (*jtk_InputStream_SkipFunction_t)(void* implementation, int64_t count);
 typedef int32_t (*jtk_InputStream_GetAvailableFunction_t)(void* implementation);
+typedef bool (*jtk_InputStream_IsAvailableFunction_t)(void* implementation);
 typedef void (*jtk_InputStream_DeleteFunction_t)(void* implementation);
 typedef void (*jtk_InputStream_CloseFunction_t)(void* implementation);
 
@@ -71,6 +72,7 @@ struct jtk_InputStream_t {
     jtk_InputStream_ReadBytesExFunction_t m_readBytesEx;
     jtk_InputStream_SkipFunction_t m_skip;
     jtk_InputStream_GetAvailableFunction_t m_getAvailable;
+    jtk_InputStream_IsAvailableFunction_t m_isAvailable;
     jtk_InputStream_DeleteFunction_t m_delete;
     jtk_InputStream_CloseFunction_t m_close;
     void* m_implementation;
@@ -89,6 +91,7 @@ jtk_InputStream_t* jtk_InputStream_new(
     jtk_InputStream_ReadBytesExFunction_t readBytesEx,
     jtk_InputStream_SkipFunction_t skip,
     jtk_InputStream_GetAvailableFunction_t getAvailable,
+    jtk_InputStream_IsAvailableFunction_t isAvailable,
     jtk_InputStream_DeleteFunction_t delete0,
     jtk_InputStream_CloseFunction_t close,
     void* implementation);
@@ -103,6 +106,8 @@ void jtk_InputStream_delete(jtk_InputStream_t* stream);
 /* Available */
 
 int32_t jtk_InputStream_getAvailable(jtk_InputStream_t* stream);
+
+bool jtk_InputStream_isAvailable(jtk_InputStream_t* stream);
 
 /* Destroy */
 
