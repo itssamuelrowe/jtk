@@ -46,7 +46,7 @@ void* jtk_ArrayStack_peek(jtk_ArrayStack_t* stack) {
     jtk_Assert_assertObject(stack, "The specified stack is null.");
     jtk_Assert_assertTrue(jtk_ArrayList_getSize(stack->m_list) > 0, "The specified stack is empty.");
 
-    int32_t index = jtk_ArrayStack_getSize(stack->m_list) - 1;
+    int32_t index = jtk_ArrayList_getSize(stack->m_list) - 1;
     return jtk_ArrayList_getValue(stack->m_list, index);
 }
 
