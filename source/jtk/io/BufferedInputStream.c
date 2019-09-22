@@ -216,7 +216,7 @@ bool jtk_BufferedInputStream_isBufferFull(jtk_BufferedInputStream_t* stream) {
 int32_t jtk_BufferedInputStream_read(jtk_BufferedInputStream_t* stream) {
     jtk_Assert_assertObject(stream, "The specified buffered input stream is null.");
 
-    printf("(start = %d, stop = %d)\n", stream->m_startIndex, stream->m_stopIndex);
+    // printf("(start = %d, stop = %d)\n", stream->m_startIndex, stream->m_stopIndex);
 
     /* If the buffer is empty, then fill the buffer. */
     if (stream->m_size == 0) {
