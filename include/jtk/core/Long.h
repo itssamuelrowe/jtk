@@ -19,6 +19,8 @@
 #ifndef JTK_CORE_LONG_H
 #define JTK_CORE_LONG_H
 
+#include <jtk/Configuration.h>
+
 /*******************************************************************************
  * Long                                                                        *
  *******************************************************************************/
@@ -29,6 +31,90 @@
  * @author Samuel Rowe <samuelrowe1999@gmail.com>
  * @since JTK 1.1
  */
+
+/* Capacity */
+
+/**
+ * The JTK_LONG_MAX_VALUE constant represents the maximum value the `int32_t`
+ * type can hold.
+ *
+ * @memberof Integer
+ */
+#define JTK_LONG_MAX_VALUE 0x7FFFFFFFFFFFFFFFLL
+
+/**
+ * The JTK_LONG_MIN_VALUE constant represents the minimum value the `int64_t`
+ * type can hold.
+ *
+ * @memberof Integer
+ */
+#define JTK_LONG_MIN_VALUE 0x8000000000000000LL
+
+/**
+ * The JTK_LONG_UNSIGNED_MAX_VALUE constant represents the maximum value the
+ * `uint64_t` type can hold.
+ *
+ * @memberof Integer
+ */
+#define JTK_UNSIGNED_LONG_MAX_VALUE 0xFFFFFFFFFFFFFFFFULL
+
+/**
+ * The JTK_LONG_UNSIGNED_MIN_VALUE constant represents the minimum value the
+ * `uint64_t` type can hold.
+ *
+ * @memberof Integer
+ */
+#define JTK_UNSIGNED_LONG_MIN_VALUE 0ULL
+
+/* Size */
+
+/**
+ * The JTK_LONG_SIZE_IN_BITS constant represents the number of bits used to
+ * represent an `int64_t` value.
+ *
+ * @memberof Integer
+ */
+#define JTK_LONG_SIZE_IN_BITS 64
+
+/**
+ * The JTK_LONG_SIZE_IN_BYTES constant represents the number of bytes used to
+ * represent an `int64_t` value.
+ *
+ * @memberof Integer
+ */
+#define JTK_LONG_SIZE_IN_BYTES 8
+
+/* Radix */
+
+/**
+ * @memberof Integer
+ */
+#define JTK_LONG_MIN_RADIX 2
+
+/**
+ * @memberof Integer
+ */
+#define JTK_LONG_MAX_RADIX 36
+
+/**
+ * @memberof Integer
+ */
+#define JTK_LONG_MAX_BINARY_STRING_SIZE 64
+
+/**
+ * @memberof Integer
+ */
+#define JTK_LONG_MAX_OCTAL_STRING_SIZE 64
+
+/**
+ * @memberof Integer
+ */
+#define JTK_LONG_MAX_DECIMAL_STRING_SIZE 64
+
+/**
+ * @memberof Integer
+ */
+#define JTK_LONG_MAX_HEXADECIMAL_STRING_SIZE 64
 
 /* Parse */
 

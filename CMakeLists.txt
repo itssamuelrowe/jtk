@@ -49,6 +49,7 @@ set(
     ${PROJECT_SOURCE_DIR}/source/jtk/core/DefaultErrorHandler.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Double.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Float.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/core/Long.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Integer.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/PointerObjectAdapter.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/String.c

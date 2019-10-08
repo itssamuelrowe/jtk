@@ -88,7 +88,7 @@ int64_t jtk_Long_parseEx(const uint8_t* text, int32_t length, int32_t radix) {
 
 /* Reverse */
  
-int32_t jtk_Long_reverse(int64_t number) {
+int64_t jtk_Long_reverse(int64_t number) {
     bool negative = number < 0;
     int64_t copy = negative? -number : number;
 	int64_t reverse = 0;
