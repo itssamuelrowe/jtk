@@ -24,7 +24,7 @@
  * Integer                                                                     *
  *******************************************************************************/
 
-static const uint8_t s_digits[] = {
+const uint8_t jtk_Integer_digits[] = {
     0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38,
     0x39, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48,
     0x49, 0x4A, 0x4B, 0x4C, 0x4D, 0x4E, 0x4F, 0x50, 0x51,
@@ -55,7 +55,7 @@ int32_t jtk_Integer_compareUnsigned(uint32_t value1, uint32_t value2) {
 
 /* Parse */
 
-static int32_t jtk_Integer_digit(uint8_t character, int32_t radix) {
+int32_t jtk_Integer_digit(uint8_t character, int32_t radix) {
     int32_t result = -1;
     if ((radix >= 2) && (radix <= 36)) {
         int32_t x = -1;
@@ -77,6 +77,12 @@ int32_t jtk_Integer_parse(const uint8_t* text, int32_t radix) {
     jtk_Assert_assertObject(text, "The specified text is null.");
 
     int32_t length = jtk_CString_getSize(text);
+    return jtk_Integer_parseEx(text, length, radix);
+}
+
+int32_t jtk_Integer_parseEx(const uint8_t* text, int32_t length, int32_t radix) {
+    jtk_Assert_assertObject(text, "The specified text is null.");
+
     int32_t result = -1;
     if ((length != 0) && (radix >= JTK_INTEGER_MIN_RADIX) &&
         (radix <= JTK_INTEGER_MAX_RADIX)) {
@@ -156,10 +162,10 @@ uint8_t* jtk_Integer_toStringEx(int32_t value, int32_t radix) {
         value = -value;
     }
     while (value >= radix) {
-        buffer[index--] = s_digits[value % radix];
+        buffer[index--] = jtk_Integer_digits[value % radix];
         value /= radix;
     }
-    buffer[index] = s_digits[value];
+    buffer[index] = jtk_Integer_digits[value];
     if (negative) {
         buffer[--index] = '-';
     }
@@ -189,10 +195,10 @@ int32_t jtk_Integer_getStringEx(int32_t value, int32_t radix, uint8_t* destinati
         value = -value;
     }
     while (value >= radix) {
-        buffer[index--] = s_digits[value % radix];
+        buffer[index--] = jtk_Integer_digits[value % radix];
         value /= radix;
     }
-    buffer[index] = s_digits[value];
+    buffer[index] = jtk_Integer_digits[value];
     if (negative) {
         buffer[--index] = '-';
     }

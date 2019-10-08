@@ -790,7 +790,8 @@ int32_t jtk_Arrays_copy_d(double* source, int32_t sourceSize, double* destinatio
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copyEx_v(void** source, int32_t sourceSize, int32_t sourceIndex, void** destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
+int32_t jtk_Arrays_copyEx_v(void** source, int32_t sourceSize, int32_t sourceIndex,
+    void** destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
 
 /**
  * Copies the elements from the specified native source array of 8-bit integers,

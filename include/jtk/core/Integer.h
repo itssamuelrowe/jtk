@@ -187,6 +187,8 @@ int32_t jtk_Integer_compareUnsigned(uint32_t value1, uint32_t value2);
 
 /* Parse */
 
+int32_t jtk_Integer_digit(uint8_t character, int32_t radix);
+
 /**
  * The parse() function returns the specified string as a signed integer
  * value in the specified radix.
@@ -208,6 +210,30 @@ int32_t jtk_Integer_compareUnsigned(uint32_t value1, uint32_t value2);
  * @memberof Integer
  */
 int32_t jtk_Integer_parse(const uint8_t* text, int32_t radix);
+
+/**
+ * The parse() function returns the specified string as a signed integer
+ * value in the specified radix.
+ *
+ * @param  string
+ *         This argument specifies the string to parse.
+ * @param  size
+ *         This argument specifies the size of the input string.
+ * @param  radix
+ *         This argument specifies the radix.
+ * @return The integer representation of the specified string in the
+ *         specified radix. THe negative integer `-1` is returned if one
+ *         of the following is true:
+ *         <ul>
+ *         <li>The specified string is empty.</li>
+ *         <li>A character of the string is not a digit of the specified
+ *             radix, except the first character which may be a minus
+ *             sign `'-'` or plus sign `'+'`, provided that
+ *             the string contains more than one character.
+ *         </ul>
+ * @memberof Integer
+ */
+int32_t jtk_Integer_parseEx(const uint8_t* text, int32_t size, int32_t radix);
 
 /*
  * The parse() function returns the specified string as a signed integer

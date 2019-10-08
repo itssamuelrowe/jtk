@@ -69,7 +69,7 @@ bool jtk_NativeFileHandle_isDirectory(int32_t descriptor, jtk_Error_t* error) {
 int64_t jtk_NativeFileHandle_open(const uint8_t* path, jtk_Error_t* error) {
     jtk_Assert_assertObject(path, "The specified path is null.");
 
-    int64_t handle = open(path, O_RDONLY);
+    int64_t handle = open(path, O_RDONLY | O_APPEND);
 
     if (handle < 0) {
         jtk_NativeError_translateEx(errno, error);
