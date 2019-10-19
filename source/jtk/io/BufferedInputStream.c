@@ -114,15 +114,17 @@ bool jtk_BufferedInputStream_isAvailable(jtk_BufferedInputStream_t* stream) {
 int32_t jtk_BufferedInputStream_bufferWithLimit(jtk_BufferedInputStream_t* stream,
     int32_t limit) {
     int32_t newLimit = limit;
+    int32_t index = stream->m_startIndex;
     while (newLimit > 0) {
         int32_t read = jtk_InputStream_readBytesEx(stream->m_sourceInputStream,
-            stream->m_buffer, stream->m_capacity, stream->m_stopIndex, newLimit);
+            stream->m_buffer, stream->m_capacity, index, index + newLimit);
         if (read < 0) {
             break;
         }
         stream->m_stopIndex += read;
         stream->m_size += read;
         newLimit -= read;
+        index += read;
     }
     return limit - newLimit;
 }
