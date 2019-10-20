@@ -83,6 +83,7 @@ int32_t jtk_Integer_parse(const uint8_t* text, int32_t radix) {
 int32_t jtk_Integer_parseEx(const uint8_t* text, int32_t length, int32_t radix) {
     jtk_Assert_assertObject(text, "The specified text is null.");
 
+    bool error = false;
     int32_t result = -1;
     if ((length != 0) && (radix >= JTK_INTEGER_MIN_RADIX) &&
         (radix <= JTK_INTEGER_MAX_RADIX)) {
@@ -100,11 +101,11 @@ int32_t jtk_Integer_parseEx(const uint8_t* text, int32_t length, int32_t radix) 
                 limit = JTK_INTEGER_MIN_VALUE;
             }
             else {
-                result = -1;
+                error = true;
             }
 
             if (length == 1) {
-                result = -1;
+                error = true;
             }
 
             i++;
@@ -116,17 +117,21 @@ int32_t jtk_Integer_parseEx(const uint8_t* text, int32_t length, int32_t radix) 
                 uint8_t value = text[i++];
                 int32_t digit = jtk_Integer_digit(value, radix);
                 if ((digit < 0) || (result < m)) {
-                    result = -1;
+                    error = true;
                     break;
                 }
                 result *= radix;
                 if (result < (limit + digit)) {
-                    result = -1;
+                    error = true;
                     break;
                 }
                 result -= digit;
             }
-            if (result != -1) {
+            
+            if (error) {
+                result = -1;
+            }
+            else {
                 result = negative? result : -result;
             }
         }

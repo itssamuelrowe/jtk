@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,6 +35,7 @@ int64_t jtk_Long_parse(const uint8_t* text, int32_t radix) {
 int64_t jtk_Long_parseEx(const uint8_t* text, int32_t length, int32_t radix) {
     jtk_Assert_assertObject(text, "The specified text is null.");
 
+    bool error = false;
     int64_t result = -1;
     if ((length != 0) && (radix >= JTK_INTEGER_MIN_RADIX) &&
         (radix <= JTK_INTEGER_MAX_RADIX)) {
@@ -52,11 +53,11 @@ int64_t jtk_Long_parseEx(const uint8_t* text, int32_t length, int32_t radix) {
                 limit = JTK_LONG_MIN_VALUE;
             }
             else {
-                result = -1;
+                error = true;
             }
 
             if (length == 1) {
-                result = -1;
+                error = true;
             }
 
             i++;
@@ -68,17 +69,21 @@ int64_t jtk_Long_parseEx(const uint8_t* text, int32_t length, int32_t radix) {
                 uint8_t value = text[i++];
                 int32_t digit = jtk_Integer_digit(value, radix);
                 if ((digit < 0) || (result < m)) {
-                    result = -1;
+                        error = true;
                     break;
                 }
                 result *= radix;
                 if (result < (limit + digit)) {
-                    result = -1;
+                        error = true;
                     break;
                 }
                 result -= digit;
             }
-            if (result != -1) {
+
+            if (error) {
+                result = -1;
+            }
+            else {
                 result = negative? result : -result;
             }
         }
@@ -87,7 +92,7 @@ int64_t jtk_Long_parseEx(const uint8_t* text, int32_t length, int32_t radix) {
 }
 
 /* Reverse */
- 
+
 int64_t jtk_Long_reverse(int64_t number) {
     bool negative = number < 0;
     int64_t copy = negative? -number : number;
