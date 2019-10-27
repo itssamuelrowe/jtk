@@ -124,7 +124,7 @@ void jtk_StringBuilder_append_i(jtk_StringBuilder_t* builder,
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
 
     jtk_StringBuilder_ensureSpace(builder, JTK_INTEGER_MAX_DECIMAL_STRING_SIZE);
-    int32_t size = jtk_Integer_getStringEx(value, builder->m_value,
+    int32_t size = jtk_Integer_getStringEx(value, 10, builder->m_value,
         builder->m_capacity, builder->m_size);
     builder->m_size += size;
 }

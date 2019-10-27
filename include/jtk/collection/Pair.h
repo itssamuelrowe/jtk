@@ -19,6 +19,8 @@
 #ifndef JTK_COLLECTION_PAIR_H
 #define JTK_COLLECTION_PAIR_H
 
+#include <jtk/Configuration.h>
+
 /*******************************************************************************
  * Pair                                                                        *
  *******************************************************************************/
@@ -30,14 +32,14 @@
  * @since JTK 1.1
  */
 struct jtk_Pair_t {
-    void* m_leftElement;
-    void* m_rightElement;
+    void* m_left;
+    void* m_right;
 };
 
 /**
  * @memberof Pair
  */
-typedef struct jtk_Pair_t jtk_Pair_t
+typedef struct jtk_Pair_t jtk_Pair_t;
 
 /* Constructor */
 
@@ -56,23 +58,23 @@ void jtk_Pair_delete(jtk_Pair_t* pair);
 /**
  * @memberof Pair
  */
-void jtk_Pair_setLeftElement(jtk_Pair_t* pair, void* element);
+void jtk_Pair_setLeft(jtk_Pair_t* pair, void* element);
 
 /**
  * @memberof Pair
  */
-void* jtk_Pair_getLeftElement(jtk_Pair_t* pair);
+void* jtk_Pair_getLeft(jtk_Pair_t* pair);
 
 /* Right Element */
 
 /**
  * @memberof Pair
  */
-void jtk_Pair_setRightElement(jtk_Pair_t* pair, void* element);
+void jtk_Pair_setRight(jtk_Pair_t* pair, void* element);
 
 /**
  * @memberof Pair
  */
-void* jtk_Pair_getRightElement(jtk_Pair_t* pair);
+void* jtk_Pair_getRight(jtk_Pair_t* pair);
 
 #endif /* JTK_COLLECTION_PAIR_H */
