@@ -2978,44 +2978,125 @@ void jtk_Arrays_swap_d(double* array, int32_t size, int32_t index1, int32_t inde
 /**
  * @since JTK 1.1
  */
-void jtk_Array_select_b(int8_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_b(int8_t* source, int32_t sourceSize, bool* selection,
     int8_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_select_s(int16_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_s(int16_t* source, int32_t sourceSize, bool* selection,
     int16_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_select_i(int32_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_i(int32_t* source, int32_t sourceSize, bool* selection,
     int32_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_select_l(int64_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_l(int64_t* source, int32_t sourceSize, bool* selection,
     int64_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_select_f(float* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_f(float* source, int32_t sourceSize, bool* selection,
     float* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_select_d(double* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_d(double* source, int32_t sourceSize, bool* selection,
     double* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_select_v(void** source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_v(void** source, int32_t sourceSize, bool* selection,
     void** destination, int32_t destinationSize);
+
+/* Tim Sort */
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSort_b(int8_t* array, int32_t size);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSort_s(int16_t* array, int32_t size);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSort_i(int32_t* array, int32_t size);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSort_l(int64_t* array, int32_t size);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSort_f(float* array, int32_t size);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSort_d(double* array, int32_t size);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSort_v(void** array, int32_t size, jtk_ComparatorFunction_t comparator);
+
+/* Tim Sort Extended */
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSortEx_b(int8_t* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSortEx_s(int16_t* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSortEx_i(int32_t* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSortEx_l(int64_t* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSortEx_f(float* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSortEx_d(double* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending);
+
+/**
+ * @since JTK 1.1
+ */
+void jtk_Arrays_timSortEx_v(void** array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending, jtk_ComparatorFunction_t comparator);
 
 #endif /* JTK_COLLECTION_ARRAY_ARRAYS_H */
 
