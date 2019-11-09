@@ -2300,7 +2300,7 @@ void jtk_Arrays_swap_d(double* array, int32_t size, int32_t index1, int32_t inde
 
 // Select
 
-void jtk_Array_select_b(int8_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_b(int8_t* source, int32_t sourceSize, bool* selection,
     int8_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2312,7 +2312,7 @@ void jtk_Array_select_b(int8_t* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Array_select_s(int16_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_s(int16_t* source, int32_t sourceSize, bool* selection,
     int16_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2324,7 +2324,7 @@ void jtk_Array_select_s(int16_t* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Array_select_i(int32_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_i(int32_t* source, int32_t sourceSize, bool* selection,
     int32_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2336,7 +2336,7 @@ void jtk_Array_select_i(int32_t* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Array_select_l(int64_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_l(int64_t* source, int32_t sourceSize, bool* selection,
     int64_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2348,7 +2348,7 @@ void jtk_Array_select_l(int64_t* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Array_select_f(float* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_f(float* source, int32_t sourceSize, bool* selection,
     float* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2360,7 +2360,7 @@ void jtk_Array_select_f(float* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Array_select_d(double* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_d(double* source, int32_t sourceSize, bool* selection,
     double* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2372,7 +2372,7 @@ void jtk_Array_select_d(double* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Array_select_v(void** source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_v(void** source, int32_t sourceSize, bool* selection,
     void** destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2382,4 +2382,100 @@ void jtk_Array_select_v(void** source, int32_t sourceSize, bool* selection,
             j++;
         }
     }
+}
+
+/* Tim Sort */
+
+void jtk_Arrays_timSort_b(int8_t* array, int32_t size) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
+    
+    jtk_Arrays_timSortEx_b(array, size, 0, size, true);
+}
+
+void jtk_Arrays_timSort_s(int16_t* array, int32_t size) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
+    
+    jtk_Arrays_timSortEx_s(array, size, 0, size, true);
+}
+
+void jtk_Arrays_timSort_i(int32_t* array, int32_t size) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
+    
+    jtk_Arrays_timSortEx_i(array, size, 0, size, true);
+}
+
+void jtk_Arrays_timSort_l(int64_t* array, int32_t size) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
+}
+
+void jtk_Arrays_timSort_f(float* array, int32_t size) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
+    
+    jtk_Arrays_timSortEx_f(array, size, 0, size, true);
+}
+
+void jtk_Arrays_timSort_d(double* array, int32_t size) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
+    
+    jtk_Arrays_timSortEx_d(array, size, 0, size, true);
+}
+
+void jtk_Arrays_timSort_v(void** array, int32_t size, jtk_ComparatorFunction_t comparator) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
+    
+    jtk_Arrays_timSortEx_v(array, size, 0, size, true);
+}
+
+/* Tim Sort Extended */
+
+void jtk_Arrays_timSortEx_b(int8_t* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Arrays_checkRange(size, startIndex, stopIndex);
+}
+
+void jtk_Arrays_timSortEx_s(int16_t* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Arrays_checkRange(size, startIndex, stopIndex);
+}
+
+void jtk_Arrays_timSortEx_i(int32_t* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
+    jtk_Arrays_checkRange(size, startIndex, stopIndex);
+    
+}
+
+void jtk_Arrays_timSortEx_l(int64_t* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Arrays_checkRange(size, startIndex, stopIndex);
+}
+
+void jtk_Arrays_timSortEx_f(float* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Arrays_checkRange(size, startIndex, stopIndex);
+}
+
+void jtk_Arrays_timSortEx_d(double* array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Arrays_checkRange(size, startIndex, stopIndex);
+}
+
+void jtk_Arrays_timSortEx_v(void** array, int32_t size, int32_t startIndex,
+    int32_t stopIndex, bool ascending, jtk_ComparatorFunction_t comparator) {
+    jtk_Assert_assertObject(array, "The specified array is null.");
+    jtk_Arrays_checkRange(size, startIndex, stopIndex);
+    jtk_Assert_assertObject(comparator, "The specified comparator is null.");
 }
