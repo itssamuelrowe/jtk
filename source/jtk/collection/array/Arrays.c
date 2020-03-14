@@ -20,10 +20,13 @@
 
 #include <jtk/collection/array/Arrays.h>
 #include <jtk/core/Integer.h>
+#include <jtk/core/Long.h>
+#include <jtk/core/Float.h>
+#include <jtk/core/Double.h>
 
 /* Binary Search (private) */
 
-int32_t jtk_Arrays_binarySearch0_b(int8_t* array, int32_t startIndex,
+int32_t jtk_Arrays_binarySearch0_b(const int8_t* array, int32_t startIndex,
     int32_t stopIndex, int8_t key) {
     int32_t low = startIndex;
     int32_t high = stopIndex - 1;
@@ -43,7 +46,7 @@ int32_t jtk_Arrays_binarySearch0_b(int8_t* array, int32_t startIndex,
     return -1;
 }
 
-int32_t jtk_Arrays_binarySearch0_s(int16_t* array, int32_t startIndex,
+int32_t jtk_Arrays_binarySearch0_s(const int16_t* array, int32_t startIndex,
     int32_t stopIndex, int16_t key) {
     int32_t low = startIndex;
     int32_t high = stopIndex - 1;
@@ -63,7 +66,7 @@ int32_t jtk_Arrays_binarySearch0_s(int16_t* array, int32_t startIndex,
     return -1;
 }
 
-int32_t jtk_Arrays_binarySearch0_i(int32_t* array, int32_t startIndex,
+int32_t jtk_Arrays_binarySearch0_i(const int32_t* array, int32_t startIndex,
     int32_t stopIndex, int32_t key) {
     int32_t low = startIndex;
     int32_t high = stopIndex - 1;
@@ -83,7 +86,7 @@ int32_t jtk_Arrays_binarySearch0_i(int32_t* array, int32_t startIndex,
     return -1;
 }
 
-int32_t jtk_Arrays_binarySearch0_l(int64_t* array, int32_t startIndex,
+int32_t jtk_Arrays_binarySearch0_l(const int64_t* array, int32_t startIndex,
     int32_t stopIndex, int64_t key) {
     int32_t low = startIndex;
     int32_t high = stopIndex - 1;
@@ -103,7 +106,7 @@ int32_t jtk_Arrays_binarySearch0_l(int64_t* array, int32_t startIndex,
     return -1;
 }
 
-int32_t jtk_Arrays_binarySearch0_f(float* array, int32_t startIndex,
+int32_t jtk_Arrays_binarySearch0_f(const float* array, int32_t startIndex,
     int32_t stopIndex, float key) {
     int32_t low = startIndex;
     int32_t high = stopIndex - 1;
@@ -133,7 +136,7 @@ int32_t jtk_Arrays_binarySearch0_f(float* array, int32_t startIndex,
     return -1;
 }
 
-int32_t jtk_Arrays_binarySearch0_d(double* array, int32_t startIndex,
+int32_t jtk_Arrays_binarySearch0_d(const double* array, int32_t startIndex,
     int32_t stopIndex, double key) {
     int32_t low = startIndex;
     int32_t high = stopIndex - 1;
@@ -165,7 +168,7 @@ int32_t jtk_Arrays_binarySearch0_d(double* array, int32_t startIndex,
 
 /* Binary Search */
 
-int32_t jtk_Arrays_binarySearch_b(int8_t* array, int32_t size, int8_t key) {
+int32_t jtk_Arrays_binarySearch_b(const int8_t* array, int32_t size, int8_t key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     /* According to my knowledge, an array of size zero is undefined in C.
      * Therefore, array size should are required to be greater than zero.
@@ -175,35 +178,35 @@ int32_t jtk_Arrays_binarySearch_b(int8_t* array, int32_t size, int8_t key) {
     return jtk_Arrays_binarySearch0_b(array, 0, size, key);
 }
 
-int32_t jtk_Arrays_binarySearch_s(int16_t* array, int32_t size, int16_t key) {
+int32_t jtk_Arrays_binarySearch_s(const int16_t* array, int32_t size, int16_t key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
 
     return jtk_Arrays_binarySearch0_s(array, 0, size, key);
 }
 
-int32_t jtk_Arrays_binarySearch_i(int32_t* array, int32_t size, int32_t key) {
+int32_t jtk_Arrays_binarySearch_i(const int32_t* array, int32_t size, int32_t key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
 
     return jtk_Arrays_binarySearch0_i(array, 0, size, key);
 }
 
-int32_t jtk_Arrays_binarySearch_l(int64_t* array, int32_t size, int64_t key) {
+int32_t jtk_Arrays_binarySearch_l(const int64_t* array, int32_t size, int64_t key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
 
     return jtk_Arrays_binarySearch0_l(array, 0, size, key);
 }
 
-int32_t jtk_Arrays_binarySearch_f(float* array, int32_t size, float key) {
+int32_t jtk_Arrays_binarySearch_f(const float* array, int32_t size, float key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
 
     return jtk_Arrays_binarySearch0_f(array, 0, size, key);
 }
 
-int32_t jtk_Arrays_binarySearch_d(double* array, int32_t size, double key) {
+int32_t jtk_Arrays_binarySearch_d(const double* array, int32_t size, double key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
 
@@ -212,7 +215,7 @@ int32_t jtk_Arrays_binarySearch_d(double* array, int32_t size, double key) {
 
 /* Binary Search Extended */
 
-int32_t jtk_Arrays_binarySearchEx_b(int8_t* array, int32_t size,
+int32_t jtk_Arrays_binarySearchEx_b(const int8_t* array, int32_t size,
     int32_t startIndex, int32_t stopIndex, int8_t key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
@@ -220,7 +223,7 @@ int32_t jtk_Arrays_binarySearchEx_b(int8_t* array, int32_t size,
     return jtk_Arrays_binarySearch0_b(array, startIndex, stopIndex, key);
 }
 
-int32_t jtk_Arrays_binarySearchEx_s(int16_t* array, int32_t size,
+int32_t jtk_Arrays_binarySearchEx_s(const int16_t* array, int32_t size,
     int32_t startIndex, int32_t stopIndex, int16_t key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
@@ -228,7 +231,7 @@ int32_t jtk_Arrays_binarySearchEx_s(int16_t* array, int32_t size,
     return jtk_Arrays_binarySearch0_s(array, startIndex, stopIndex, key);
 }
 
-int32_t jtk_Arrays_binarySearchEx_i(int32_t* array, int32_t size,
+int32_t jtk_Arrays_binarySearchEx_i(const int32_t* array, int32_t size,
     int32_t startIndex, int32_t stopIndex, int32_t key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
@@ -236,7 +239,7 @@ int32_t jtk_Arrays_binarySearchEx_i(int32_t* array, int32_t size,
     return jtk_Arrays_binarySearch0_i(array, startIndex, stopIndex, key);
 }
 
-int32_t jtk_Arrays_binarySearchEx_l(int64_t* array, int32_t size,
+int32_t jtk_Arrays_binarySearchEx_l(const int64_t* array, int32_t size,
     int32_t startIndex, int32_t stopIndex, int64_t key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
@@ -244,7 +247,7 @@ int32_t jtk_Arrays_binarySearchEx_l(int64_t* array, int32_t size,
     return jtk_Arrays_binarySearch0_l(array, startIndex, stopIndex, key);
 }
 
-int32_t jtk_Arrays_binarySearchEx_f(float* array, int32_t size,
+int32_t jtk_Arrays_binarySearchEx_f(const float* array, int32_t size,
     int32_t startIndex, int32_t stopIndex, float key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
@@ -252,7 +255,7 @@ int32_t jtk_Arrays_binarySearchEx_f(float* array, int32_t size,
     return jtk_Arrays_binarySearch0_f(array, startIndex, stopIndex, key);
 }
 
-int32_t jtk_Arrays_binarySearchEx_d(double* array, int32_t size,
+int32_t jtk_Arrays_binarySearchEx_d(const double* array, int32_t size,
     int32_t startIndex, int32_t stopIndex, double key) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
@@ -278,7 +281,7 @@ void jtk_Arrays_checkRange(int32_t size, int32_t startIndex, int32_t stopIndex) 
 
 /* Clone */
 
-void** jtk_Arrays_clone_v(void** array, int32_t size) {
+void** jtk_Arrays_clone_v(const void** array, int32_t size) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified size is invalid.");
 
@@ -287,7 +290,7 @@ void** jtk_Arrays_clone_v(void** array, int32_t size) {
     return result;
 }
 
-int8_t* jtk_Arrays_clone_b(int8_t* array, int32_t size) {
+int8_t* jtk_Arrays_clone_b(const int8_t* array, int32_t size) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified size is invalid.");
 
@@ -296,7 +299,7 @@ int8_t* jtk_Arrays_clone_b(int8_t* array, int32_t size) {
     return result;
 }
 
-int16_t* jtk_Arrays_clone_s(int16_t* array, int32_t size) {
+int16_t* jtk_Arrays_clone_s(const int16_t* array, int32_t size) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified size is invalid.");
 
@@ -305,7 +308,7 @@ int16_t* jtk_Arrays_clone_s(int16_t* array, int32_t size) {
     return result;
 }
 
-int32_t* jtk_Arrays_clone_i(int32_t* array, int32_t size) {
+int32_t* jtk_Arrays_clone_i(const int32_t* array, int32_t size) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified size is invalid.");
 
@@ -314,7 +317,7 @@ int32_t* jtk_Arrays_clone_i(int32_t* array, int32_t size) {
     return result;
 }
 
-int64_t* jtk_Arrays_clone_l(int64_t* array, int32_t size) {
+int64_t* jtk_Arrays_clone_l(const int64_t* array, int32_t size) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified size is invalid.");
 
@@ -323,7 +326,7 @@ int64_t* jtk_Arrays_clone_l(int64_t* array, int32_t size) {
     return result;
 }
 
-float* jtk_Arrays_clone_f(float* array, int32_t size) {
+float* jtk_Arrays_clone_f(const float* array, int32_t size) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified size is invalid.");
 
@@ -332,7 +335,7 @@ float* jtk_Arrays_clone_f(float* array, int32_t size) {
     return result;
 }
 
-double* jtk_Arrays_clone_d(double* array, int32_t size) {
+double* jtk_Arrays_clone_d(const double* array, int32_t size) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified size is invalid.");
 
@@ -343,7 +346,7 @@ double* jtk_Arrays_clone_d(double* array, int32_t size) {
 
 /* Copy */
 
-int32_t jtk_Arrays_copy_v(void** source, int32_t sourceSize, void** destination,
+int32_t jtk_Arrays_copy_v(const void** source, int32_t sourceSize, void** destination,
     int32_t destinationSize) {
     jtk_Assert_assertObject(source, "The specified source array is null.");
     jtk_Assert_assertObject(destination, "The specified destination array is null.");
@@ -355,7 +358,7 @@ int32_t jtk_Arrays_copy_v(void** source, int32_t sourceSize, void** destination,
         destinationSize);
 }
 
-int32_t jtk_Arrays_copy_b(int8_t* source, int32_t sourceSize, int8_t* destination,
+int32_t jtk_Arrays_copy_b(const int8_t* source, int32_t sourceSize, int8_t* destination,
     int32_t destinationSize) {
     jtk_Assert_assertObject(source, "The specified source array is null.");
     jtk_Assert_assertObject(destination, "The specified destination array is null.");
@@ -367,7 +370,7 @@ int32_t jtk_Arrays_copy_b(int8_t* source, int32_t sourceSize, int8_t* destinatio
         destinationSize);
 }
 
-int32_t jtk_Arrays_copy_s(int16_t* source, int32_t sourceSize, int16_t* destination,
+int32_t jtk_Arrays_copy_s(const int16_t* source, int32_t sourceSize, int16_t* destination,
     int32_t destinationSize) {
     jtk_Assert_assertObject(source, "The specified source array is null.");
     jtk_Assert_assertObject(destination, "The specified destination array is null.");
@@ -379,7 +382,7 @@ int32_t jtk_Arrays_copy_s(int16_t* source, int32_t sourceSize, int16_t* destinat
         destinationSize);
 }
 
-int32_t jtk_Arrays_copy_i(int32_t* source, int32_t sourceSize, int32_t* destination,
+int32_t jtk_Arrays_copy_i(const int32_t* source, int32_t sourceSize, int32_t* destination,
     int32_t destinationSize) {
     jtk_Assert_assertObject(source, "The specified source array is null.");
     jtk_Assert_assertObject(destination, "The specified destination array is null.");
@@ -391,7 +394,7 @@ int32_t jtk_Arrays_copy_i(int32_t* source, int32_t sourceSize, int32_t* destinat
         destinationSize);
 }
 
-int32_t jtk_Arrays_copy_l(int64_t* source, int32_t sourceSize, int64_t* destination,
+int32_t jtk_Arrays_copy_l(const int64_t* source, int32_t sourceSize, int64_t* destination,
     int32_t destinationSize) {
     jtk_Assert_assertObject(source, "The specified source array is null.");
     jtk_Assert_assertObject(destination, "The specified destination array is null.");
@@ -403,7 +406,7 @@ int32_t jtk_Arrays_copy_l(int64_t* source, int32_t sourceSize, int64_t* destinat
         destinationSize);
 }
 
-int32_t jtk_Arrays_copy_f(float* source, int32_t sourceSize, float* destination,
+int32_t jtk_Arrays_copy_f(const float* source, int32_t sourceSize, float* destination,
     int32_t destinationSize) {
     jtk_Assert_assertObject(source, "The specified source array is null.");
     jtk_Assert_assertObject(destination, "The specified destination array is null.");
@@ -415,7 +418,7 @@ int32_t jtk_Arrays_copy_f(float* source, int32_t sourceSize, float* destination,
         destinationSize);
 }
 
-int32_t jtk_Arrays_copy_d(double* source, int32_t sourceSize, double* destination,
+int32_t jtk_Arrays_copy_d(const double* source, int32_t sourceSize, double* destination,
     int32_t destinationSize) {
     jtk_Assert_assertObject(source, "The specified source array is null.");
     jtk_Assert_assertObject(destination, "The specified destination array is null.");
@@ -429,7 +432,7 @@ int32_t jtk_Arrays_copy_d(double* source, int32_t sourceSize, double* destinatio
 
 /* Copy Extended */
 
-int32_t jtk_Arrays_copyEx_v(void** source, int32_t sourceSize, int32_t sourceIndex,
+int32_t jtk_Arrays_copyEx_v(const void** source, int32_t sourceSize, int32_t sourceIndex,
     void** destination, int32_t destinationSize, int32_t destinationIndex,
     int32_t size) {
     jtk_Assert_assertTrue(size >= 0, "The specified size is invalid.");
@@ -449,7 +452,7 @@ int32_t jtk_Arrays_copyEx_v(void** source, int32_t sourceSize, int32_t sourceInd
         int32_t j = 0;
         int32_t i;
         for (i = sourceIndex; i < limit; i++) {
-            temporary[j] = source[i];
+            temporary[j] = (void*)source[i];
             j++;
         }
         int32_t limit0 = destinationIndex + size;
@@ -474,7 +477,7 @@ int32_t jtk_Arrays_copyEx_v(void** source, int32_t sourceSize, int32_t sourceInd
     return result;
 }
 
-int32_t jtk_Arrays_copyEx_b(int8_t* source, int32_t sourceSize, int32_t sourceIndex,
+int32_t jtk_Arrays_copyEx_b(const int8_t* source, int32_t sourceSize, int32_t sourceIndex,
     int8_t* destination, int32_t destinationSize, int32_t destinationIndex,
     int32_t size) {
     jtk_Assert_assertTrue(size >= 0, "The specified size is invalid.");
@@ -520,7 +523,7 @@ int32_t jtk_Arrays_copyEx_b(int8_t* source, int32_t sourceSize, int32_t sourceIn
     return result;
 }
 
-int32_t jtk_Arrays_copyEx_s(int16_t* source, int32_t sourceSize, int32_t sourceIndex,
+int32_t jtk_Arrays_copyEx_s(const int16_t* source, int32_t sourceSize, int32_t sourceIndex,
     int16_t* destination, int32_t destinationSize, int32_t destinationIndex,
     int32_t size) {
     jtk_Assert_assertTrue(size >= 0, "The specified size is invalid.");
@@ -565,7 +568,7 @@ int32_t jtk_Arrays_copyEx_s(int16_t* source, int32_t sourceSize, int32_t sourceI
     return result;
 }
 
-int32_t jtk_Arrays_copyEx_i(int32_t* source, int32_t sourceSize, int32_t sourceIndex,
+int32_t jtk_Arrays_copyEx_i(const int32_t* source, int32_t sourceSize, int32_t sourceIndex,
     int32_t* destination, int32_t destinationSize, int32_t destinationIndex,
     int32_t size) {
     jtk_Assert_assertTrue(size >= 0, "The specified size is invalid.");
@@ -610,7 +613,7 @@ int32_t jtk_Arrays_copyEx_i(int32_t* source, int32_t sourceSize, int32_t sourceI
     return result;
 }
 
-int32_t jtk_Arrays_copyEx_l(int64_t* source, int32_t sourceSize, int32_t sourceIndex,
+int32_t jtk_Arrays_copyEx_l(const int64_t* source, int32_t sourceSize, int32_t sourceIndex,
     int64_t* destination, int32_t destinationSize, int32_t destinationIndex,
     int32_t size) {
     jtk_Assert_assertTrue(size >= 0, "The specified size is invalid.");
@@ -655,7 +658,7 @@ int32_t jtk_Arrays_copyEx_l(int64_t* source, int32_t sourceSize, int32_t sourceI
     return result;
 }
 
-int32_t jtk_Arrays_copyEx_f(float* source, int32_t sourceSize, int32_t sourceIndex,
+int32_t jtk_Arrays_copyEx_f(const float* source, int32_t sourceSize, int32_t sourceIndex,
     float* destination, int32_t destinationSize, int32_t destinationIndex,
     int32_t size) {
     jtk_Assert_assertTrue(size >= 0, "The specified size is invalid.");
@@ -700,7 +703,7 @@ int32_t jtk_Arrays_copyEx_f(float* source, int32_t sourceSize, int32_t sourceInd
     return result;
 }
 
-int32_t jtk_Arrays_copyEx_d(double* source, int32_t sourceSize, int32_t sourceIndex,
+int32_t jtk_Arrays_copyEx_d(const double* source, int32_t sourceSize, int32_t sourceIndex,
     double* destination, int32_t destinationSize, int32_t destinationIndex,
     int32_t size) {
     jtk_Assert_assertTrue(size >= 0, "The specified size is invalid.");
@@ -747,7 +750,7 @@ int32_t jtk_Arrays_copyEx_d(double* source, int32_t sourceSize, int32_t sourceIn
 
 /* Copy Of */
 
-void** jtk_Arrays_copyOf_v(void** source, int32_t size, int32_t newSize,
+void** jtk_Arrays_copyOf_v(const void** source, int32_t size, int32_t newSize,
     void* defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -765,7 +768,7 @@ void** jtk_Arrays_copyOf_v(void** source, int32_t size, int32_t newSize,
     return result;
 }
 
-int8_t* jtk_Arrays_copyOf_b(int8_t* source, int32_t size, int32_t newSize,
+int8_t* jtk_Arrays_copyOf_b(const int8_t* source, int32_t size, int32_t newSize,
     int8_t defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -783,7 +786,7 @@ int8_t* jtk_Arrays_copyOf_b(int8_t* source, int32_t size, int32_t newSize,
     return result;
 }
 
-int16_t* jtk_Arrays_copyOf_s(int16_t* source, int32_t size, int32_t newSize,
+int16_t* jtk_Arrays_copyOf_s(const int16_t* source, int32_t size, int32_t newSize,
     int16_t defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -801,7 +804,7 @@ int16_t* jtk_Arrays_copyOf_s(int16_t* source, int32_t size, int32_t newSize,
     return result;
 }
 
-int32_t* jtk_Arrays_copyOf_i(int32_t* source, int32_t size, int32_t newSize,
+int32_t* jtk_Arrays_copyOf_i(const int32_t* source, int32_t size, int32_t newSize,
     int32_t defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -819,7 +822,7 @@ int32_t* jtk_Arrays_copyOf_i(int32_t* source, int32_t size, int32_t newSize,
     return result;
 }
 
-int64_t* jtk_Arrays_copyOf_l(int64_t* source, int32_t size, int32_t newSize,
+int64_t* jtk_Arrays_copyOf_l(const int64_t* source, int32_t size, int32_t newSize,
     int64_t defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -837,7 +840,7 @@ int64_t* jtk_Arrays_copyOf_l(int64_t* source, int32_t size, int32_t newSize,
     return result;
 }
 
-float* jtk_Arrays_copyOf_f(float* source, int32_t size, int32_t newSize,
+float* jtk_Arrays_copyOf_f(const float* source, int32_t size, int32_t newSize,
     float defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -855,7 +858,7 @@ float* jtk_Arrays_copyOf_f(float* source, int32_t size, int32_t newSize,
     return result;
 }
 
-double* jtk_Arrays_copyOf_d(double* source, int32_t size, int32_t newSize,
+double* jtk_Arrays_copyOf_d(const double* source, int32_t size, int32_t newSize,
     double defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -881,7 +884,7 @@ double* jtk_Arrays_copyOf_d(double* source, int32_t size, int32_t newSize,
  * the code works and no changes will be made in the near future.
  */
 
-void** jtk_Arrays_copyOfEx_v(void** source, int32_t size, int32_t newSize,
+void** jtk_Arrays_copyOfEx_v(const void** source, int32_t size, int32_t newSize,
     void* defaultValue, bool overwrite) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -899,7 +902,7 @@ void** jtk_Arrays_copyOfEx_v(void** source, int32_t size, int32_t newSize,
     return result;
 }
 
-int8_t* jtk_Arrays_copyOfEx_b(int8_t* source, int32_t size, int32_t newSize,
+int8_t* jtk_Arrays_copyOfEx_b(const int8_t* source, int32_t size, int32_t newSize,
     int8_t defaultValue, bool overwrite) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -917,7 +920,7 @@ int8_t* jtk_Arrays_copyOfEx_b(int8_t* source, int32_t size, int32_t newSize,
     return result;
 }
 
-int16_t* jtk_Arrays_copyOfEx_s(int16_t* source, int32_t size, int32_t newSize,
+int16_t* jtk_Arrays_copyOfEx_s(const int16_t* source, int32_t size, int32_t newSize,
     int16_t defaultValue, bool overwrite) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -935,7 +938,7 @@ int16_t* jtk_Arrays_copyOfEx_s(int16_t* source, int32_t size, int32_t newSize,
     return result;
 }
 
-int32_t* jtk_Arrays_copyOfEx_i(int32_t* source, int32_t size, int32_t newSize,
+int32_t* jtk_Arrays_copyOfEx_i(const int32_t* source, int32_t size, int32_t newSize,
     int32_t defaultValue, bool overwrite) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -953,7 +956,7 @@ int32_t* jtk_Arrays_copyOfEx_i(int32_t* source, int32_t size, int32_t newSize,
     return result;
 }
 
-int64_t* jtk_Arrays_copyOfEx_l(int64_t* source, int32_t size, int32_t newSize,
+int64_t* jtk_Arrays_copyOfEx_l(const int64_t* source, int32_t size, int32_t newSize,
     int64_t defaultValue, bool overwrite) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -971,7 +974,7 @@ int64_t* jtk_Arrays_copyOfEx_l(int64_t* source, int32_t size, int32_t newSize,
     return result;
 }
 
-float* jtk_Arrays_copyOfEx_f(float* source, int32_t size, int32_t newSize,
+float* jtk_Arrays_copyOfEx_f(const float* source, int32_t size, int32_t newSize,
     float defaultValue, bool overwrite) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -989,7 +992,7 @@ float* jtk_Arrays_copyOfEx_f(float* source, int32_t size, int32_t newSize,
     return result;
 }
 
-double* jtk_Arrays_copyOfEx_d(double* source, int32_t size, int32_t newSize,
+double* jtk_Arrays_copyOfEx_d(const double* source, int32_t size, int32_t newSize,
     double defaultValue, bool overwrite) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     jtk_Assert_assertTrue(size > 0, "The specified array size is invalid.");
@@ -1009,7 +1012,7 @@ double* jtk_Arrays_copyOfEx_d(double* source, int32_t size, int32_t newSize,
 
 /* Copy of Range */
 
-void** jtk_Arrays_copyOfRange_v(void** source, int32_t sourceSize,
+void** jtk_Arrays_copyOfRange_v(const void** source, int32_t sourceSize,
     int32_t startIndex, int32_t stopIndex, void* defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     /* The start index should be lesser than stop index. This prevents zero
@@ -1030,7 +1033,7 @@ void** jtk_Arrays_copyOfRange_v(void** source, int32_t sourceSize,
     return result;
 }
 
-int8_t* jtk_Arrays_copyOfRange_b(int8_t* source, int32_t sourceSize,
+int8_t* jtk_Arrays_copyOfRange_b(const int8_t* source, int32_t sourceSize,
     int32_t startIndex, int32_t stopIndex, int8_t defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     /* The start index should be lesser than stop index. This prevents zero
@@ -1051,7 +1054,7 @@ int8_t* jtk_Arrays_copyOfRange_b(int8_t* source, int32_t sourceSize,
     return result;
 }
 
-int16_t* jtk_Arrays_copyOfRange_s(int16_t* source, int32_t sourceSize,
+int16_t* jtk_Arrays_copyOfRange_s(const int16_t* source, int32_t sourceSize,
     int32_t startIndex, int32_t stopIndex, int16_t defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     /* The start index should be lesser than stop index. This prevents zero
@@ -1072,7 +1075,7 @@ int16_t* jtk_Arrays_copyOfRange_s(int16_t* source, int32_t sourceSize,
     return result;
 }
 
-int32_t* jtk_Arrays_copyOfRange_i(int32_t* source, int32_t sourceSize,
+int32_t* jtk_Arrays_copyOfRange_i(const int32_t* source, int32_t sourceSize,
     int32_t startIndex, int32_t stopIndex, int32_t defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     /* The start index should be lesser than stop index. This prevents zero
@@ -1093,7 +1096,7 @@ int32_t* jtk_Arrays_copyOfRange_i(int32_t* source, int32_t sourceSize,
     return result;
 }
 
-int64_t* jtk_Arrays_copyOfRange_l(int64_t* source, int32_t sourceSize,
+int64_t* jtk_Arrays_copyOfRange_l(const int64_t* source, int32_t sourceSize,
     int32_t startIndex, int32_t stopIndex, int64_t defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     /* The start index should be lesser than stop index. This prevents zero
@@ -1114,7 +1117,7 @@ int64_t* jtk_Arrays_copyOfRange_l(int64_t* source, int32_t sourceSize,
     return result;
 }
 
-float* jtk_Arrays_copyOfRange_f(float* source, int32_t sourceSize,
+float* jtk_Arrays_copyOfRange_f(const float* source, int32_t sourceSize,
     int32_t startIndex, int32_t stopIndex, float defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     /* The start index should be lesser than stop index. This prevents zero
@@ -1135,7 +1138,7 @@ float* jtk_Arrays_copyOfRange_f(float* source, int32_t sourceSize,
     return result;
 }
 
-double* jtk_Arrays_copyOfRange_d(double* source, int32_t sourceSize,
+double* jtk_Arrays_copyOfRange_d(const double* source, int32_t sourceSize,
     int32_t startIndex, int32_t stopIndex, double defaultValue) {
     jtk_Assert_assertObject(source, "The specified array is null.");
     /* The start index should be lesser than stop index. This prevents zero
@@ -1664,7 +1667,7 @@ void jtk_Arrays_fillEx_d(double* array, int32_t size, int32_t startIndex,
 
 /* Filter */
 
-void jtk_Array_filter_v(void** source, int32_t sourceSize, jtk_MixedPredicateFunction_t predicate,
+void jtk_Array_filter_v(const void** source, int32_t sourceSize, jtk_MixedPredicateFunction_t predicate,
     void** destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1676,7 +1679,7 @@ void jtk_Array_filter_v(void** source, int32_t sourceSize, jtk_MixedPredicateFun
     }
 }
 
-void jtk_Array_filter_b(int8_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
+void jtk_Array_filter_b(const int8_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
     int8_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1688,7 +1691,7 @@ void jtk_Array_filter_b(int8_t* source, int32_t sourceSize, jtk_IntegerPredicate
     }
 }
 
-void jtk_Array_filter_s(int16_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
+void jtk_Array_filter_s(const int16_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
     int16_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1700,7 +1703,7 @@ void jtk_Array_filter_s(int16_t* source, int32_t sourceSize, jtk_IntegerPredicat
     }
 }
 
-void jtk_Array_filter_i(int32_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
+void jtk_Array_filter_i(const int32_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
     int32_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1712,7 +1715,7 @@ void jtk_Array_filter_i(int32_t* source, int32_t sourceSize, jtk_IntegerPredicat
     }
 }
 
-void jtk_Array_filter_l(int64_t* source, int32_t sourceSize, jtk_LongPredicateFunction_t predicate,
+void jtk_Array_filter_l(const int64_t* source, int32_t sourceSize, jtk_LongPredicateFunction_t predicate,
     int64_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1724,7 +1727,7 @@ void jtk_Array_filter_l(int64_t* source, int32_t sourceSize, jtk_LongPredicateFu
     }
 }
 
-void jtk_Array_filter_f(float* source, int32_t sourceSize, jtk_FloatPredicateFunction_t predicate,
+void jtk_Array_filter_f(const float* source, int32_t sourceSize, jtk_FloatPredicateFunction_t predicate,
     float* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -1736,7 +1739,7 @@ void jtk_Array_filter_f(float* source, int32_t sourceSize, jtk_FloatPredicateFun
     }
 }
 
-void jtk_Array_filter_d(double* source, int32_t sourceSize, jtk_DoublePredicateFunction_t predicate,
+void jtk_Array_filter_d(const double* source, int32_t sourceSize, jtk_DoublePredicateFunction_t predicate,
     double* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2300,7 +2303,7 @@ void jtk_Arrays_swap_d(double* array, int32_t size, int32_t index1, int32_t inde
 
 // Select
 
-void jtk_Arrays_select_b(int8_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_b(const int8_t* source, int32_t sourceSize, bool* selection,
     int8_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2312,7 +2315,7 @@ void jtk_Arrays_select_b(int8_t* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Arrays_select_s(int16_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_s(const int16_t* source, int32_t sourceSize, bool* selection,
     int16_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2324,7 +2327,7 @@ void jtk_Arrays_select_s(int16_t* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Arrays_select_i(int32_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_i(const int32_t* source, int32_t sourceSize, bool* selection,
     int32_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2336,7 +2339,7 @@ void jtk_Arrays_select_i(int32_t* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Arrays_select_l(int64_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_l(const int64_t* source, int32_t sourceSize, bool* selection,
     int64_t* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2348,7 +2351,7 @@ void jtk_Arrays_select_l(int64_t* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Arrays_select_f(float* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_f(const float* source, int32_t sourceSize, bool* selection,
     float* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2360,7 +2363,7 @@ void jtk_Arrays_select_f(float* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Arrays_select_d(double* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_d(const double* source, int32_t sourceSize, bool* selection,
     double* destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
@@ -2372,13 +2375,13 @@ void jtk_Arrays_select_d(double* source, int32_t sourceSize, bool* selection,
     }
 }
 
-void jtk_Arrays_select_v(void** source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_v(const void** source, int32_t sourceSize, bool* selection,
     void** destination, int32_t destinationSize) {
     int32_t j = 0;
     int32_t i;
     for (i = 0; (i < sourceSize) && (j < destinationSize); i++) {
         if (selection[i]) {
-            destination[j] = source[i];
+            destination[j] = (void*)source[i];
             j++;
         }
     }
@@ -2430,7 +2433,7 @@ void jtk_Arrays_timSort_v(void** array, int32_t size, jtk_ComparatorFunction_t c
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
     
-    jtk_Arrays_timSortEx_v(array, size, 0, size, true);
+    // jtk_Arrays_timSortEx_v(array, size, 0, size, true);
 }
 
 /* Tim Sort Extended */

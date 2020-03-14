@@ -18,6 +18,7 @@
 
 #include <jtk/core/Long.h>
 #include <jtk/core/Integer.h>
+#include <jtk/core/CString.h>
 
 /*******************************************************************************
  * Long                                                                        *

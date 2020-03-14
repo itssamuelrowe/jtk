@@ -54,7 +54,7 @@
  *         `-1` otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearch_v(void** array, int32_t size, void* key, jtk_ComparatorFunction_t comparator);
+int32_t jtk_Arrays_binarySearch_v(const void** array, int32_t size, void* key, jtk_ComparatorFunction_t comparator);
 
 /**
  * Searches the specified array of 8-bit integers for an occurrence of the specified
@@ -71,7 +71,7 @@ int32_t jtk_Arrays_binarySearch_v(void** array, int32_t size, void* key, jtk_Com
  *         `-1` otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearch_b(int8_t* array, int32_t size, int8_t key);
+int32_t jtk_Arrays_binarySearch_b(const int8_t* array, int32_t size, int8_t key);
 
 /**
  * Searches the specified array of 16-bit integers for an occurrence of the specified
@@ -88,7 +88,7 @@ int32_t jtk_Arrays_binarySearch_b(int8_t* array, int32_t size, int8_t key);
  *         `-1` otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearch_s(int16_t* array, int32_t size, int16_t key);
+int32_t jtk_Arrays_binarySearch_s(const int16_t* array, int32_t size, int16_t key);
 
 /**
  * Searches the specified array of 32-bit integers for an occurrence of the specified
@@ -105,7 +105,7 @@ int32_t jtk_Arrays_binarySearch_s(int16_t* array, int32_t size, int16_t key);
  *         `-1` otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearch_i(int32_t* array, int32_t size, int32_t key);
+int32_t jtk_Arrays_binarySearch_i(const int32_t* array, int32_t size, int32_t key);
 
 /**
  * Searches the specified array of 64-bit integers for an occurrence of the specified
@@ -122,7 +122,7 @@ int32_t jtk_Arrays_binarySearch_i(int32_t* array, int32_t size, int32_t key);
  *         `-1` otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearch_l(int64_t* array, int32_t size, int64_t key);
+int32_t jtk_Arrays_binarySearch_l(const int64_t* array, int32_t size, int64_t key);
 
 /**
  * Searches the specified array of 32-bit decimals for an occurrence of the specified
@@ -139,7 +139,7 @@ int32_t jtk_Arrays_binarySearch_l(int64_t* array, int32_t size, int64_t key);
  *         `-1` otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearch_f(float* array, int32_t size, float key);
+int32_t jtk_Arrays_binarySearch_f(const float* array, int32_t size, float key);
 
 /**
  * Searches the specified array of 64-bit decimals for an occurrence of the specified
@@ -156,7 +156,7 @@ int32_t jtk_Arrays_binarySearch_f(float* array, int32_t size, float key);
  *         `-1` otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearch_d(double* array, int32_t size, double key);
+int32_t jtk_Arrays_binarySearch_d(const double* array, int32_t size, double key);
 
 /* Binary Search Extended */
 
@@ -196,7 +196,7 @@ int32_t jtk_Arrays_binarySearch_d(double* array, int32_t size, double key);
  *         a negative integer otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearchEx_v(void** array, int32_t size, int32_t startIndex, int32_t stopIndex, void* key, jtk_ComparatorFunction_t comparator);
+int32_t jtk_Arrays_binarySearchEx_v(const void** array, int32_t size, int32_t startIndex, int32_t stopIndex, void* key, jtk_ComparatorFunction_t comparator);
 
 /**
  * Searches the specified array of 8-bit integers for an occurrence of the specified
@@ -229,7 +229,7 @@ int32_t jtk_Arrays_binarySearchEx_v(void** array, int32_t size, int32_t startInd
  *         a negative integer otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearchEx_b(int8_t* array, int32_t size, int32_t startIndex, int32_t stopIndex, int8_t key);
+int32_t jtk_Arrays_binarySearchEx_b(const int8_t* array, int32_t size, int32_t startIndex, int32_t stopIndex, int8_t key);
 
 /**
  * Searches the specified array of 16-bit integers for an occurrence of the specified
@@ -262,7 +262,7 @@ int32_t jtk_Arrays_binarySearchEx_b(int8_t* array, int32_t size, int32_t startIn
  *         a negative integer otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearchEx_s(int16_t* array, int32_t size, int32_t startIndex, int32_t stopIndex, int16_t key);
+int32_t jtk_Arrays_binarySearchEx_s(const int16_t* array, int32_t size, int32_t startIndex, int32_t stopIndex, int16_t key);
 
 /**
  * Searches the specified array of 32-bit integers for an occurrence of the specified
@@ -295,7 +295,7 @@ int32_t jtk_Arrays_binarySearchEx_s(int16_t* array, int32_t size, int32_t startI
  *         a negative integer otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearchEx_i(int32_t* array, int32_t size, int32_t startIndex, int32_t stopIndex, int32_t key);
+int32_t jtk_Arrays_binarySearchEx_i(const int32_t* array, int32_t size, int32_t startIndex, int32_t stopIndex, int32_t key);
 
 /**
  * Searches the specified array of 64-bit integers for an occurrence of the specified
@@ -328,7 +328,7 @@ int32_t jtk_Arrays_binarySearchEx_i(int32_t* array, int32_t size, int32_t startI
  *         a negative integer otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearchEx_l(int64_t* array, int32_t size, int32_t startIndex, int32_t stopIndex, int64_t key);
+int32_t jtk_Arrays_binarySearchEx_l(const int64_t* array, int32_t size, int32_t startIndex, int32_t stopIndex, int64_t key);
 
 /**
  * Searches the specified array of 32-bit decimals for an occurrence of the specified
@@ -361,7 +361,7 @@ int32_t jtk_Arrays_binarySearchEx_l(int64_t* array, int32_t size, int32_t startI
  *         a negative integer otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearchEx_f(float* array, int32_t size, int32_t startIndex, int32_t stopIndex, float key);
+int32_t jtk_Arrays_binarySearchEx_f(const float* array, int32_t size, int32_t startIndex, int32_t stopIndex, float key);
 
 /**
  * Searches the specified array of 64-bit decimals for an occurrence of the specified
@@ -394,7 +394,7 @@ int32_t jtk_Arrays_binarySearchEx_f(float* array, int32_t size, int32_t startInd
  *         a negative integer otherwise.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_binarySearchEx_d(double* array, int32_t size, int32_t startIndex, int32_t stopIndex, double key);
+int32_t jtk_Arrays_binarySearchEx_d(const double* array, int32_t size, int32_t startIndex, int32_t stopIndex, double key);
 
 /* Check Index */
 
@@ -462,7 +462,7 @@ void jtk_Arrays_checkRange(int32_t size, int32_t startIndex, int32_t stopIndex);
  * @return The newly created native array.
  * @memberof Arrays
  */
-void** jtk_Arrays_clone_v(void** source, int32_t size);
+void** jtk_Arrays_clone_v(const void** source, int32_t size);
 
 /**
  * Creates a copy of the specified native array of 8-bit integers. The elements in
@@ -480,7 +480,7 @@ void** jtk_Arrays_clone_v(void** source, int32_t size);
  * @return The newly created native array.
  * @memberof Arrays
  */
-int8_t* jtk_Arrays_clone_b(int8_t* source, int32_t size);
+int8_t* jtk_Arrays_clone_b(const int8_t* source, int32_t size);
 
 /**
  * Creates a copy of the specified native array of 16-bit integers. The elements in
@@ -498,7 +498,7 @@ int8_t* jtk_Arrays_clone_b(int8_t* source, int32_t size);
  * @return The newly created native array.
  * @memberof Arrays
  */
-int16_t* jtk_Arrays_clone_s(int16_t* source, int32_t size);
+int16_t* jtk_Arrays_clone_s(const int16_t* source, int32_t size);
 
 /**
  * Creates a copy of the specified native array of 32-bit integers. The elements in
@@ -516,7 +516,7 @@ int16_t* jtk_Arrays_clone_s(int16_t* source, int32_t size);
  * @return The newly created native array.
  * @memberof Arrays
  */
-int32_t* jtk_Arrays_clone_i(int32_t* source, int32_t size);
+int32_t* jtk_Arrays_clone_i(const int32_t* source, int32_t size);
 
 /**
  * Creates a copy of the specified native array of 64-bit integers. The elements in
@@ -534,7 +534,7 @@ int32_t* jtk_Arrays_clone_i(int32_t* source, int32_t size);
  * @return The newly created native array.
  * @memberof Arrays
  */
-int64_t* jtk_Arrays_clone_l(int64_t* source, int32_t size);
+int64_t* jtk_Arrays_clone_l(const int64_t* source, int32_t size);
 
 /**
  * Creates a copy of the specified native array of 32-bit decimals. The elements in
@@ -552,7 +552,7 @@ int64_t* jtk_Arrays_clone_l(int64_t* source, int32_t size);
  * @return The newly created native array.
  * @memberof Arrays
  */
-float* jtk_Arrays_clone_f(float* source, int32_t size);
+float* jtk_Arrays_clone_f(const float* source, int32_t size);
 
 /**
  * Creates a copy of the specified native array of 64-bit decimals. The elements in
@@ -570,7 +570,7 @@ float* jtk_Arrays_clone_f(float* source, int32_t size);
  * @return The newly created native array.
  * @memberof Arrays
  */
-double* jtk_Arrays_clone_d(double* source, int32_t size);
+double* jtk_Arrays_clone_d(const double* source, int32_t size);
 
 /* Copy */
 
@@ -597,7 +597,7 @@ double* jtk_Arrays_clone_d(double* source, int32_t size);
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copy_v(void** source, int32_t sourceSize, void** destination, int32_t destinationSize);
+int32_t jtk_Arrays_copy_v(const void** source, int32_t sourceSize, void** destination, int32_t destinationSize);
 
 /**
  * Copies the elements from the specified native source array of 8-bit integers to
@@ -622,7 +622,7 @@ int32_t jtk_Arrays_copy_v(void** source, int32_t sourceSize, void** destination,
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copy_b(int8_t* source, int32_t sourceSize, int8_t* destination, int32_t destinationSize);
+int32_t jtk_Arrays_copy_b(const int8_t* source, int32_t sourceSize, int8_t* destination, int32_t destinationSize);
 
 /**
  * Copies the elements from the specified native source array of 16-bit integers to
@@ -647,7 +647,7 @@ int32_t jtk_Arrays_copy_b(int8_t* source, int32_t sourceSize, int8_t* destinatio
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copy_s(int16_t* source, int32_t sourceSize, int16_t* destination, int32_t destinationSize);
+int32_t jtk_Arrays_copy_s(const int16_t* source, int32_t sourceSize, int16_t* destination, int32_t destinationSize);
 
 /**
  * Copies the elements from the specified native source array of 32-bit integers to
@@ -672,7 +672,7 @@ int32_t jtk_Arrays_copy_s(int16_t* source, int32_t sourceSize, int16_t* destinat
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copy_i(int32_t* source, int32_t sourceSize, int32_t* destination, int32_t destinationSize);
+int32_t jtk_Arrays_copy_i(const int32_t* source, int32_t sourceSize, int32_t* destination, int32_t destinationSize);
 
 /**
  * Copies the elements from the specified native source array of 64-bit integers to
@@ -697,7 +697,7 @@ int32_t jtk_Arrays_copy_i(int32_t* source, int32_t sourceSize, int32_t* destinat
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copy_l(int64_t* source, int32_t sourceSize, int64_t* destination, int32_t destinationSize);
+int32_t jtk_Arrays_copy_l(const int64_t* source, int32_t sourceSize, int64_t* destination, int32_t destinationSize);
 
 /**
  * Copies the elements from the specified native source array of 32-bit decimals to
@@ -722,7 +722,7 @@ int32_t jtk_Arrays_copy_l(int64_t* source, int32_t sourceSize, int64_t* destinat
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copy_f(float* source, int32_t sourceSize, float* destination, int32_t destinationSize);
+int32_t jtk_Arrays_copy_f(const float* source, int32_t sourceSize, float* destination, int32_t destinationSize);
 
 /**
  * Copies the elements from the specified native source array of 32-bit decimals to
@@ -747,7 +747,7 @@ int32_t jtk_Arrays_copy_f(float* source, int32_t sourceSize, float* destination,
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copy_d(double* source, int32_t sourceSize, double* destination, int32_t destinationSize);
+int32_t jtk_Arrays_copy_d(const double* source, int32_t sourceSize, double* destination, int32_t destinationSize);
 
 /* Copy Extended */
 
@@ -790,7 +790,7 @@ int32_t jtk_Arrays_copy_d(double* source, int32_t sourceSize, double* destinatio
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copyEx_v(void** source, int32_t sourceSize, int32_t sourceIndex,
+int32_t jtk_Arrays_copyEx_v(const void** source, int32_t sourceSize, int32_t sourceIndex,
     void** destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
 
 /**
@@ -832,7 +832,7 @@ int32_t jtk_Arrays_copyEx_v(void** source, int32_t sourceSize, int32_t sourceInd
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copyEx_b(int8_t* source, int32_t sourceSize, int32_t sourceIndex, int8_t* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
+int32_t jtk_Arrays_copyEx_b(const int8_t* source, int32_t sourceSize, int32_t sourceIndex, int8_t* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
 
 /**
  * Copies the elements from the specified native source array of 16-bit integers,
@@ -873,7 +873,7 @@ int32_t jtk_Arrays_copyEx_b(int8_t* source, int32_t sourceSize, int32_t sourceIn
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copyEx_s(int16_t* source, int32_t sourceSize, int32_t sourceIndex, int16_t* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
+int32_t jtk_Arrays_copyEx_s(const int16_t* source, int32_t sourceSize, int32_t sourceIndex, int16_t* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
 
 /**
  * Copies the elements from the specified native source array of 32-bit integers,
@@ -914,7 +914,7 @@ int32_t jtk_Arrays_copyEx_s(int16_t* source, int32_t sourceSize, int32_t sourceI
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copyEx_i(int32_t* source, int32_t sourceSize, int32_t sourceIndex, int32_t* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
+int32_t jtk_Arrays_copyEx_i(const int32_t* source, int32_t sourceSize, int32_t sourceIndex, int32_t* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
 
 /**
  * Copies the elements from the specified native source array of 64-bit integers,
@@ -955,7 +955,7 @@ int32_t jtk_Arrays_copyEx_i(int32_t* source, int32_t sourceSize, int32_t sourceI
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copyEx_l(int64_t* source, int32_t sourceSize, int32_t sourceIndex, int64_t* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
+int32_t jtk_Arrays_copyEx_l(const int64_t* source, int32_t sourceSize, int32_t sourceIndex, int64_t* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
 
 /**
  * Copies the elements from the specified native source array of 32-bit decimals,
@@ -996,7 +996,7 @@ int32_t jtk_Arrays_copyEx_l(int64_t* source, int32_t sourceSize, int32_t sourceI
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copyEx_f(float* source, int32_t sourceSize, int32_t sourceIndex, float* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
+int32_t jtk_Arrays_copyEx_f(const float* source, int32_t sourceSize, int32_t sourceIndex, float* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
 
 /**
  * Copies the elements from the specified native source array of 64-bit decimals,
@@ -1037,7 +1037,7 @@ int32_t jtk_Arrays_copyEx_f(float* source, int32_t sourceSize, int32_t sourceInd
  * @return The number of elements that were copied.
  * @memberof Arrays
  */
-int32_t jtk_Arrays_copyEx_d(double* source, int32_t sourceSize, int32_t sourceIndex, double* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
+int32_t jtk_Arrays_copyEx_d(const double* source, int32_t sourceSize, int32_t sourceIndex, double* destination, int32_t destinationSize, int32_t destinationIndex, int32_t size);
 
 /* Copy Of */
 
@@ -1062,7 +1062,7 @@ int32_t jtk_Arrays_copyEx_d(double* source, int32_t sourceSize, int32_t sourceIn
  *         array.
  * @memberof Arrays
  */
-void** jtk_Arrays_copyOf_v(void** source, int32_t sourceSize, int32_t newSize, void* defaultValue);
+void** jtk_Arrays_copyOf_v(const void** source, int32_t sourceSize, int32_t newSize, void* defaultValue);
 
 /**
  * Returns a copy of the specified native array of 8-bit integers, truncated or
@@ -1085,7 +1085,7 @@ void** jtk_Arrays_copyOf_v(void** source, int32_t sourceSize, int32_t newSize, v
  *         array.
  * @memberof Arrays
  */
-int8_t* jtk_Arrays_copyOf_b(int8_t* source, int32_t sourceSize, int32_t newSize, int8_t defaultValue);
+int8_t* jtk_Arrays_copyOf_b(const int8_t* source, int32_t sourceSize, int32_t newSize, int8_t defaultValue);
 
 /**
  * Returns a copy of the specified native array of 16-bit integers, truncated or
@@ -1108,7 +1108,7 @@ int8_t* jtk_Arrays_copyOf_b(int8_t* source, int32_t sourceSize, int32_t newSize,
  *         array.
  * @memberof Arrays
  */
-int16_t* jtk_Arrays_copyOf_s(int16_t* source, int32_t sourceSize, int32_t newSize, int16_t defaultValue);
+int16_t* jtk_Arrays_copyOf_s(const int16_t* source, int32_t sourceSize, int32_t newSize, int16_t defaultValue);
 
 /**
  * Returns a copy of the specified native array of 32-bit integers, truncated or
@@ -1131,7 +1131,7 @@ int16_t* jtk_Arrays_copyOf_s(int16_t* source, int32_t sourceSize, int32_t newSiz
  *         array.
  * @memberof Arrays
  */
-int32_t* jtk_Arrays_copyOf_i(int32_t* source, int32_t sourceSize, int32_t newSize, int32_t defaultValue);
+int32_t* jtk_Arrays_copyOf_i(const int32_t* source, int32_t sourceSize, int32_t newSize, int32_t defaultValue);
 
 /**
  * Returns a copy of the specified native array of 64-bit integers, truncated or
@@ -1154,7 +1154,7 @@ int32_t* jtk_Arrays_copyOf_i(int32_t* source, int32_t sourceSize, int32_t newSiz
  *         array.
  * @memberof Arrays
  */
-int64_t* jtk_Arrays_copyOf_l(int64_t* source, int32_t sourceSize, int32_t newSize, int64_t defaultValue);
+int64_t* jtk_Arrays_copyOf_l(const int64_t* source, int32_t sourceSize, int32_t newSize, int64_t defaultValue);
 
 /**
  * Returns a copy of the specified native array of 32-bit decimals, truncated or
@@ -1177,7 +1177,7 @@ int64_t* jtk_Arrays_copyOf_l(int64_t* source, int32_t sourceSize, int32_t newSiz
  *         array.
  * @memberof Arrays
  */
-float* jtk_Arrays_copyOf_f(float* source, int32_t sourceSize, int32_t newSize, float defaultValue);
+float* jtk_Arrays_copyOf_f(const float* source, int32_t sourceSize, int32_t newSize, float defaultValue);
 
 /**
  * Returns a copy of the specified native array of 64-bit decimals, truncated or
@@ -1200,7 +1200,7 @@ float* jtk_Arrays_copyOf_f(float* source, int32_t sourceSize, int32_t newSize, f
  *         array.
  * @memberof Arrays
  */
-double* jtk_Arrays_copyOf_d(double* source, int32_t sourceSize, int32_t newSize, double defaultValue);
+double* jtk_Arrays_copyOf_d(const double* source, int32_t sourceSize, int32_t newSize, double defaultValue);
 
 /* Copy Of Extended */
 
@@ -1235,7 +1235,7 @@ double* jtk_Arrays_copyOf_d(double* source, int32_t sourceSize, int32_t newSize,
  * @memberof Arrays
  * @since JTK 1.1
  */
-void** jtk_Arrays_copyOfEx_v(void** source, int32_t sourceSize, int32_t newSize, void* defaultValue, bool overwrite);
+void** jtk_Arrays_copyOfEx_v(const void** source, int32_t sourceSize, int32_t newSize, void* defaultValue, bool overwrite);
 
 /**
  * Returns a copy of the specified native array of 8-bit integers, truncated or
@@ -1259,7 +1259,7 @@ void** jtk_Arrays_copyOfEx_v(void** source, int32_t sourceSize, int32_t newSize,
  * @memberof Arrays
  * @since JTK 1.1
  */
-int8_t* jtk_Arrays_copyOfEx_b(int8_t* source, int32_t sourceSize, int32_t newSize, int8_t defaultValue, bool overwrite);
+int8_t* jtk_Arrays_copyOfEx_b(const int8_t* source, int32_t sourceSize, int32_t newSize, int8_t defaultValue, bool overwrite);
 
 /**
  * Returns a copy of the specified native array of 16-bit integers, truncated or
@@ -1283,7 +1283,7 @@ int8_t* jtk_Arrays_copyOfEx_b(int8_t* source, int32_t sourceSize, int32_t newSiz
  * @memberof Arrays
  * @since JTK 1.1
  */
-int16_t* jtk_Arrays_copyOfEx_s(int16_t* source, int32_t sourceSize, int32_t newSize, int16_t defaultValue, bool overwrite);
+int16_t* jtk_Arrays_copyOfEx_s(const int16_t* source, int32_t sourceSize, int32_t newSize, int16_t defaultValue, bool overwrite);
 
 /**
  * Returns a copy of the specified native array of 32-bit integers, truncated or
@@ -1307,7 +1307,7 @@ int16_t* jtk_Arrays_copyOfEx_s(int16_t* source, int32_t sourceSize, int32_t newS
  * @memberof Arrays
  * @since JTK 1.1
  */
-int32_t* jtk_Arrays_copyOfEx_i(int32_t* source, int32_t sourceSize, int32_t newSize, int32_t defaultValue, bool overwrite);
+int32_t* jtk_Arrays_copyOfEx_i(const int32_t* source, int32_t sourceSize, int32_t newSize, int32_t defaultValue, bool overwrite);
 
 /**
  * Returns a copy of the specified native array of 64-bit integers, truncated or
@@ -1331,7 +1331,7 @@ int32_t* jtk_Arrays_copyOfEx_i(int32_t* source, int32_t sourceSize, int32_t newS
  * @memberof Arrays
  * @since JTK 1.1
  */
-int64_t* jtk_Arrays_copyOfEx_l(int64_t* source, int32_t sourceSize, int32_t newSize, int64_t defaultValue, bool overwrite);
+int64_t* jtk_Arrays_copyOfEx_l(const int64_t* source, int32_t sourceSize, int32_t newSize, int64_t defaultValue, bool overwrite);
 
 /**
  * Returns a copy of the specified native array of 32-bit decimals, truncated or
@@ -1355,7 +1355,7 @@ int64_t* jtk_Arrays_copyOfEx_l(int64_t* source, int32_t sourceSize, int32_t newS
  * @memberof Arrays
  * @since JTK 1.1
  */
-float* jtk_Arrays_copyOfEx_f(float* source, int32_t sourceSize, int32_t newSize, float defaultValue, bool overwrite);
+float* jtk_Arrays_copyOfEx_f(const float* source, int32_t sourceSize, int32_t newSize, float defaultValue, bool overwrite);
 
 /**
  * Returns a copy of the specified native array of 64-bit decimals, truncated or
@@ -1379,7 +1379,7 @@ float* jtk_Arrays_copyOfEx_f(float* source, int32_t sourceSize, int32_t newSize,
  * @memberof Arrays
  * @since JTK 1.1
  */
-double* jtk_Arrays_copyOfEx_d(double* source, int32_t sourceSize, int32_t newSize, double defaultValue, bool overwrite);
+double* jtk_Arrays_copyOfEx_d(const double* source, int32_t sourceSize, int32_t newSize, double defaultValue, bool overwrite);
 
 /* Copy Of Range */
 
@@ -1409,7 +1409,7 @@ double* jtk_Arrays_copyOfEx_d(double* source, int32_t sourceSize, int32_t newSiz
  *         array.
  * @memberof Arrays
  */
-void** jtk_Arrays_copyOfRange_v(void** source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, void* defaultValue);
+void** jtk_Arrays_copyOfRange_v(const void** source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, void* defaultValue);
 
 /**
  * Returns a copy of the specified range of the specified native array of
@@ -1437,7 +1437,7 @@ void** jtk_Arrays_copyOfRange_v(void** source, int32_t sourceSize, int32_t start
  *         array.
  * @memberof Arrays
  */
-int8_t* jtk_Arrays_copyOfRange_b(int8_t* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, int8_t defaultValue);
+int8_t* jtk_Arrays_copyOfRange_b(const int8_t* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, int8_t defaultValue);
 
 /**
  * Returns a copy of the specified range of the specified native array of
@@ -1465,7 +1465,7 @@ int8_t* jtk_Arrays_copyOfRange_b(int8_t* source, int32_t sourceSize, int32_t sta
  *         array.
  * @memberof Arrays
  */
-int16_t* jtk_Arrays_copyOfRange_s(int16_t* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, int16_t defaultValue);
+int16_t* jtk_Arrays_copyOfRange_s(const int16_t* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, int16_t defaultValue);
 
 /**
  * Returns a copy of the specified range of the specified native array of
@@ -1493,7 +1493,7 @@ int16_t* jtk_Arrays_copyOfRange_s(int16_t* source, int32_t sourceSize, int32_t s
  *         array.
  * @memberof Arrays
  */
-int32_t* jtk_Arrays_copyOfRange_i(int32_t* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, int32_t defaultValue);
+int32_t* jtk_Arrays_copyOfRange_i(const int32_t* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, int32_t defaultValue);
 
 /**
  * Returns a copy of the specified range of the specified native array of
@@ -1521,7 +1521,7 @@ int32_t* jtk_Arrays_copyOfRange_i(int32_t* source, int32_t sourceSize, int32_t s
  *         array.
  * @memberof Arrays
  */
-int64_t* jtk_Arrays_copyOfRange_l(int64_t* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, int64_t defaultValue);
+int64_t* jtk_Arrays_copyOfRange_l(const int64_t* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, int64_t defaultValue);
 
 /**
  * Returns a copy of the specified range of the specified native array of
@@ -1549,7 +1549,7 @@ int64_t* jtk_Arrays_copyOfRange_l(int64_t* source, int32_t sourceSize, int32_t s
  *         array.
  * @memberof Arrays
  */
-float* jtk_Arrays_copyOfRange_f(float* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, float defaultValue);
+float* jtk_Arrays_copyOfRange_f(const float* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, float defaultValue);
 
 /**
  * Returns a copy of the specified range of the specified native array of
@@ -1577,7 +1577,7 @@ float* jtk_Arrays_copyOfRange_f(float* source, int32_t sourceSize, int32_t start
  *         array.
  * @memberof Arrays
  */
-double* jtk_Arrays_copyOfRange_d(double* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, double defaultValue);
+double* jtk_Arrays_copyOfRange_d(const double* source, int32_t sourceSize, int32_t startIndex, int32_t stopIndex, double defaultValue);
 
 /* Equals */
 
@@ -2369,43 +2369,43 @@ void jtk_Arrays_fillEx_d(double* array, int32_t size, int32_t startIndex, int32_
 /**
  * @since JTK 1.1
  */
-void jtk_Array_filter_v(void** source, int32_t sourceSize, jtk_MixedPredicateFunction_t predicate,
+void jtk_Array_filter_v(const void** source, int32_t sourceSize, jtk_MixedPredicateFunction_t predicate,
     void** destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_filter_b(int8_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
+void jtk_Array_filter_b(const int8_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
     int8_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_filter_s(int16_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
+void jtk_Array_filter_s(const int16_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
     int16_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_filter_i(int32_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
+void jtk_Array_filter_i(const int32_t* source, int32_t sourceSize, jtk_IntegerPredicateFunction_t predicate,
     int32_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_filter_l(int64_t* source, int32_t sourceSize, jtk_LongPredicateFunction_t predicate,
+void jtk_Array_filter_l(const int64_t* source, int32_t sourceSize, jtk_LongPredicateFunction_t predicate,
     int64_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_filter_f(float* source, int32_t sourceSize, jtk_FloatPredicateFunction_t predicate,
+void jtk_Array_filter_f(const float* source, int32_t sourceSize, jtk_FloatPredicateFunction_t predicate,
     float* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Array_filter_d(double* source, int32_t sourceSize, jtk_DoublePredicateFunction_t predicate,
+void jtk_Array_filter_d(const double* source, int32_t sourceSize, jtk_DoublePredicateFunction_t predicate,
     double* destination, int32_t destinationSize);
 
 /* Filter Extended */
@@ -2978,43 +2978,43 @@ void jtk_Arrays_swap_d(double* array, int32_t size, int32_t index1, int32_t inde
 /**
  * @since JTK 1.1
  */
-void jtk_Arrays_select_b(int8_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_b(const int8_t* source, int32_t sourceSize, bool* selection,
     int8_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Arrays_select_s(int16_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_s(const int16_t* source, int32_t sourceSize, bool* selection,
     int16_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Arrays_select_i(int32_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_i(const int32_t* source, int32_t sourceSize, bool* selection,
     int32_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Arrays_select_l(int64_t* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_l(const int64_t* source, int32_t sourceSize, bool* selection,
     int64_t* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Arrays_select_f(float* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_f(const float* source, int32_t sourceSize, bool* selection,
     float* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Arrays_select_d(double* source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_d(const double* source, int32_t sourceSize, bool* selection,
     double* destination, int32_t destinationSize);
 
 /**
  * @since JTK 1.1
  */
-void jtk_Arrays_select_v(void** source, int32_t sourceSize, bool* selection,
+void jtk_Arrays_select_v(const void** source, int32_t sourceSize, bool* selection,
     void** destination, int32_t destinationSize);
 
 /* Tim Sort */

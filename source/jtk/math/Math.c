@@ -666,7 +666,7 @@ void jtk_Math_retainPrime_i(int32_t* numbers, int32_t size, int32_t x, int32_t y
     *resultSize = resultSize0;
     *result = jtk_Memory_allocate(int32_t, resultSize0);
 
-    jtk_Array_select_i(numbers, size, flags, *result, resultSize0);
+    // jtk_Array_select_i(numbers, size, flags, *result, resultSize0);
 }
 
 // Square Root

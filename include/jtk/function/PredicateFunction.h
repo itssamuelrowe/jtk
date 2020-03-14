@@ -30,7 +30,7 @@
  * @author Samuel Rowe <samuelrowe1999@gmail.com>
  * @since JTK 1.1
  */
-typedef bool (*jtk_MixedPredicateFunction_t)(void* argument);
+typedef bool (*jtk_MixedPredicateFunction_t)(const void* argument);
 
 /**
  * @ingroup jtk_function

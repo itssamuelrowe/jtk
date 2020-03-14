@@ -55,7 +55,7 @@ jtk_LinkedQueue_t* jtk_LinkedQueue_newEx(jtk_Iterator_t* iterator,
      * DoublyLinkedList.
      */
     jtk_LinkedQueue_t* queue = jtk_Memory_allocate(jtk_LinkedQueue_t, 1);
-    queue->m_list = jtk_DoublyLinkedList_newEx(iterator, adapter);
+    queue->m_list = jtk_DoublyLinkedList_newEx(adapter, iterator);
     return queue;
 }
 

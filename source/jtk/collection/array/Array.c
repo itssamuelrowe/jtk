@@ -19,6 +19,9 @@
 #include <jtk/collection/array/Array.h>
 #include <jtk/collection/array/ArrayIterator.h>
 #include <jtk/collection/array/Arrays.h>
+#include <jtk/core/Integer.h>
+#include <jtk/core/Float.h>
+#include <jtk/core/Double.h>
 
 /*******************************************************************************
  * Array                                                                       *

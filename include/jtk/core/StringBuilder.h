@@ -54,15 +54,48 @@ void jtk_StringBuilder_delete(jtk_StringBuilder_t* builder);
 
 // Append
 
+void jtk_StringBuilder_appendBoolean(jtk_StringBuilder_t* builder, bool value);
+
 void jtk_StringBuilder_appendCodePoint(jtk_StringBuilder_t* builder, int32_t codePoint);
-jtk_String_t* jtk_StringBuilder_toString(jtk_StringBuilder_t* builder);
-int32_t jtk_StringBuilder_getSize(jtk_StringBuilder_t* builder);
-void jtk_StringBuilder_clear(jtk_StringBuilder_t* builder);
-void jtk_StringBuilder_trim(jtk_StringBuilder_t* builder);
+
+void jtk_StringBuilder_append_c(jtk_StringBuilder_t* builder,
+    uint8_t value);
+
+void jtk_StringBuilder_append_i(jtk_StringBuilder_t* builder,
+    int32_t value);
+
+void jtk_StringBuilder_append_z(jtk_StringBuilder_t* builder,
+    const uint8_t* sequence);
+
+void jtk_StringBuilder_appendEx_z(jtk_StringBuilder_t* builder,
+    const uint8_t* sequence, int32_t size);
+
+void jtk_StringBuilder_appendString(jtk_StringBuilder_t* builder,
+    jtk_String_t* string);
+
+void jtk_StringBuilder_appendNull(jtk_StringBuilder_t* builder);
 
 // Capacity
 
 bool jtk_StringBuilder_ensureSpace(jtk_StringBuilder_t* builder, int32_t capacity);
 int32_t jtk_StringBuilder_getCapacity(jtk_StringBuilder_t* builder);
+
+// Clear
+
+void jtk_StringBuilder_clear(jtk_StringBuilder_t* builder);
+
+// Empty
+
+bool jtk_StringBuilder_isEmpty(jtk_StringBuilder_t* builder);
+
+// Size
+
+int32_t jtk_StringBuilder_getSize(jtk_StringBuilder_t* builder);
+
+// String
+
+jtk_String_t* jtk_StringBuilder_toString(jtk_StringBuilder_t* builder);
+
+uint8_t* jtk_StringBuilder_toCString(jtk_StringBuilder_t* builder);
 
 #endif /* JTK_CORE_STRING_BUILDER_H */

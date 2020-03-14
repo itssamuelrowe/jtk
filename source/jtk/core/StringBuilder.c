@@ -16,10 +16,12 @@
 
 // Tuesday, May 21, 2019
 
+#include <jtk/collection/array/Arrays.h>
 #include <jtk/core/Integer.h>
 #include <jtk/core/StringBuilder.h>
 #include <jtk/core/System.h>
 #include <jtk/core/Error.h>
+#include <jtk/core/CString.h>
 
 /*******************************************************************************
  * StringBuilder                                                               *

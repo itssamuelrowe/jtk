@@ -21,6 +21,8 @@
 
 #include <jtk/Configuration.h>
 
+#define jtk_stringLiteral(s) (const uint8_t*)(s)
+
 /*******************************************************************************
  * String                                                                      *
  *******************************************************************************/
@@ -45,18 +47,27 @@ void jtk_CString_delete(uint8_t* string);
  */
 bool jtk_CString_equals(const uint8_t* string1, int32_t size1, const uint8_t* string2, int32_t size2);
 
-/**
- * @memberof String
- */
-int32_t jtk_CString_getLength(const uint8_t* string);
+// Hash
 
 /**
  * @memberof String
  */
 int32_t jtk_CString_hash(const uint8_t* string);
 
+/**
+ * @memberof String
+ */
+int32_t jtk_CString_hashEx(const uint8_t* string, int32_t size);
+
 // Null Terminate
 
 uint8_t* jtk_CString_nullTerminate(uint8_t* string, int32_t size);
+
+// Size
+
+/**
+ * @memberof String
+ */
+int32_t jtk_CString_getSize(const uint8_t* string);
 
 #endif /* JTK_CORE_C_STRING_H */

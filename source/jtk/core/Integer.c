@@ -19,6 +19,7 @@
 #include <jtk/core/Character.h>
 #include <jtk/core/Integer.h>
 #include <jtk/core/CString.h>
+#include <jtk/collection/array/Arrays.h>
 
 /*******************************************************************************
  * Integer                                                                     *
@@ -175,7 +176,7 @@ uint8_t* jtk_Integer_toStringEx(int32_t value, int32_t radix) {
         buffer[--index] = '-';
     }
 
-    return jtk_String_newEx(buffer + index, 33 - index);
+    return jtk_CString_newWithSize(buffer + index, 33 - index);
 }
 
 uint8_t* jtk_Integer_toString(int32_t value) {
@@ -211,7 +212,7 @@ int32_t jtk_Integer_getStringEx(int32_t value, int32_t radix, uint8_t* destinati
     uint8_t* result = buffer + index;
     int32_t resultSize = JTK_INTEGER_MAX_BINARY_STRING_SIZE - index;
     int32_t copyableSize = jtk_Integer_min(resultSize, destinationSize - destinationIndex);
-    jtk_Arrays_copyEx_b(result, resultSize, 0, destination, destinationSize,
+    jtk_Arrays_copyEx_b((int8_t*)result, resultSize, 0, (int8_t*)destination, destinationSize,
         destinationIndex, copyableSize);
 
     return resultSize;

@@ -26,8 +26,8 @@
 
 static jtk_ObjectAdapter_t s_stringObjectAdapter = {
     NULL, // TODO: compare
-    jtk_CStringObjectAdapter_equals,
-    jtk_CStringObjectAdapter_hash
+    (jtk_ObjectAdapter_EqualsFunction_t)jtk_CStringObjectAdapter_equals,
+    (jtk_ObjectAdapter_HashFunction_t)jtk_CStringObjectAdapter_hash
 };
 
 jtk_ObjectAdapter_t* jtk_CStringObjectAdapter_getInstance() {

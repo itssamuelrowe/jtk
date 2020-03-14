@@ -44,20 +44,28 @@ typedef struct jtk_String_t jtk_String_t;
 
 // Constructor
 
+jtk_String_t* jtk_String_wrap(uint8_t* value, int32_t size, int32_t hashCode);
+
 /**
  * @memberof String
  */
 jtk_String_t* jtk_String_new(const uint8_t* value);
+
+/**
+ * @memberof String
+ */
+jtk_String_t* jtk_String_newEx(const uint8_t* value, int32_t size);
 
 jtk_String_t* jtk_String_newFromJoin(const uint8_t* value1, const uint8_t* value2);
 
 jtk_String_t* jtk_String_newFromJoinEx(const uint8_t* value1, int32_t size1,
     const uint8_t* value2, int32_t size2);
 
-/**
- * @memberof String
- */
-jtk_String_t* jtk_String_newEx(const uint8_t* value, int32_t size);
+jtk_String_t* jtk_String_fromJoin(const uint8_t** strings, int32_t* sizes, int32_t count);
+
+jtk_String_t* jtk_String_fromJoinEx(const uint8_t** strings, int32_t* sizes,
+    int32_t count, const uint8_t* prefix, int32_t prefixSize, const uint8_t* suffix,
+    int32_t suffixSize, const uint8_t* separator, int32_t separatorSize);
 
 // Destructor
 
@@ -93,5 +101,12 @@ int32_t jtk_String_hash(jtk_String_t* string);
  * @memberof String
  */
 int32_t jtk_String_getSize(jtk_String_t* string);
+
+// Value
+
+/**
+ * @memberof String
+ */
+uint8_t* jtk_String_getValue(jtk_String_t* string);
 
 #endif /* JTK_CORE_STRING_H */

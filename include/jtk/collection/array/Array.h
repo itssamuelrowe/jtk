@@ -322,6 +322,8 @@ jtk_Array_t* jtk_Array_copyOf(jtk_Array_t* source, int32_t newSize, void* defaul
  */
 jtk_Array_t* jtk_Array_copyOfRange(jtk_Array_t* source, int32_t startIndex, int32_t stopIndex, void* defaultValue);
 
+jtk_Array_t* jtk_Array_clone(jtk_Array_t* other);
+
 /* Destroy Native Array */
 
 // void jtk_Array_setDestroyNativeArray(jtk_Array_t* array, bool destroyNativeArray);
@@ -492,6 +494,8 @@ jtk_Array_t* jtk_Array_migrate_v(void** array, int32_t size,
  * @memberof Array
  */
 void** jtk_Array_getNativeArray(jtk_Array_t* array);
+void** getRawArray(jtk_Array_t* array);
+void** jtk_Array_toRawArray(jtk_Array_t* array);
 
 /* Recycle */
 

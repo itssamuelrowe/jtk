@@ -171,8 +171,8 @@ add_library(
     ${JTK_NATIVE_SOURCE}
     ${JTK_FS_SOURCE})
 
-# target_compile_options(jtk-core PUBLIC -Wall -g)
-target_compile_options(jtk-core PUBLIC -w -g)
+target_compile_options(jtk-core PUBLIC -Wall -g)
+# target_compile_options(jtk-core PUBLIC -w -g)
 
 # add_library(jtk-collection ${JTK_COLLECTION_SOURCE})
 # target_compile_options(jtk-collection PUBLIC -Wall -Wswitch -g)
@@ -198,31 +198,31 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/share/jtk.pc.cmakein" ${JTK_PC} @ONL
 # Example                                                                      #
 #******************************************************************************#
 
-set(
-    EXAMPLE_UNIT_NUMBER_SOURCE
-    ${PROJECT_SOURCE_DIR}/example/unit/Number/Main.c
-    ${PROJECT_SOURCE_DIR}/example/unit/Number/Number.c
-)
-add_executable(number ${EXAMPLE_UNIT_NUMBER_SOURCE})
-target_link_libraries(number jtk-core)
+#set(
+#    EXAMPLE_UNIT_NUMBER_SOURCE
+#    ${PROJECT_SOURCE_DIR}/example/unit/Number/Main.c
+#    ${PROJECT_SOURCE_DIR}/example/unit/Number/Number.c
+#)
+#add_executable(number ${EXAMPLE_UNIT_NUMBER_SOURCE})
+#target_link_libraries(number jtk-core)
 # target_link_libraries(number jtk-collection)
 # target_link_libraries(number jtk-unit)
 
-set(
-    EXAMPLE_FS_READ_SOURCE
-    ${PROJECT_SOURCE_DIR}/example/fs/Read/read.c
-)
-add_executable(read ${EXAMPLE_FS_READ_SOURCE})
-target_link_libraries(read jtk-core)
+#set(
+#    EXAMPLE_FS_READ_SOURCE
+#    ${PROJECT_SOURCE_DIR}/example/fs/Read/read.c
+#)
+#add_executable(read ${EXAMPLE_FS_READ_SOURCE})
+#target_link_libraries(read jtk-core)
 # target_link_libraries(number jtk-collection)
 # target_link_libraries(number jtk-unit)
 
-set(
-    EXAMPLE_COLLECTION_NAMES_SOURCE
-    ${PROJECT_SOURCE_DIR}/example/collection/names/Names.c
-)
-add_executable(names ${EXAMPLE_COLLECTION_NAMES_SOURCE})
-target_link_libraries(names jtk-core m)
+#set(
+#    EXAMPLE_COLLECTION_NAMES_SOURCE
+#    ${PROJECT_SOURCE_DIR}/example/collection/names/Names.c
+#)
+# add_executable(names ${EXAMPLE_COLLECTION_NAMES_SOURCE})
+# target_link_libraries(names jtk-core m)
 # target_link_libraries(names jtk-collection)
 
 #******************************************************************************#
@@ -231,13 +231,13 @@ target_link_libraries(names jtk-core m)
 
 include_directories("${PROJECT_SOURCE_DIR}/test/include")
 
-set(
-    JTK_UNIT_TEST_SOURCE
-    ${PROJECT_SOURCE_DIR}/test/source/Main.c
-    ${PROJECT_SOURCE_DIR}/test/source/com/jtk/collection/list/ArrayListTest.c
-)
-add_executable(jtk-test ${JTK_UNIT_TEST_SOURCE})
-target_link_libraries(jtk-test jtk-core)
+#set(
+#    JTK_UNIT_TEST_SOURCE
+#    ${PROJECT_SOURCE_DIR}/test/source/Main.c
+#    ${PROJECT_SOURCE_DIR}/test/source/com/jtk/collection/list/ArrayListTest.c
+#)
+#add_executable(jtk-test ${JTK_UNIT_TEST_SOURCE})
+#target_link_libraries(jtk-test jtk-core)
 # target_link_libraries(jtk-test jtk-collection)
 # target_link_libraries(jtk-test jtk-unit)
 

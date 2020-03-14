@@ -23,9 +23,9 @@
  *******************************************************************************/
 
 static jtk_ObjectAdapter_t s_pointerObjectAdapter = {
-    jtk_PointerObjectAdapter_compare,
-    jtk_PointerObjectAdapter_equals,
-    jtk_PointerObjectAdapter_hash
+    (jtk_ObjectAdapter_CompareFunction_t)jtk_PointerObjectAdapter_compare,
+    (jtk_ObjectAdapter_EqualsFunction_t)jtk_PointerObjectAdapter_equals,
+    (jtk_ObjectAdapter_HashFunction_t)jtk_PointerObjectAdapter_hash
 };
 
 jtk_ObjectAdapter_t* jtk_PointerObjectAdapter_getInstance() {

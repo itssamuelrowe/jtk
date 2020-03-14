@@ -17,6 +17,7 @@
 // Saturday, November 04, 2017
 
 #include <jtk/core/CString.h>
+#include <jtk/collection/array/Arrays.h>
 
 /*******************************************************************************
  * CCString                                                                      *
@@ -111,7 +112,7 @@ uint8_t* jtk_CString_nullTerminate(uint8_t* string, int32_t size) {
     jtk_Assert_assertTrue(size > 0, "The specified size is invalid.");
     
     uint8_t* result = jtk_Memory_allocate(uint8_t, size + 1);
-    jtk_Arrays_copy_b(string, size, result, size);
+    jtk_Arrays_copy_b((int8_t*)string, size, (int8_t*)result, size);
     result[size] = '\0';
     
     return result;

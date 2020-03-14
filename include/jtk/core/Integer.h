@@ -269,4 +269,12 @@ int32_t jtk_Integer_parseEx(const uint8_t* text, int32_t size, int32_t radix);
  */
 int32_t jtk_Integer_reverse(int32_t number);
 
+/* String */
+
+uint8_t* jtk_Integer_toStringEx(int32_t value, int32_t radix);
+uint8_t* jtk_Integer_toString(int32_t value);
+int32_t jtk_Integer_getString(int32_t value, uint8_t* buffer, int32_t size);
+int32_t jtk_Integer_getStringEx(int32_t value, int32_t radix, uint8_t* destination,
+    int32_t destinationSize, int32_t destinationIndex);
+
 #endif /* JTK_CORE_INTEGER_H */
