@@ -140,6 +140,7 @@ set(
 
     ${PROJECT_SOURCE_DIR}/source/jtk/log/Logger.c
     ${PROJECT_SOURCE_DIR}/source/jtk/log/LogRecord.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/log/ConsoleLogger.c
 )
 
 set(
