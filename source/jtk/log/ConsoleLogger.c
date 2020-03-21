@@ -96,6 +96,7 @@ void jtk_ConsoleLogger_log(jtk_Logger_t* logger, jtk_LogRecord_t* record) {
         }
     }
     
-    fprintf(stdout, "%s[%s] %s\n\033[0m", color, record->m_tag, record->m_message);
+    fprintf(stdout, "%s[%.*s] %.*s\n\033[0m", color, record->m_tag->m_size,
+        record->m_tag->m_value, record->m_message->m_size, record->m_message->m_value);
     fflush(stdout);
 }
