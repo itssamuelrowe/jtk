@@ -25,6 +25,16 @@
  * Object                                                                      *
  *******************************************************************************/
 
+// Null
+
+/**
+ * @since JTK 2.0
+ */
+bool jtk_Object_isNull(void* object);
+
+/**
+ * @since JTK 2.0
+ */
 bool jtk_Object_isNotNull(void* object);
  
 #endif /* JTK_CORE_OBJECT_H */

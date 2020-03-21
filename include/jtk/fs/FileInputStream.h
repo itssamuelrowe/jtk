@@ -59,6 +59,11 @@ jtk_FileInputStream_t* jtk_FileInputStream_newFromString(const uint8_t* path);
  */
 jtk_FileInputStream_t* jtk_FileInputStream_newFromPath(jtk_Path_t* path);
 
+/**
+ * @memberof FileInputStream
+ */
+jtk_FileInputStream_t* jtk_FileInputStream_newFromHandle(jtk_PathHandle_t* handle);
+
 // Destructor
 
 /**

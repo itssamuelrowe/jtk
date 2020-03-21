@@ -91,9 +91,9 @@ jtk_String_t* jtk_String_fromJoin(const uint8_t** strings, int32_t* sizes, int32
     jtk_Assert_assertObject(strings, "The specified strings array is null.");
     jtk_Assert_assertObject(sizes, "The specified sizes array is null.");
     jtk_Assert_assertTrue(count >= 0, "The specified count is invalid.");
-    
+
     jtk_String_t* result = NULL;
-    
+
     if (count == 0) {
         result = jtk_String_newEx("", 0);
     }
@@ -106,7 +106,7 @@ jtk_String_t* jtk_String_fromJoin(const uint8_t** strings, int32_t* sizes, int32
         result = jtk_StringBuilder_toString(builder);
         jtk_StringBuilder_delete(builder);
     }
-    
+
     return result;
 }
 
@@ -125,9 +125,9 @@ jtk_String_t* jtk_String_fromJoinEx(const uint8_t** strings, int32_t* sizes,
     jtk_Assert_assertObject(strings, "The specified strings array is null.");
     jtk_Assert_assertObject(sizes, "The specified sizes array is null.");
     jtk_Assert_assertTrue(count >= 0, "The specified count is invalid.");
-    
+
     jtk_String_t* result = NULL;
-    
+
     if (count == 0) {
         result = jtk_String_newEx("", 0);
     }
@@ -145,7 +145,7 @@ jtk_String_t* jtk_String_fromJoinEx(const uint8_t** strings, int32_t* sizes,
         result = jtk_StringBuilder_toString(builder);
         jtk_StringBuilder_delete(builder);
     }
-    
+
     return result;
 }
 

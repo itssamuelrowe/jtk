@@ -92,9 +92,6 @@ void jtk_Path_delete(jtk_Path_t* path);
  */
 bool jtk_Path_isAbsolute(jtk_Path_t* path);
 
-/**
- * @memberof Path
- */
 jtk_Path_t* jtk_Path_getAbsolutePath(jtk_Path_t* path);
 
 /* Canonical Path */

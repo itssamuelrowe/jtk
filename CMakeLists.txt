@@ -51,6 +51,7 @@ set(
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Float.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Long.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Integer.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/core/Object.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/PointerObjectAdapter.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/String.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/StringBuilder.c

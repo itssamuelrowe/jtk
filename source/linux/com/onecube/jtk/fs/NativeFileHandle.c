@@ -78,6 +78,18 @@ int64_t jtk_NativeFileHandle_open(const uint8_t* path, jtk_Error_t* error) {
     return handle;
 }
 
+int64_t jtk_NativeFileHandle_openDirectory(const uint8_t* path, jtk_Error_t* error) {
+    jtk_Assert_assertObject(path, "The specified path is null.");
+
+    int64_t handle = open(path, O_DIRECTORY);
+
+    if (handle < 0) {
+        jtk_NativeError_translateEx(errno, error);
+    }
+
+    return handle;
+}
+
 // Read
 
 int32_t jtk_NativeFileHandle_readBytes(int64_t handle, uint8_t* buffer,

@@ -22,6 +22,7 @@
 #include <jtk/Configuration.h>
 #include <jtk/collection/array/Array.h>
 
+struct jtk_Path_t;
 typedef struct jtk_Path_t jtk_Path_t;
  
 typedef bool (*jtk_Path_FilterFunction_t)(jtk_Path_t* path);
@@ -47,6 +48,9 @@ typedef struct jtk_PathHandle_t jtk_PathHandle_t;
 
 // Has some bug!!!
 jtk_PathHandle_t* jtk_PathHandle_newFromPath(jtk_Path_t* path);
+
+jtk_PathHandle_t* jtk_PathHandle_forDirectory(jtk_Path_t* path);
+jtk_PathHandle_t* jtk_PathHandle_forDirectoryEx(const uint8_t* path, int32_t size);
 
 jtk_PathHandle_t* jtk_PathHandle_newFromString(const uint8_t* path);
 

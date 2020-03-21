@@ -30,6 +30,8 @@
 
 int64_t jtk_NativeFileHandle_open(const uint8_t* path, jtk_Error_t* error);
 
+int64_t jtk_NativeFileHandle_openDirectory(const uint8_t* path, jtk_Error_t* error);
+
 // Read
 
 int32_t jtk_NativeFileHandle_readBytes(int64_t handle, uint8_t* buffer,
