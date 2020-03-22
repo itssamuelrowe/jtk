@@ -42,16 +42,16 @@
     #define jtk_Logger_severe(logger, format, ...) (0)
     #define jtk_Logger_error(logger, format, ...) (0)
 #else
-    #define jtk_Logger_finest(logger, format, ...) jtk_Logger_logFinest(logger, "[finest]", format, ## __VA_ARGS__)
-    #define jtk_Logger_finer(logger, format, ...) jtk_Logger_logFiner(logger, "[finer]", format, ## __VA_ARGS__)
-    #define jtk_Logger_fine(logger, format, ...) jtk_Logger_logFine(logger, "[fine]", format, ## __VA_ARGS__)
-    #define jtk_Logger_debug(logger, format, ...) jtk_Logger_logDebug(logger, "[debug]", format, ## __VA_ARGS__)
-    #define jtk_Logger_configuration(logger, format, ...) jtk_Logger_logConfiguration(logger, "[config]", format, ## __VA_ARGS__)
-    #define jtk_Logger_information(logger, format, ...) jtk_Logger_logInformation(logger, "[info]", format, ## __VA_ARGS__)
-    #define jtk_Logger_info(logger, format, ...) jtk_Logger_logInformation(logger, "[info]", format, ## __VA_ARGS__)
-    #define jtk_Logger_warning(logger, format, ...) jtk_Logger_logWarning(logger, "[warning]", format, ## __VA_ARGS__)
-    #define jtk_Logger_severe(logger, format, ...) jtk_Logger_logSevere(logger, "[severe]", format, ## __VA_ARGS__)
-    #define jtk_Logger_error(logger, format, ...) jtk_Logger_logError(logger, "[error]", format, ## __VA_ARGS__)
+    #define jtk_Logger_finest(logger, format, ...) jtk_Logger_logFinest(logger, "finest", format, ## __VA_ARGS__)
+    #define jtk_Logger_finer(logger, format, ...) jtk_Logger_logFiner(logger, "finer", format, ## __VA_ARGS__)
+    #define jtk_Logger_fine(logger, format, ...) jtk_Logger_logFine(logger, "fine", format, ## __VA_ARGS__)
+    #define jtk_Logger_debug(logger, format, ...) jtk_Logger_logDebug(logger, "debug", format, ## __VA_ARGS__)
+    #define jtk_Logger_configuration(logger, format, ...) jtk_Logger_logConfiguration(logger, "config", format, ## __VA_ARGS__)
+    #define jtk_Logger_information(logger, format, ...) jtk_Logger_logInformation(logger, "info", format, ## __VA_ARGS__)
+    #define jtk_Logger_info(logger, format, ...) jtk_Logger_logInformation(logger, "info", format, ## __VA_ARGS__)
+    #define jtk_Logger_warning(logger, format, ...) jtk_Logger_logWarning(logger, "warning", format, ## __VA_ARGS__)
+    #define jtk_Logger_severe(logger, format, ...) jtk_Logger_logSevere(logger, "severe", format, ## __VA_ARGS__)
+    #define jtk_Logger_error(logger, format, ...) jtk_Logger_logError(logger, "error", format, ## __VA_ARGS__)
 #endif
 
 // Forward Reference
