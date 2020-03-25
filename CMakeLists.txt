@@ -75,7 +75,7 @@ set(
 set(
     JTK_CLAP_SOURCE
 
-    ${PROJECT_SOURCE_DIR}/source/jtk/clap/ClapParser.c
+    # ${PROJECT_SOURCE_DIR}/source/jtk/clap/ClapParser.c
 )
 
 set(
@@ -167,7 +167,7 @@ add_library(
     ${JTK_IO_SOURCE}
     ${JTK_HOKUM_SOURCE}
     ${JTK_UNIT_SOURCE}
-    ${JTK_CLAP_SOURCE}
+    # ${JTK_CLAP_SOURCE}
     ${JTK_NATIVE_SOURCE}
     ${JTK_FS_SOURCE})
 

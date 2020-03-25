@@ -51,9 +51,8 @@ jtk_PathHandle_t* jtk_PathHandle_newFromString(const uint8_t* path) {
 jtk_PathHandle_t* jtk_PathHandle_newFromStringEx(const uint8_t* path, int32_t size) {
     jtk_Assert_assertObject(path, "The specified path is null.");
 
-    uint8_t* nullTerminatedPath = jtk_CString_nullTerminate(path, size);
     jtk_Error_t error = JTK_ERROR_NONE;
-    int64_t descriptor = jtk_NativeFileHandle_open(nullTerminatedPath, &error);
+    int64_t descriptor = jtk_NativeFileHandle_open(path, &error);
     
     jtk_PathHandle_t* handle = NULL;
     if (error != JTK_ERROR_NONE) {
@@ -65,8 +64,6 @@ jtk_PathHandle_t* jtk_PathHandle_newFromStringEx(const uint8_t* path, int32_t si
         handle->m_path = jtk_Path_newFromStringEx(path, size);
         handle->m_descriptor = descriptor;
     }
-
-    jtk_Memory_deallocate(nullTerminatedPath);
 
     return handle;
 }
@@ -74,17 +71,14 @@ jtk_PathHandle_t* jtk_PathHandle_newFromStringEx(const uint8_t* path, int32_t si
 jtk_PathHandle_t* jtk_PathHandle_newFromPath(jtk_Path_t* path) {
     jtk_Assert_assertObject(path, "The specified path is null.");
 
-    uint8_t* value = jtk_String_getValue(path->m_value);
-    int32_t size = jtk_String_getSize(path->m_value);
-    return jtk_PathHandle_newFromStringEx(value, size);
+    return jtk_PathHandle_newFromStringEx(path->m_value, path->m_valueSize);
 }
 
 jtk_PathHandle_t* jtk_PathHandle_forDirectoryEx(const uint8_t* path, int32_t size) {
     jtk_Assert_assertObject(path, "The specified path is null.");
 
-    uint8_t* nullTerminatedPath = jtk_CString_nullTerminate(path, size);
     jtk_Error_t error = JTK_ERROR_NONE;
-    int64_t descriptor = jtk_NativeFileHandle_openDirectory(nullTerminatedPath, &error);
+    int64_t descriptor = jtk_NativeFileHandle_openDirectory(path, &error);
     
     jtk_PathHandle_t* handle = NULL;
     if (error != JTK_ERROR_NONE) {
@@ -97,15 +91,13 @@ jtk_PathHandle_t* jtk_PathHandle_forDirectoryEx(const uint8_t* path, int32_t siz
         handle->m_descriptor = descriptor;
     }
 
-    jtk_Memory_deallocate(nullTerminatedPath);
-
     return handle;
 }
 
 jtk_PathHandle_t* jtk_PathHandle_forDirectory(jtk_Path_t* path) {
     jtk_Assert_assertObject(path, "The specified path is null.");
 
-    return jtk_PathHandle_forDirectoryEx(path->m_value->m_value, path->m_value->m_size);
+    return jtk_PathHandle_forDirectoryEx(path->m_value, path->m_valueSize);
 }
 
 // Destructor

@@ -42,7 +42,8 @@ typedef bool (*jtk_Path_FilterFunction_t)(jtk_Path_t* path);
  * @since  JTK 1.1
  */
 struct jtk_Path_t {
-    jtk_String_t* m_value;
+    uint8_t* m_value;
+    int32_t m_valueSize;
 };
 
 /* Constructor */

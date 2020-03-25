@@ -40,13 +40,6 @@ jtk_Path_t* jtk_Path_newFromStringEx(const uint8_t* path, int32_t size) {
     return result;
 }
 
-jtk_Path_t* jtk_Path_newFromString_s(jtk_String_t* path) {
-    jtk_Path_t* result = jtk_Memory_allocate(jtk_Path_t, 1);
-    result->m_value = jtk_String_clone(path); // jtk_PathHelper_normalize(path);
-
-    return result;
-}
-
 jtk_Path_t* jtk_Path_newFromPath(jtk_Path_t* path) {
     jtk_Assert_assertObject(path, "The specified path is null.");
 
