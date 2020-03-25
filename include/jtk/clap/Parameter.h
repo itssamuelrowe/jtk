@@ -56,7 +56,8 @@ typedef void (*jtk_Parameter_OnHandleFunction_t)(jtk_Parameter_t* argument, void
  * @since JTK 1.1
  */
 struct jtk_Parameter_t {
-    jtk_String_t* m_usage;
+    uint8_t* m_usage;
+    int32_t m_usageSize;
     bool m_required;
     bool m_hidden;
     jtk_Parameter_OnHandleFunction_t m_onHandle;
@@ -64,10 +65,14 @@ struct jtk_Parameter_t {
     int32_t m_minValues;
     int32_t m_maxValues;
     int32_t m_consumptionMode;
-    jtk_String_t* m_separator;
-    jtk_String_t* m_shortFlag;
-    jtk_String_t* m_longFlag;
-    jtk_String_t* m_name;
+    uint8_t* m_separator;
+    int32_t m_separatorSize;
+    uint8_t* m_shortFlag;
+    int32_t m_shortFlagSize;
+    uint8_t* m_longFlag;
+    int32_t m_longFlagSize;
+    uint8_t* m_name;
+    int32_t m_nameSize;
     bool m_acceptEmptyValue;
     jtk_ArrayList_t* m_dependencies;
     jtk_ArrayList_t* m_forbids;
