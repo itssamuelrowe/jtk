@@ -176,7 +176,7 @@ uint8_t* jtk_Integer_toStringEx(int32_t value, int32_t radix) {
         buffer[--index] = '-';
     }
 
-    return jtk_CString_newWithSize(buffer + index, 33 - index);
+    return jtk_CString_newEx(buffer + index, 33 - index);
 }
 
 uint8_t* jtk_Integer_toString(int32_t value) {

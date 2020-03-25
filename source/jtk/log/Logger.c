@@ -16,6 +16,7 @@
 
 // Sunday, March 24, 2019
 
+#include <jtk/core/CString.h>
 #include <jtk/log/Logger.h>
 
 bool jtk_LogFilter_apply(jtk_LogFilter_t* filter, jtk_Logger_t* logger,
@@ -101,6 +102,7 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
     jtk_LogRecord_t* record = jtk_Logger_createLogRecord(logger, level,
         tag, tagSize, message, messageSize, threadIdentifier, time);
     
+    /* Destroy the previously allocated temporary buffer. */
     jtk_CString_delete(message);
     
     // if (logger->m_keepRecords) {
@@ -144,9 +146,6 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
     // }
 
     jtk_Logger_destroyLogRecord(logger, record);
-
-    /* Destroy the previously allocated temporary buffer. */
-    jtk_Memory_deallocate(message);
 }
 
 void jtk_Logger_log(jtk_Logger_t* logger, jtk_LogLevel_t level, const uint8_t* tag,

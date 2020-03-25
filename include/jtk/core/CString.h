@@ -35,7 +35,12 @@ uint8_t* jtk_CString_new(const uint8_t* string);
 /**
  * @memberof String
  */
-uint8_t* jtk_CString_newWithSize(const uint8_t* string, int32_t size);
+uint8_t* jtk_CString_newEx(const uint8_t* string, int32_t size);
+
+/**
+ * @memberof String
+ */
+uint8_t* jtk_CString_make(const uint8_t* string, int32_t* size);
 
 /**
  * @memberof String
@@ -58,6 +63,22 @@ int32_t jtk_CString_hash(const uint8_t* string);
  * @memberof String
  */
 int32_t jtk_CString_hashEx(const uint8_t* string, int32_t size);
+
+// Join
+
+uint8_t* jtk_CString_join(const uint8_t* value1,
+    const uint8_t* value2, int32_t* resultSize);
+
+uint8_t* jtk_CString_joinEx(const uint8_t* value1, int32_t size1,
+    const uint8_t* value2, int32_t size2, int32_t* resultSize);
+
+uint8_t* jtk_CString_joinAll(const uint8_t** strings, int32_t* sizes,
+    int32_t count, int32_t* resultSize);
+
+uint8_t* jtk_CString_joinAllEx(const uint8_t** strings, int32_t* sizes,
+    int32_t count, const uint8_t* prefix, int32_t prefixSize, const uint8_t* suffix,
+    int32_t suffixSize, const uint8_t* separator, int32_t separatorSize,
+    int32_t* resultSize);
 
 // Null Terminate
 

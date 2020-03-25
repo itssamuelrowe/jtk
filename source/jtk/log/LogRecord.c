@@ -17,6 +17,7 @@
 // Saturday, April 04, 2019
 
 #include <jtk/log/LogRecord.h>
+#include <jtk/core/CString.h>
 
 /*******************************************************************************
  * LogRecord                                                                   *

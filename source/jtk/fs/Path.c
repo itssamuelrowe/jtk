@@ -16,6 +16,7 @@
 
 // Friday, May 03, 2019
 
+#include <jtk/core/CString.h>
 #include <jtk/core/StringBuilder.h>
 #include <jtk/fs/Path.h>
 #include <jtk/fs/PathComparisonFlag.h>
@@ -28,14 +29,16 @@
 
 jtk_Path_t* jtk_Path_newFromString(const uint8_t* path) {
     jtk_Path_t* result = jtk_Memory_allocate(jtk_Path_t, 1);
-    result->m_value = jtk_String_new(path); // jtk_PathHelper_normalize(path);
+    result->m_valueSize = -1;
+    result->m_value = jtk_CString_make(path, &result->m_valueSize); // jtk_PathHelper_normalize(path);
 
     return result;
 }
 
 jtk_Path_t* jtk_Path_newFromStringEx(const uint8_t* path, int32_t size) {
     jtk_Path_t* result = jtk_Memory_allocate(jtk_Path_t, 1);
-    result->m_value = jtk_String_newEx(path, size); // jtk_PathHelper_normalize(path);
+    result->m_valueSize = size;
+    result->m_value = jtk_CString_make(path, &result->m_valueSize); // jtk_PathHelper_normalize(path);
 
     return result;
 }
@@ -44,7 +47,7 @@ jtk_Path_t* jtk_Path_newFromPath(jtk_Path_t* path) {
     jtk_Assert_assertObject(path, "The specified path is null.");
 
     jtk_Path_t* result = jtk_Memory_allocate(jtk_Path_t, 1);
-    result->m_value = jtk_String_new(path->m_value); // jtk_PathHelper_normalize(path);
+    result->m_value = jtk_CString_newEx(path->m_value, path->m_valueSize); // jtk_PathHelper_normalize(path);
 
     return result;
 }
@@ -56,12 +59,12 @@ jtk_Path_t* jtk_Path_newWithParentAndChild_oo(jtk_Path_t* parent, jtk_Path_t* ch
     jtk_Assert_assertObject(child, "The specified child path is null.");
     
     jtk_StringBuilder_t* builder = jtk_StringBuilder_new();
-    jtk_StringBuilder_appendString(builder, parent->m_value);
+    jtk_StringBuilder_appendEx_z(builder, parent->m_value, parent->m_valueSize);
     jtk_StringBuilder_append_c(builder, JTK_PATH_ELEMENT_SEPARATOR);
-    jtk_StringBuilder_appendString(builder, child->m_value);
+    jtk_StringBuilder_appendEx_z(builder, child->m_value, child->m_valueSize);
     
     jtk_Path_t* result = jtk_Memory_allocate(jtk_Path_t, 1);
-    result->m_value = jtk_StringBuilder_toString(builder);
+    result->m_value = jtk_StringBuilder_toCString(builder, &result->m_valueSize);
     
     jtk_StringBuilder_delete(builder);
     
@@ -79,7 +82,7 @@ jtk_Path_t* jtk_Path_newWithParentAndChild_zo(const uint8_t* parent, jtk_Path_t*
 void jtk_Path_delete(jtk_Path_t* path) {
     jtk_Assert_assertObject(path, "The specified path is null.");
 
-    jtk_String_delete(path->m_value);
+    jtk_CString_delete(path->m_value);
     jtk_Memory_deallocate(path);
 }
 

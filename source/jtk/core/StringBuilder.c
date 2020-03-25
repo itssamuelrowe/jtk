@@ -283,5 +283,5 @@ uint8_t* jtk_StringBuilder_toCString(jtk_StringBuilder_t* builder, int32_t* size
         *size = builder->m_size;
     }
 
-    return jtk_CString_newWithSize(builder->m_value, builder->m_size);
+    return jtk_CString_newEx(builder->m_value, builder->m_size);
 }
