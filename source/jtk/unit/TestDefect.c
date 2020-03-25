@@ -16,7 +16,6 @@
 
 // Saturday, June 20, 2018
 
-#include <jtk/core/String.h>
 #include <jtk/unit/TestDefect.h>
 
 /*******************************************************************************

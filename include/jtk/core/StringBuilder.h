@@ -20,7 +20,6 @@
 #define JTK_CORE_STRING_BUILDER_H
 
 #include <jtk/Configuration.h>
-#include <jtk/core/String.h>
 
 /*******************************************************************************
  * StringBuilder                                                               *

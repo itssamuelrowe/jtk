@@ -20,7 +20,6 @@
 #define JTK_FS_PATH_H
 
 #include <jtk/Configuration.h>
-#include <jtk/core/String.h>
 #include <jtk/fs/PathHandle.h>
 
 /**

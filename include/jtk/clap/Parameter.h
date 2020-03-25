@@ -22,7 +22,6 @@
 #include <jtk/Configuration.h>
 #include <jtk/clap/ParameterType.h>
 #include <jtk/collection/list/ArrayList.h>
-#include <jtk/core/String.h>
 
 /*******************************************************************************
  * Parameter                                                                   *

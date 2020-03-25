@@ -17,7 +17,6 @@
 // Tuesday, May 22, 2018
 
 #include <jtk/collection/stack/LinkedStack.h>
-#include <jtk/core/String.h>
 #include <jtk/unit/TestSuite.h>
 
 /*******************************************************************************

@@ -1,5 +1,4 @@
 #include <jtk/collection/list/ArrayList.h>
-#include <jtk/core/String.h>
 #include <stdio.h>
 
 struct xyz_Student_t {
