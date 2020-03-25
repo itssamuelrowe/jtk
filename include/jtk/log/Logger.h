@@ -75,7 +75,8 @@ typedef void (*jtk_Logger_LogFunction_t)(jtk_Logger_t* logger, jtk_LogRecord_t* 
  * @since 2.0
  */
 struct jtk_Logger_t {
-    jtk_String_t* m_name;
+    uint8_t* m_name;
+    int32_t m_nameSize;
     void* m_userData;
     jtk_LogLevel_t m_level;
     jtk_ArrayList_t* m_filters;
@@ -95,7 +96,7 @@ jtk_Logger_t* jtk_Logger_new(jtk_Logger_LogFunction_t log);
 /**
  * @memberof Logger
  */
-jtk_Logger_t* jtk_Logger_newEx(jtk_String_t* name, jtk_Logger_LogFunction_t log);
+jtk_Logger_t* jtk_Logger_newEx(const uint8_t* name, int32_t nameSize, jtk_Logger_LogFunction_t log);
 
 // Destructor
 
@@ -172,7 +173,8 @@ jtk_LogLevel_t jtk_Logger_getLevel(jtk_Logger_t* logger);
 // Log Record
 
 jtk_LogRecord_t* jtk_Logger_createLogRecord(jtk_Logger_t* logger, jtk_LogLevel_t level,
-    jtk_String_t* tag, jtk_String_t* message, int64_t threadIdentifier, int64_t time);
+    const uint8_t* tag, int32_t tagSize, const uint8_t* message, int32_t messageSize,
+    int64_t threadIdentifier, int64_t time);
 
 void jtk_Logger_destroyLogRecord(jtk_Logger_t* logger, jtk_LogRecord_t* record);
 

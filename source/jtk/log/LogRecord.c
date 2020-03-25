@@ -24,13 +24,15 @@
 
 // Constructor
 
-jtk_LogRecord_t* jtk_LogRecord_new(int64_t identifier, jtk_String_t* tag,
-    jtk_String_t* message, jtk_LogLevel_t level, int64_t threadIdentifier,
-    int64_t time) {
+jtk_LogRecord_t* jtk_LogRecord_new(int64_t identifier, const uint8_t* tag,
+    int32_t tagSize, const uint8_t* message, int32_t messageSize,
+    jtk_LogLevel_t level, int64_t threadIdentifier, int64_t time) {
     jtk_LogRecord_t* record = jtk_Memory_allocate(jtk_LogRecord_t, 1);
     record->m_identifier = identifier;
-    record->m_tag = jtk_String_clone(tag);
-    record->m_message = jtk_String_clone(message);
+    record->m_tag = jtk_CString_make(tag, &tagSize);
+    record->m_tagSize = tagSize;
+    record->m_message = jtk_CString_make(message, &messageSize);
+    record->m_messageSize = messageSize;
     record->m_level = level;
     record->m_threadIdentifier = threadIdentifier;
     record->m_time = time;
@@ -44,8 +46,8 @@ jtk_LogRecord_t* jtk_LogRecord_new(int64_t identifier, jtk_String_t* tag,
 jtk_LogRecord_t* jtk_LogRecord_delete(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
     
-    jtk_String_delete(record->m_message);
-    jtk_String_delete(record->m_tag);
+    jtk_CString_delete(record->m_message);
+    jtk_CString_delete(record->m_tag);
     jtk_Memory_deallocate(record);
 }
 
@@ -81,7 +83,7 @@ jtk_LogLevel_t jtk_LogRecord_getLevel(jtk_LogRecord_t* record) {
 
 // Message
 
-jtk_String_t* jtk_LogRecord_getMessage(jtk_LogRecord_t* record) {
+uint8_t* jtk_LogRecord_getMessage(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
     
     return record->m_message;
@@ -89,7 +91,7 @@ jtk_String_t* jtk_LogRecord_getMessage(jtk_LogRecord_t* record) {
 
 // Tag
 
-jtk_String_t* jtk_LogRecord_getTag(jtk_LogRecord_t* record) {
+uint8_t* jtk_LogRecord_getTag(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
     
     return record->m_tag;

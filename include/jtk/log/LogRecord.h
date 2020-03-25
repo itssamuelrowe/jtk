@@ -33,8 +33,10 @@
  * @since JTK 2.0
  */
 struct jtk_LogRecord_t {
-    jtk_String_t* m_message;
-    jtk_String_t* m_tag;
+    uint8_t* m_message;
+    int32_t m_messageSize;
+    uint8_t* m_tag;
+    int32_t m_tagSize;
     jtk_LogLevel_t m_level;
     int64_t m_identifier;
     int64_t m_threadIdentifier;
@@ -52,9 +54,9 @@ typedef struct jtk_LogRecord_t jtk_LogRecord_t;
 /**
  * @memberof LogRecord
  */
-jtk_LogRecord_t* jtk_LogRecord_new(int64_t identifier, jtk_String_t* tag,
-    jtk_String_t* message, jtk_LogLevel_t level, int64_t threadIdentifier,
-    int64_t time);
+jtk_LogRecord_t* jtk_LogRecord_new(int64_t identifier, const uint8_t* tag,
+    int32_t tagSize, const uint8_t* message, int32_t messageSize,
+    jtk_LogLevel_t level, int64_t threadIdentifier, int64_t time);
 
 // Destructor
 
@@ -94,14 +96,14 @@ jtk_LogLevel_t jtk_LogRecord_getLevel(jtk_LogRecord_t* record);
 /**
  * @memberof LogRecord
  */
-jtk_String_t* jtk_LogRecord_getMessage(jtk_LogRecord_t* record);
+uint8_t* jtk_LogRecord_getMessage(jtk_LogRecord_t* record);
 
 // Tag
 
 /**
  * @memberof LogRecord
  */
-jtk_String_t* jtk_LogRecord_getTag(jtk_LogRecord_t* record);
+uint8_t* jtk_LogRecord_getTag(jtk_LogRecord_t* record);
 
 // Thread Identifier
 

@@ -54,7 +54,6 @@ set(
     ${PROJECT_SOURCE_DIR}/source/jtk/core/Object.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/PointerObjectAdapter.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/StringBuilder.c
-    ${PROJECT_SOURCE_DIR}/source/jtk/core/StringObjectAdapter.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/System.c
 
     # Input/Output Module

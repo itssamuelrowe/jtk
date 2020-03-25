@@ -38,12 +38,19 @@ jtk_LogRecordFactory_t* jtk_LogRecordFactory_getInstance() {
 // Constructor
 
 jtk_Logger_t* jtk_Logger_new(jtk_Logger_LogFunction_t log) {
-    return jtk_Logger_newEx(NULL, log);
+    return jtk_Logger_newEx(NULL, -1, log);
 }
 
-jtk_Logger_t* jtk_Logger_newEx(jtk_String_t* name, jtk_Logger_LogFunction_t log) {
+jtk_Logger_t* jtk_Logger_newEx(const uint8_t* name, int32_t nameSize, jtk_Logger_LogFunction_t log) {
     jtk_Logger_t* logger = jtk_Memory_allocate(jtk_Logger_t, 1);
-    logger->m_name = (name != NULL)? jtk_String_clone(name) : jtk_String_newEx("Unknown", 7);
+    if (name == NULL) {
+        logger->m_name = jtk_CString_newEx("Unknown", 7);
+        logger->m_nameSize = 7;
+    }
+    else {
+        logger->m_name = jtk_CString_make(name, &nameSize);
+        logger->m_nameSize = nameSize;
+    }
     logger->m_userData = NULL;
     logger->m_level = JTK_LOG_LEVEL_ALL;
     logger->m_filters = jtk_ArrayList_new();
@@ -67,7 +74,7 @@ void jtk_Logger_delete(jtk_Logger_t* logger) {
     // jtk_Iterator_delete(iterator);
     
     jtk_ArrayList_delete(logger->m_filters);
-    jtk_String_delete(logger->m_name);
+    jtk_CString_delete(logger->m_name);
     jtk_Memory_deallocate(logger);
 }
 
@@ -80,23 +87,21 @@ bool jtk_Logger_filter(jtk_Logger_t* logger, jtk_LogRecord_t* record) {
 // Log
 
 void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
-    const uint8_t* tag, const uint8_t* format, jtk_VariableArguments_t arguments) {
+    const uint8_t* tag, int32_t tagSize, const uint8_t* format,
+    int32_t formatSize, jtk_VariableArguments_t arguments) {
     bool filtered = false;
     
     int32_t capacity = 300;
-    uint8_t* buffer = jtk_Memory_allocate(uint8_t, capacity);
-    int32_t length = vsnprintf(buffer, capacity, format, arguments);
+    uint8_t* message = jtk_Memory_allocate(uint8_t, capacity);
+    int32_t messageSize = vsnprintf(message, capacity, format, arguments);
 
-    jtk_String_t* message = jtk_String_newEx(buffer, length);
-    jtk_String_t* tag0 = jtk_String_new(tag);
     int64_t time = 0; // TODO: Get the current time
     int64_t threadIdentifier = 0; // TODO: Get the thread identifier
 
     jtk_LogRecord_t* record = jtk_Logger_createLogRecord(logger, level,
-        tag0, message, threadIdentifier, time);
-            
-    jtk_String_delete(tag0);
-    jtk_String_delete(message);
+        tag, tagSize, message, messageSize, threadIdentifier, time);
+    
+    jtk_CString_delete(message);
     
     // if (logger->m_keepRecords) {
         // TODO: Implement a circular buffer that automatically removes records.
@@ -141,7 +146,7 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
     jtk_Logger_destroyLogRecord(logger, record);
 
     /* Destroy the previously allocated temporary buffer. */
-    jtk_Memory_deallocate(buffer);
+    jtk_Memory_deallocate(message);
 }
 
 void jtk_Logger_log(jtk_Logger_t* logger, jtk_LogLevel_t level, const uint8_t* tag,
@@ -156,7 +161,7 @@ void jtk_Logger_log(jtk_Logger_t* logger, jtk_LogLevel_t level, const uint8_t* t
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, level, tag, format, arguments);
+    jtk_Logger_publish(logger, level, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -174,7 +179,7 @@ void jtk_Logger_logFinest(jtk_Logger_t* logger, const uint8_t* tag,
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, JTK_LOG_LEVEL_FINEST, tag, format, arguments);
+    jtk_Logger_publish(logger, JTK_LOG_LEVEL_FINEST, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -192,7 +197,7 @@ void jtk_Logger_logFiner(jtk_Logger_t* logger, const uint8_t* tag,
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, JTK_LOG_LEVEL_FINER, tag, format, arguments);
+    jtk_Logger_publish(logger, JTK_LOG_LEVEL_FINER, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -210,7 +215,7 @@ void jtk_Logger_logFine(jtk_Logger_t* logger, const uint8_t* tag,
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, JTK_LOG_LEVEL_FINE, tag, format, arguments);
+    jtk_Logger_publish(logger, JTK_LOG_LEVEL_FINE, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -228,7 +233,7 @@ void jtk_Logger_logDebug(jtk_Logger_t* logger, const uint8_t* tag,
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, JTK_LOG_LEVEL_DEBUG, tag, format, arguments);
+    jtk_Logger_publish(logger, JTK_LOG_LEVEL_DEBUG, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -246,7 +251,7 @@ void jtk_Logger_logConfiguration(jtk_Logger_t* logger, const uint8_t* tag,
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, JTK_LOG_LEVEL_CONFIGURATION, tag, format, arguments);
+    jtk_Logger_publish(logger, JTK_LOG_LEVEL_CONFIGURATION, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -264,7 +269,7 @@ void jtk_Logger_logInformation(jtk_Logger_t* logger, const uint8_t* tag,
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, JTK_LOG_LEVEL_INFORMATION, tag, format, arguments);
+    jtk_Logger_publish(logger, JTK_LOG_LEVEL_INFORMATION, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -282,7 +287,7 @@ void jtk_Logger_logWarning(jtk_Logger_t* logger, const uint8_t* tag,
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, JTK_LOG_LEVEL_WARNING, tag, format, arguments);
+    jtk_Logger_publish(logger, JTK_LOG_LEVEL_WARNING, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -300,7 +305,7 @@ void jtk_Logger_logSevere(jtk_Logger_t* logger, const uint8_t* tag,
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, JTK_LOG_LEVEL_SEVERE, tag, format, arguments);
+    jtk_Logger_publish(logger, JTK_LOG_LEVEL_SEVERE, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -318,7 +323,7 @@ void jtk_Logger_logError(jtk_Logger_t* logger, const uint8_t* tag,
     /* Initialize the variable arguments. */
     jtk_VariableArguments_start(arguments, format);
 
-    jtk_Logger_publish(logger, JTK_LOG_LEVEL_ERROR, tag, format, arguments);
+    jtk_Logger_publish(logger, JTK_LOG_LEVEL_ERROR, tag, -1, format, -1, arguments);
 
     /* Destroy resources allocated to initialize the variable arguments. */
     jtk_VariableArguments_end(arguments);
@@ -341,8 +346,10 @@ jtk_LogLevel_t jtk_Logger_getLevel(jtk_Logger_t* logger) {
 // Log Record
 
 jtk_LogRecord_t* jtk_Logger_createLogRecord(jtk_Logger_t* logger, jtk_LogLevel_t level,
-    jtk_String_t* tag, jtk_String_t* message, int64_t threadIdentifier, int64_t time) {
-    jtk_LogRecord_t* result = jtk_LogRecord_new(1, tag, message, level, threadIdentifier, time);
+    const uint8_t* tag, int32_t tagSize, const uint8_t* message, int32_t messageSize,
+    int64_t threadIdentifier, int64_t time) {
+    jtk_LogRecord_t* result = jtk_LogRecord_new(1, tag, tagSize, message,
+        messageSize, level, threadIdentifier, time);
     
     return result;
 }
