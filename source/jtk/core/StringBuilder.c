@@ -194,24 +194,6 @@ void jtk_StringBuilder_appendSubsequence(jtk_StringBuilder_t* builder,
 }
 */
 
-void jtk_StringBuilder_appendString(jtk_StringBuilder_t* builder,
-    jtk_String_t* string) {
-    jtk_Assert_assertObject(builder, "The specified string builder is null.");
-
-    if (string == NULL) {
-        jtk_StringBuilder_appendNull(builder);
-    }
-    else {
-        int32_t size = jtk_String_getSize(string);
-        const uint8_t* value = jtk_String_getValue(string);
-
-        jtk_StringBuilder_ensureSpace(builder, size);
-        jtk_Arrays_copyEx_b(value, size, 0, builder->m_value,
-            builder->m_capacity, builder->m_size, size);
-        builder->m_size += size;
-    }
-}
-
 void jtk_StringBuilder_appendNull(jtk_StringBuilder_t* builder) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
 
@@ -294,14 +276,12 @@ int32_t jtk_StringBuilder_getSize(jtk_StringBuilder_t* builder) {
 
 // String
 
-jtk_String_t* jtk_StringBuilder_toString(jtk_StringBuilder_t* builder) {
+uint8_t* jtk_StringBuilder_toCString(jtk_StringBuilder_t* builder, int32_t* size) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
 
-    return jtk_String_newEx(builder->m_value, builder->m_size);
-}
-
-uint8_t* jtk_StringBuilder_toCString(jtk_StringBuilder_t* builder) {
-    jtk_Assert_assertObject(builder, "The specified string builder is null.");
+    if (size != NULL) {
+        *size = builder->m_size;
+    }
 
     return jtk_CString_newWithSize(builder->m_value, builder->m_size);
 }

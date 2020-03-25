@@ -20,7 +20,6 @@
 #define JTK_LOG_LOG_RECORD_H
 
 #include <jtk/Configuration.h>
-#include <jtk/core/String.h>
 #include <jtk/log/LogLevel.h>
 
 /*******************************************************************************

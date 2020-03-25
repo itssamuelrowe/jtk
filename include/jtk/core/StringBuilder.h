@@ -69,9 +69,6 @@ void jtk_StringBuilder_append_z(jtk_StringBuilder_t* builder,
 void jtk_StringBuilder_appendEx_z(jtk_StringBuilder_t* builder,
     const uint8_t* sequence, int32_t size);
 
-void jtk_StringBuilder_appendString(jtk_StringBuilder_t* builder,
-    jtk_String_t* string);
-
 void jtk_StringBuilder_appendNull(jtk_StringBuilder_t* builder);
 
 // Capacity
@@ -93,8 +90,6 @@ int32_t jtk_StringBuilder_getSize(jtk_StringBuilder_t* builder);
 
 // String
 
-jtk_String_t* jtk_StringBuilder_toString(jtk_StringBuilder_t* builder);
-
-uint8_t* jtk_StringBuilder_toCString(jtk_StringBuilder_t* builder);
+uint8_t* jtk_StringBuilder_toCString(jtk_StringBuilder_t* builder, int32_t* size);
 
 #endif /* JTK_CORE_STRING_BUILDER_H */

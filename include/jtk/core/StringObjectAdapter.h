@@ -20,7 +20,6 @@
 #define JTK_CORE_STRING_OBJECT_ADAPTER_H
 
 #include <jtk/core/ObjectAdapter.h>
-#include <jtk/core/String.h>
 
 /*******************************************************************************
  * StringObjectAdapter                                                         *

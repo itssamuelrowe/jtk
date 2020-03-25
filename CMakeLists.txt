@@ -172,8 +172,8 @@ add_library(
     ${JTK_NATIVE_SOURCE}
     ${JTK_FS_SOURCE})
 
-target_compile_options(jtk-core PUBLIC -Wall -g)
-# target_compile_options(jtk-core PUBLIC -w -g)
+# target_compile_options(jtk-core PUBLIC -Wall -g)
+target_compile_options(jtk-core PUBLIC -w -g)
 
 # add_library(jtk-collection ${JTK_COLLECTION_SOURCE})
 # target_compile_options(jtk-collection PUBLIC -Wall -Wswitch -g)
