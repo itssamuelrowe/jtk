@@ -71,7 +71,7 @@ bool jtk_CString_equals(const uint8_t* string1, int32_t size1, const uint8_t* st
     }
     if (size1 == size2) {
         int32_t i;
-        for (i = 0; i < size1; i++) {
+        for (i = size1 - 1; i >= 0; i--) {
             if (string1[i] != string2[i]) {
                 return false;
             }
