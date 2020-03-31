@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,6 +58,59 @@ uint8_t* jtk_CString_make(const uint8_t* string, int32_t* size) {
 
 void jtk_CString_delete(uint8_t* string) {
     jtk_Memory_deallocate(string);
+}
+
+// Compare
+
+int32_t jtk_CString_compare(const uint8_t* string1,
+    const uint8_t* string2) {
+    int32_t i = 0;
+    int32_t result;
+    while (true) {
+        char c1 = string1[i];
+        char c2 = string2[i];
+        if (c1 == '\0' && c2 == '\0') {
+            result = 0;
+            break;
+        }
+
+        if (c1 == '\0') {
+            result = -1;
+            break;
+        }
+
+        if (c2 == '\0') {
+            result = 1;
+            break;
+        }
+
+        if (c1 != c2) {
+            result = c1 - c2;
+            break;
+        }
+
+        i++;
+    }
+
+    return result;
+}
+
+int32_t jtk_CString_compareEx(const uint8_t* string1, int32_t size1,
+    const uint8_t* string2, int32_t size2) {
+    int limit = jtk_Integer_min(size1, size2);
+
+    int k = 0;
+    int32_t result = size1 - size2;
+    while (k < limit) {
+        char c1 = string1[k];
+        char c2 = string2[k];
+        if (c1 != c2) {
+            result = c1 - c2;
+            break;
+        }
+        k++;
+    }
+    return result;
 }
 
 // Equals
@@ -123,15 +176,15 @@ uint8_t* jtk_CString_joinEx(const uint8_t* value1, int32_t size1,
     const uint8_t* value2, int32_t size2, int32_t* resultSize) {
     jtk_Assert_assertObject(value1, "The specified first string is null.");
     jtk_Assert_assertObject(value2, "The specified second string is null.");
-    
+
     jtk_StringBuilder_t* builder = jtk_StringBuilder_new();
     jtk_StringBuilder_appendEx_z(builder, value1, size1);
     jtk_StringBuilder_appendEx_z(builder, value2, size2);
-    
+
     uint8_t* result = jtk_StringBuilder_toCString(builder, resultSize);
-    
+
     jtk_StringBuilder_delete(builder);
-    
+
     return result;
 }
 
@@ -221,10 +274,10 @@ int32_t jtk_CString_getSize(const uint8_t* string) {
 uint8_t* jtk_CString_nullTerminate(uint8_t* string, int32_t size) {
     jtk_Assert_assertObject(string, "The specified string is null.");
     jtk_Assert_assertTrue(size > 0, "The specified size is invalid.");
-    
+
     uint8_t* result = jtk_Memory_allocate(uint8_t, size + 1);
     jtk_Arrays_copy_b((int8_t*)string, size, (int8_t*)result, size);
     result[size] = '\0';
-    
+
     return result;
 }
