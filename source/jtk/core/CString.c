@@ -95,6 +95,11 @@ int32_t jtk_CString_compare(const uint8_t* string1,
     return result;
 }
 
+int32_t jtk_CString_comparePtr(const uint8_t** string1,
+    const uint8_t** string2) {
+    return jtk_CString_compare(*string1, *string2);
+}
+
 int32_t jtk_CString_compareEx(const uint8_t* string1, int32_t size1,
     const uint8_t* string2, int32_t size2) {
     int limit = jtk_Integer_min(size1, size2);

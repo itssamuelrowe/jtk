@@ -52,6 +52,9 @@ void jtk_CString_delete(uint8_t* string);
 int32_t jtk_CString_compare(const uint8_t* string1,
     const uint8_t* string2);
 
+int32_t jtk_CString_comparePtr(const uint8_t** string1,
+    const uint8_t** string2);
+
 int32_t jtk_CString_compareEx(const uint8_t* string1, int32_t size1,
     const uint8_t* string2, int32_t size2);
 
