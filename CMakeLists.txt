@@ -225,6 +225,21 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/share/jtk.pc.cmakein" ${JTK_PC} @ONL
 # target_link_libraries(names jtk-core m)
 # target_link_libraries(names jtk-collection)
 
+
+set(
+    EXAMPLE_COLLECTION_TIMSORT_INTEGERS_SOURCE
+    ${PROJECT_SOURCE_DIR}/example/timsort/integers.c
+)
+ add_executable(timsort_integers ${EXAMPLE_COLLECTION_TIMSORT_INTEGERS_SOURCE})
+ target_link_libraries(timsort_integers jtk-core m)
+
+set(
+    EXAMPLE_COLLECTION_TIMSORT_STRINGS_SOURCE
+    ${PROJECT_SOURCE_DIR}/example/timsort/strings.c
+)
+add_executable(timsort_strings ${EXAMPLE_COLLECTION_TIMSORT_STRINGS_SOURCE})
+target_link_libraries(timsort_strings jtk-core m)
+
 #******************************************************************************#
 # Unit Tests                                                                   #
 #******************************************************************************#
