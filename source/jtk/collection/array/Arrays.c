@@ -2433,21 +2433,77 @@ void jtk_Arrays_timSort_v(void** array, int32_t size, jtk_ComparatorFunction_t c
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
 
-    // jtk_Arrays_timSortEx_v(array, size, 0, size, true);
+    jtk_Arrays_timSortEx_v(array, size, 0, size, comparator);
 }
 
 /* Tim Sort Extended */
+
+int32_t jtk_Byte_comparePtr(const int8_t* value1, const int8_t* value2) {
+    return *value1 - *value2;
+}
+
+int32_t jtk_Byte_compareReversePtr(const int8_t* value1, const int8_t* value2) {
+    return *value2 - *value1;
+}
+
+int32_t jtk_Short_comparePtr(const int16_t* value1, const int16_t* value2) {
+    return *value1 - *value2;
+}
+
+int32_t jtk_Short_compareReversePtr(const int16_t* value1, const int16_t* value2) {
+    return *value2 - *value1;
+}
+
+int32_t jtk_Integer_comparePtr(const int32_t* value1, const int32_t* value2) {
+    return *value1 - *value2;
+}
+
+int32_t jtk_Integer_compareReversePtr(const int32_t* value1, const int32_t* value2) {
+    return *value2 - *value1;
+}
+
+int32_t jtk_Long_comparePtr(const int64_t* value1, const int64_t* value2) {
+    return *value1 - *value2;
+}
+
+int32_t jtk_Long_compareReversePtr(const int64_t* value1, const int64_t* value2) {
+    return *value2 - *value1;
+}
+
+int32_t jtk_Float_comparePtr(const int64_t* value1, const int64_t* value2) {
+    return jtk_Float_compare(*value1, *value2);
+}
+
+int32_t jtk_Float_compareReversePtr(const int64_t* value1, const int64_t* value2) {
+    return jtk_Float_compare(*value2, *value1);
+}
+
+int32_t jtk_Double_comparePtr(const int64_t* value1, const int64_t* value2) {
+    return jtk_Double_compare(*value1, *value2);
+}
+
+int32_t jtk_Double_compareReversePtr(const int64_t* value1, const int64_t* value2) {
+    return jtk_Double_compare(*value2, *value1);
+}
+
+bool jtk_Timsort_sort(void* array, int32_t size, size_t width, jtk_ComparatorFunction_t compare);
 
 void jtk_Arrays_timSortEx_b(int8_t* array, int32_t size, int32_t startIndex,
     int32_t stopIndex, bool ascending) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
+
+    jtk_Timsort_sort(array + startIndex, stopIndex - startIndex, sizeof (int8_t),
+        ascending? jtk_Byte_comparePtr : jtk_Byte_compareReversePtr);
 }
 
 void jtk_Arrays_timSortEx_s(int16_t* array, int32_t size, int32_t startIndex,
     int32_t stopIndex, bool ascending) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
+
+    jtk_Timsort_sort(array + startIndex, stopIndex - startIndex, sizeof (int16_t),
+        ascending? jtk_Short_comparePtr : jtk_Short_compareReversePtr);
 }
 
 void jtk_Arrays_timSortEx_i(int32_t* array, int32_t size, int32_t startIndex,
@@ -2456,31 +2512,45 @@ void jtk_Arrays_timSortEx_i(int32_t* array, int32_t size, int32_t startIndex,
     jtk_Assert_assertTrue(size >= 0, "The specified array size is invalid.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
 
+    jtk_Timsort_sort(array + startIndex, stopIndex - startIndex, sizeof (int32_t),
+        ascending? jtk_Integer_comparePtr : jtk_Integer_compareReversePtr);
 }
 
 void jtk_Arrays_timSortEx_l(int64_t* array, int32_t size, int32_t startIndex,
     int32_t stopIndex, bool ascending) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
+
+    jtk_Timsort_sort(array + startIndex, stopIndex - startIndex, sizeof (int64_t),
+        ascending? jtk_Long_comparePtr : jtk_Long_compareReversePtr);
 }
 
 void jtk_Arrays_timSortEx_f(float* array, int32_t size, int32_t startIndex,
     int32_t stopIndex, bool ascending) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
+
+    jtk_Timsort_sort(array + startIndex, stopIndex - startIndex, sizeof (float),
+        ascending? jtk_Float_comparePtr : jtk_Float_compareReversePtr);
 }
 
 void jtk_Arrays_timSortEx_d(double* array, int32_t size, int32_t startIndex,
     int32_t stopIndex, bool ascending) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
+
+    jtk_Timsort_sort(array + startIndex, stopIndex - startIndex, sizeof (double),
+        ascending? jtk_Double_comparePtr : jtk_Double_compareReversePtr);
 }
 
 void jtk_Arrays_timSortEx_v(void** array, int32_t size, int32_t startIndex,
-    int32_t stopIndex, bool ascending, jtk_ComparatorFunction_t comparator) {
+    int32_t stopIndex, jtk_ComparatorFunction_t comparator) {
     jtk_Assert_assertObject(array, "The specified array is null.");
     jtk_Arrays_checkRange(size, startIndex, stopIndex);
     jtk_Assert_assertObject(comparator, "The specified comparator is null.");
+
+    jtk_Timsort_sort(array + startIndex, stopIndex - startIndex, sizeof (void*),
+        comparator);
 }
 
 /* The following implementation of the Timsort algorithm was adopted from the
@@ -2587,17 +2657,15 @@ void jtk_Arrays_timSortEx_v(void** array, int32_t size, int32_t startIndex,
  * not BSD qsort_r or Windows qsort_s
  */
 typedef int (*comparator) (const void *x, const void *y, void *thunk);
-#define CMPPARAMS(compar, thunk) comparator compar, void *thunk
+#define CMPPARAMS(compar, thunk) jtk_ComparatorFunction_t compare compar, void *thunk
 #define CMPARGS(compar, thunk) (compar), (thunk)
 #define CMP(compar, thunk, x, y) (compar((x), (y), (thunk)))
 #define TIMSORT timsort_r
 #else
 
-typedef int (*comparator) (const void *x, const void *y);
-#define CMPPARAMS(compar, thunk) comparator compar
+#define CMPPARAMS(compar, thunk) jtk_ComparatorFunction_t compar
 #define CMPARGS(compar, thunk) (compar)
 #define CMP(compar, thunk, x, y) (compar((x), (y)))
-#define TIMSORT timsort
 
 #endif /* IS_TIMSORT_R */
 
@@ -2616,7 +2684,7 @@ struct timsort {
 	/**
 	 * The comparator for this sort.
 	 */
-	comparator c;
+	jtk_ComparatorFunction_t c;
 #ifdef IS_TIMSORT_R
 	void *carg;
 #endif
@@ -2890,15 +2958,16 @@ static void *ensureCapacity(struct timsort *ts, size_t minCapacity,
     #include "Timsort.h"
 #undef WIDTH
 
-int TIMSORT(void *a, size_t nel, size_t width, CMPPARAMS(c, carg)) {
+bool jtk_Timsort_sort(void* array, int32_t size, size_t width,
+    jtk_ComparatorFunction_t compare) {
 	switch (width) {
 	case 4:
-		return timsort_4(a, nel, width, CMPARGS(c, carg));
+		return timsort_4(array, size, width, CMPARGS(compare, carg));
 	case 8:
-		return timsort_8(a, nel, width, CMPARGS(c, carg));
+		return timsort_8(array, size, width, CMPARGS(compare, carg));
 	case 16:
-		return timsort_16(a, nel, width, CMPARGS(c, carg));
+		return timsort_16(array, size, width, CMPARGS(compare, carg));
 	default:
-		return timsort_width(a, nel, width, CMPARGS(c, carg));
+		return timsort_width(array, size, width, CMPARGS(compare, carg));
 	}
 }

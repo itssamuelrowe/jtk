@@ -92,7 +92,7 @@ static int NAME(timsort) (void *a, size_t nel, size_t width, CMPPARAMS(c, carg))
 	assert(ts.stackSize == 1);
 out:
 	timsort_deinit(&ts);
-	return err;
+	return err == -1? 0 : 1;
 }
 
 /**
@@ -539,7 +539,7 @@ static int NAME(mergeLo) (struct timsort * ts, void *base1, size_t len1,
 	char *cursor1;
 	char *cursor2;
 	char *dest;
-	comparator compare;	// Use local variable for performance
+	jtk_ComparatorFunction_t compare;	// Use local variable for performance
 #ifdef IS_TIMSORT_R
 	void *carg;		// Use local variable for performance
 #endif
@@ -696,7 +696,7 @@ static int NAME(mergeHi) (struct timsort * ts, void *base1, size_t len1,
 	char *cursor1;	// Indexes into a
 	char *cursor2;	// Indexes into tmp array
 	char *dest;	// Indexes into a
-	comparator compare;	// Use local variable for performance
+	jtk_ComparatorFunction_t compare;	// Use local variable for performance
 #ifdef IS_TIMSORT_R
 	void *carg;		//  "    "       "     "      "
 #endif

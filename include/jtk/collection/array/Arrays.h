@@ -3096,7 +3096,7 @@ void jtk_Arrays_timSortEx_d(double* array, int32_t size, int32_t startIndex,
  * @since JTK 1.1
  */
 void jtk_Arrays_timSortEx_v(void** array, int32_t size, int32_t startIndex,
-    int32_t stopIndex, bool ascending, jtk_ComparatorFunction_t comparator);
+    int32_t stopIndex, jtk_ComparatorFunction_t comparator);
 
 #endif /* JTK_COLLECTION_ARRAY_ARRAYS_H */
 
