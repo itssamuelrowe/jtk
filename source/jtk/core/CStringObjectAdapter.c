@@ -1,12 +1,12 @@
 /*
  * Copyright 2018-2019 OneCube
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,9 +35,23 @@ jtk_ObjectAdapter_t* jtk_CStringObjectAdapter_getInstance() {
 }
 
 bool jtk_CStringObjectAdapter_equals(const uint8_t* string1, const uint8_t* string2) {
-    int32_t string1Length = jtk_CString_getSize(string1);
+    int32_t i = 0;
+    bool result = true;
+    while (true) {
+        if (string1[i] != string2[i]) {
+            result = false;
+            break;
+        }
+        if (string1[i] == '\0' || string2[i] == '\0') {
+            break;
+        }
+        i++;
+    }
+    return result;
+    /*int32_t string1Length = jtk_CString_getSize(string1);
     int32_t string2Length = jtk_CString_getSize(string2);
     return jtk_CString_equals(string1, string1Length, string2, string2Length);
+    */
 }
 
 int32_t jtk_CStringObjectAdapter_hash(const uint8_t* string) {
