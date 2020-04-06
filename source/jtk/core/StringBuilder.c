@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 OneCube
+ * Copyright 2017-2020 Samuel Rowe
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -170,7 +170,7 @@ void jtk_StringBuilder_append_z(jtk_StringBuilder_t* builder,
 void jtk_StringBuilder_appendEx_z(jtk_StringBuilder_t* builder,
     const uint8_t* sequence, int32_t size) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
-    
+
     if (sequence == NULL) {
         jtk_StringBuilder_appendNull(builder);
     }

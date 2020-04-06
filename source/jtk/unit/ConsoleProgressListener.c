@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -142,7 +142,7 @@ void jtk_ConsoleProgressListener_onCaseFailure(
     int32_t lineNumber = jtk_TestDefect_getLineNumber(defect);
     const uint8_t* message = jtk_TestDefect_getMessage(defect);
     const uint8_t* testName = jtk_TestCase_getName(testCase);
-    
+
     fprintf(stdout, "[JTK] [failure] Test case '%s' failed at %s:%d\n", testName,
         sourceCodePath, lineNumber);
     fprintf(stdout, "[JTK] [message] %s: %s\n", testName,

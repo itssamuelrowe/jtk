@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,7 +53,7 @@ jtk_PathHandle_t* jtk_PathHandle_newFromStringEx(const uint8_t* path, int32_t si
 
     jtk_Error_t error = JTK_ERROR_NONE;
     int64_t descriptor = jtk_NativeFileHandle_open(path, &error);
-    
+
     jtk_PathHandle_t* handle = NULL;
     if (error != JTK_ERROR_NONE) {
         jtk_System_t* system = jtk_System_getInstance();
@@ -79,7 +79,7 @@ jtk_PathHandle_t* jtk_PathHandle_forDirectoryEx(const uint8_t* path, int32_t siz
 
     jtk_Error_t error = JTK_ERROR_NONE;
     int64_t descriptor = jtk_NativeFileHandle_openDirectory(path, &error);
-    
+
     jtk_PathHandle_t* handle = NULL;
     if (error != JTK_ERROR_NONE) {
         jtk_System_t* system = jtk_System_getInstance();

@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -33,7 +33,7 @@
 jtk_BufferedOutputStream_t* jtk_BufferedOutputStream_new(
     jtk_BufferedOutputStream_t* targetOutputStream) {
     jtk_Assert_assertObject(targetOutputStream, "The specified target output stream is null.");
-    
+
     return jtk_BufferedOutputStream_newEx(targetOutputStream,
         JTK_BUFFERED_OUTPUT_STREAM_DEFAULT_CAPACITY);
 }
@@ -58,7 +58,7 @@ jtk_BufferedOutputStream_t* jtk_BufferedOutputStream_newEx(
     stream->m_stopIndex = -1;
     stream->m_cacheHits = 0;
     stream->m_cacheMisses = 0;
-    
+
     return stream;
 }
 
@@ -83,7 +83,7 @@ void jtk_BufferedOutputStream_delete(jtk_BufferedOutputStream_t* stream) {
 
 void jtk_BufferedOutputStream_close(jtk_BufferedOutputStream_t* stream) {
     jtk_Assert_assertObject(stream, "The specified buffered output stream is null.");
-    
+
     jtk_OutputStream_close(stream->m_targetOutputStream);
 }
 
@@ -100,7 +100,7 @@ void jtk_BufferedOutputStream_flush0(jtk_BufferedOutputStream_t* stream) {
 
 void jtk_BufferedOutputStream_flush(jtk_BufferedOutputStream_t* stream) {
     jtk_Assert_assertObject(stream, "The specified buffered output stream is null.");
-    
+
     jtk_BufferedOutputStream_flush0(stream);
     jtk_OutputStream_flush(stream->m_targetOutputStream);
 }
@@ -110,7 +110,7 @@ void jtk_BufferedOutputStream_flush(jtk_BufferedOutputStream_t* stream) {
 void jtk_BufferedOutputStream_write(jtk_BufferedOutputStream_t* stream,
     uint8_t byte) {
     jtk_Assert_assertObject(stream, "The specified buffered output stream is null.");
-    
+
     if (stream->m_size >= stream->m_capacity) {
         jtk_BufferedOutputStream_flush0(stream);
     }
@@ -120,14 +120,14 @@ void jtk_BufferedOutputStream_write(jtk_BufferedOutputStream_t* stream,
 void jtk_BufferedOutputStream_writeBytes(jtk_BufferedOutputStream_t* stream,
     uint8_t* bytes, int32_t size) {
     jtk_Assert_assertObject(stream, "The specified buffered output stream is null.");
-    
+
     jtk_BufferedOutputStream_writeBytesEx(stream, bytes, size, 0, size);
 }
 
 void jtk_BufferedOutputStream_writeBytesEx(jtk_BufferedOutputStream_t* stream,
     uint8_t* bytes, int32_t size, int32_t startIndex, int32_t stopIndex) {
     jtk_Assert_assertObject(stream, "The specified buffered output stream is null.");
-    
+
     /* Flush the buffer to the target output stream, when one of the following
      * conditions is true.
      *    - The internal buffer is full.
@@ -140,7 +140,7 @@ void jtk_BufferedOutputStream_writeBytesEx(jtk_BufferedOutputStream_t* stream,
         ((stream->m_capacity - stream->m_size) < size)) {
         jtk_BufferedOutputStream_flush0(stream);
     }
-    
+
     /* Write the data directly to the target output stream when it exceeds the
      * capacity of the internal buffer. In all other cases, the data is copied
      * to the internal buffer.

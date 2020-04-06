@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -57,17 +57,17 @@ jtk_Path_t* jtk_Path_newWithParentAndChild_zz(const uint8_t* parent, const uint8
 jtk_Path_t* jtk_Path_newWithParentAndChild_oo(jtk_Path_t* parent, jtk_Path_t* child) {
     jtk_Assert_assertObject(parent, "The specified parent path is null.");
     jtk_Assert_assertObject(child, "The specified child path is null.");
-    
+
     jtk_StringBuilder_t* builder = jtk_StringBuilder_new();
     jtk_StringBuilder_appendEx_z(builder, parent->m_value, parent->m_valueSize);
     jtk_StringBuilder_append_c(builder, JTK_PATH_ELEMENT_SEPARATOR);
     jtk_StringBuilder_appendEx_z(builder, child->m_value, child->m_valueSize);
-    
+
     jtk_Path_t* result = jtk_Memory_allocate(jtk_Path_t, 1);
     result->m_value = jtk_StringBuilder_toCString(builder, &result->m_valueSize);
-    
+
     jtk_StringBuilder_delete(builder);
-    
+
     return result;
 }
 

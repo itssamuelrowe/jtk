@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -66,7 +66,7 @@ int32_t jtk_InputStream_getAvailable(jtk_InputStream_t* stream) {
 
 bool jtk_InputStream_isAvailable(jtk_InputStream_t* stream) {
     jtk_Assert_assertObject(stream, "The specified input stream is null.");
-    
+
     return stream->m_isAvailable(stream->m_implementation);
 }
 

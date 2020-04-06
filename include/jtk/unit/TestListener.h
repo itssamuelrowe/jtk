@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -94,7 +94,7 @@ typedef void (*jtk_TestListenerOnCaseUnknownError_t)(jtk_TestListener_t* listene
 struct jtk_TestListener_t {
     jtk_TestListenerOnStart_t m_onStart;
     jtk_TestListenerOnStop_t m_onStop;
-    
+
     jtk_TestListenerOnEnterSuite_t m_onEnterSuite;
     jtk_TestListenerOnExitSuite_t m_onExitSuite;
 
@@ -105,7 +105,7 @@ struct jtk_TestListener_t {
     jtk_TestListenerOnCaseFailure_t m_onCaseFailure;
     jtk_TestListenerOnCaseError_t m_onCaseError;
     jtk_TestListenerOnCaseUnknownError_t m_onCaseUnknownError;
-    
+
     void* m_bundle;
 };
 

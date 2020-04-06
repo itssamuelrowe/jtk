@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -32,7 +32,7 @@ jtk_HashMapValueIterator_t* jtk_HashMapValueIterator_new(jtk_HashMap_t* map) {
     iterator->m_getNext = (jtk_Iterator_GetNextFunction_t)jtk_HashMapValueIterator_getNext;
     iterator->m_hasNext = (jtk_Iterator_HasNextFunction_t)jtk_HashMapValueIterator_hasNext;
     iterator->m_bundle = keyIterator;
-    
+
     keyIterator->m_entryIterator = jtk_HashMapEntryIterator_new(map);
     keyIterator->m_iterator = iterator;
 
@@ -43,7 +43,7 @@ jtk_HashMapValueIterator_t* jtk_HashMapValueIterator_new(jtk_HashMap_t* map) {
 
 void jtk_HashMapValueIterator_delete(jtk_HashMapValueIterator_t* iterator) {
     jtk_Assert_assertObject(iterator, "The specified iterator is null.");
-    
+
     if (iterator->m_iterator != NULL) {
         iterator->m_iterator->m_destroy = NULL;
         jtk_Iterator_delete(iterator->m_iterator);
@@ -56,7 +56,7 @@ void jtk_HashMapValueIterator_delete(jtk_HashMapValueIterator_t* iterator) {
 
 void jtk_HashMapValueIterator_destroy(jtk_HashMapValueIterator_t* iterator) {
     jtk_Assert_assertObject(iterator, "The specified iterator is null.");
-    
+
     iterator->m_iterator = NULL;
     jtk_HashMapValueIterator_delete(iterator);
 }

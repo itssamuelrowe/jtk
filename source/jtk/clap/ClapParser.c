@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,11 +29,11 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
     int32_t wildcardIndex = -1;
     jtk_ArrayList_t* wildcards = jtk_ClapConfiguration_getWildcardParameters(parser->m_configuration);
     int32_t wildcardSize = jtk_ArrayList_getSize(wildcards);
-    
+
     for (int32_t index = 0; index < numberOfElements; index++) {
         jtk_String_t* argument = (jtk_String_t*)jtk_Array_getValue(arguments, index);
         int32_t argumentSize = jtk_String_getSize(argument);
-        
+
         /* Elements that begin with '-' character are considered as flags. */
         if ((argumentSize > 0) && (jtk_String_getCharacter(argument, 0) == '-')) {
             bool recognizeLongName = false;
@@ -108,7 +108,7 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
                             jtk_Array_t* values = jtk_String_split(rawValue, separator);
                             /* Determine the number of values derived from the raw value. */
                             int32_t numberOfValues = jtk_Array_getSize(values);
-                            
+
                             /* The number of values must be greater than or equal to
                              * the configured minimum or lesser than or equal to the
                              * configured maximum. Otherwise, report an error.
@@ -130,7 +130,7 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
                                         if (!valid) {
                                             flags |= JTK_PARAMETER_FLAG_INVALID_RESULT;
                                         }
-                                        
+
                                         if (jtk_String_isEmpty(value)) {
                                             flags |= JTK_PARAMETER_FLAG_EMPTY_VALUE;
                                         }
@@ -161,7 +161,7 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
                 if (consumptionMode == JTK_ARGUMENT_CONSUMPTION_MODE_GREEDY) {
                     int32_t required = numberOfElements - index;
                     jtk_Array_t* values = jtk_Array_new(required);
-                    
+
                     while (index < required) { // No idea why I've written required here! :V
                         jtk_String_t* value = jtk_Array_getValue(arguments, index);
                         jtk_Array_setValue(values, index, value);
@@ -173,7 +173,7 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
                     int32_t limit = index + required;
                     if (limit <= numberOfElements) {
                         jtk_Array_t* values = jtk_Array_new(required);
-                        
+
                         while (index < limit) {
                             jtk_String_t* value = jtk_Array_getValue(arguments, index);
                             if (jtk_String_startsWith_c(value, '-')) {
@@ -197,11 +197,11 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
                                 // error(FAILED TO CONSUME  MINIMUM, FOUND --)
                                 break;
                             }
-                            
+
                             jtk_ArrayList_add(values, value);
                             index++;
                         }
-                        
+
                         /* If the results are publishable, the minimum number of values
                          * have been specified. The parser is inherently greedy and will
                          * try to consume more values, with the maximum expected values
@@ -219,11 +219,11 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
                                     index--;
                                     break;
                                 }
-                                
+
                                 jtk_ArrayList_add(values, value);
                                 index++;
                             }
-                            
+
                             result = jtk_ArrayList_toArray(values);
                         }
                     }
@@ -233,7 +233,7 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
                 }
                 */
             }
-            
+
             if (publishable) {
                 /* Publish the results to the handler associated with the argument. */
                 jtk_Parameter_publish(argument, result, flags);
@@ -245,12 +245,12 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
             if ((wildcardIndex + 1) < wildcardSize) {
                 jtk_Parameter_t* wildcard = jtk_ArrayList_getValue(wildcards, wildcardIndex);
                 wildcardIndex++;
-                
+
                 int32_t consumptionMode = jtk_Parameter_getConsumptionMode(wildcard);
                 if (consumptionMode == JTK_ARGUMENT_CONSUMPTION_MODE_GREEDY) {
                     int32_t required = numberOfElements - index;
                     jtk_Array_t* values = jtk_Array_new(required);
-                    
+
                     while (index < required) { // No idea why I've used required here.
                         jtk_String_t* value = jtk_Array_getValue(arguments, index);
                         jtk_Array_setValue(values, index, value);
@@ -262,7 +262,7 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
                     int32_t limit = index + required;
                     if (limit <= numberOfElements) {
                         jtk_Array_t* values = jtk_Array_new(required);
-                        
+
                         while (index < limit) {
                             jtk_String_t* value = jtk_Array_getValue(arguments, index);
                             if (jtk_String_startsWith_c(value, '-')) {
@@ -274,7 +274,7 @@ void jtk_ClapParser_parse(jtk_ClapParser_t* parser, jtk_Array_t* arguments) {
                     else {
                     }
                     // error(MISSING VALUES)
-                    
+
                 }
             }
         }

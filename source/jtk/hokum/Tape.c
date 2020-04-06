@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -89,7 +89,7 @@ void jtk_Tape_readUncheckedBytes(jtk_Tape_t* tape, uint8_t* buffer, int32_t size
 
     jtk_Arrays_copyEx_b(tape->m_value, tape->m_size, tape->m_index, buffer,
         size, 0, size);
-    
+
     tape->m_index += size;
 }
 
@@ -140,7 +140,7 @@ float jtk_Tape_readUncheckedFloat(jtk_Tape_t* tape) {
 double jtk_Tape_readUncheckedDouble(jtk_Tape_t* tape) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
     jtk_Assert_assertTrue((tape->m_index + 1) <= tape->m_size, "No more bytes available.");
- 
+
     uint64_t bits = ((uint64_t)tape->m_value[tape->m_index++] << 56) |
                    ((uint64_t)(tape->m_value[tape->m_index++] & 0xFF) << 48) |
                    ((uint64_t)(tape->m_value[tape->m_index++] & 0xFF) << 40) |
@@ -155,6 +155,6 @@ double jtk_Tape_readUncheckedDouble(jtk_Tape_t* tape) {
 void jtk_Tape_skipUnchecked(jtk_Tape_t* tape, int32_t count) {
     jtk_Assert_assertObject(tape, "The specified tape is null.");
     jtk_Assert_assertTrue((tape->m_index + count) < tape->m_size, "No more bytes available.");
-    
+
     tape->m_index += count;
 }

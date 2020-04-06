@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +46,7 @@ void jtk_HashMapEntry_delete(jtk_HashMapEntry_t* entry) {
 
 int32_t jtk_HashMapEntry_getHashCode(jtk_HashMapEntry_t* entry) {
     jtk_Assert_assertObject(entry, "The specified entry is null.");
-    
+
     return entry->m_hashCode;
 }
 
@@ -54,7 +54,7 @@ int32_t jtk_HashMapEntry_getHashCode(jtk_HashMapEntry_t* entry) {
 
 void* jtk_HashMapEntry_getKey(jtk_HashMapEntry_t* entry) {
     jtk_Assert_assertObject(entry, "The specified entry is null.");
-    
+
     return entry->m_key;
 }
 
@@ -62,6 +62,6 @@ void* jtk_HashMapEntry_getKey(jtk_HashMapEntry_t* entry) {
 
 void* jtk_HashMapEntry_getValue(jtk_HashMapEntry_t* entry) {
     jtk_Assert_assertObject(entry, "The specified entry is null.");
-    
+
     return entry->m_value;
 }

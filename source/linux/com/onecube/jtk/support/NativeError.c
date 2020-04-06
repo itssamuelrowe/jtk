@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,7 +36,7 @@ jtk_Error_t jtk_NativeError_translate(int32_t code) {
             error = JTK_ERROR_UNAUTHORIZED_ACCESS;
             break;
         }
-        
+
         /* fstat()
          * The file descriptor is invalid.
          */
@@ -44,7 +44,7 @@ jtk_Error_t jtk_NativeError_translate(int32_t code) {
             error = JTK_ERROR_INVALID_PATH_HANDLE;
             break;
         }
-           
+
         /* fstat(), lstat(), stat()
          * The specified path or buffer is an invalid pointer.
          */
@@ -52,7 +52,7 @@ jtk_Error_t jtk_NativeError_translate(int32_t code) {
             error = JTK_ERROR_INVALID_BUFFER;
             break;
         }
-        
+
         /* stat() and lstat()
          * The specified path contains too many symbolic links.
          */
@@ -60,7 +60,7 @@ jtk_Error_t jtk_NativeError_translate(int32_t code) {
             error = JTK_ERROR_TOO_MANY_SYMBOLIC_LINKS;
             break;
         }
-        
+
         /* stat() and lstat()
          * The specified path is too long.
          */
@@ -76,20 +76,20 @@ jtk_Error_t jtk_NativeError_translate(int32_t code) {
             error = JTK_ERROR_INVALID_PATH;
             break;
         }
-        
+
         /* Insufficient memory available to complete the request.
          */
         case ENOMEM: {
             error = JTK_ERROR_OUT_OF_MEMORY;
             break;
         }
-        
+
         /* A component in path is not a directory. */
         case ENOTDIR: {
             error = JTK_ERROR_EXPECTED_DIRECTORY;
             break;
         }
-        
+
         /* A low-level I/O error during an I/O operation. */
         case EIO: {
             error = JTK_ERROR_LOW_LEVEL_IO;

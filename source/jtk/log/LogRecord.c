@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,7 +46,7 @@ jtk_LogRecord_t* jtk_LogRecord_new(int64_t identifier, const uint8_t* tag,
 
 jtk_LogRecord_t* jtk_LogRecord_delete(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
-    
+
     jtk_CString_delete(record->m_message);
     jtk_CString_delete(record->m_tag);
     jtk_Memory_deallocate(record);
@@ -56,13 +56,13 @@ jtk_LogRecord_t* jtk_LogRecord_delete(jtk_LogRecord_t* record) {
 
 void jtk_LogRecord_setFiltered(jtk_LogRecord_t* record, bool filtered) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
-    
+
     record->m_filtered = filtered;
 }
 
 bool jtk_LogRecord_isFiltered(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
-    
+
     return record->m_filtered;
 }
 
@@ -70,7 +70,7 @@ bool jtk_LogRecord_isFiltered(jtk_LogRecord_t* record) {
 
 int64_t jtk_LogRecord_getIdentifier(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
-    
+
     return record->m_identifier;
 }
 
@@ -78,7 +78,7 @@ int64_t jtk_LogRecord_getIdentifier(jtk_LogRecord_t* record) {
 
 jtk_LogLevel_t jtk_LogRecord_getLevel(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
-    
+
     return record->m_level;
 }
 
@@ -86,7 +86,7 @@ jtk_LogLevel_t jtk_LogRecord_getLevel(jtk_LogRecord_t* record) {
 
 uint8_t* jtk_LogRecord_getMessage(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
-    
+
     return record->m_message;
 }
 
@@ -94,7 +94,7 @@ uint8_t* jtk_LogRecord_getMessage(jtk_LogRecord_t* record) {
 
 uint8_t* jtk_LogRecord_getTag(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
-    
+
     return record->m_tag;
 }
 
@@ -102,7 +102,7 @@ uint8_t* jtk_LogRecord_getTag(jtk_LogRecord_t* record) {
 
 int64_t jtk_LogRecord_getThreadIdentifier(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
-    
+
     return record->m_threadIdentifier;
 }
 
@@ -110,6 +110,6 @@ int64_t jtk_LogRecord_getThreadIdentifier(jtk_LogRecord_t* record) {
 
 int64_t jtk_LogRecord_getTime(jtk_LogRecord_t* record) {
     jtk_Assert_assertObject(record, "The specified log record is null.");
-    
+
     return record->m_time;
 }

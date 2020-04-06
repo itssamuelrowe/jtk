@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -28,7 +28,7 @@ jtk_LogRecordFactory_t* jtk_LogRecordFactory_getInstance() {
     jtk_LogRecordFactory_t* factory = jtk_Memory_allocate(jtk_LogRecordFactory_t, 1);
     factory->m_userData = NULL;
     factory->m_createLogRecord = NULL;
-    
+
     return factory;
 }
 
@@ -73,7 +73,7 @@ void jtk_Logger_delete(jtk_Logger_t* logger) {
     //     jtk_LogRecordFactory_destroyLogRecord(logger->m_logRecordFactory, record);
     // }
     // jtk_Iterator_delete(iterator);
-    
+
     jtk_ArrayList_delete(logger->m_filters);
     jtk_CString_delete(logger->m_name);
     jtk_Memory_deallocate(logger);
@@ -91,7 +91,7 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
     const uint8_t* tag, int32_t tagSize, const uint8_t* format,
     int32_t formatSize, jtk_VariableArguments_t arguments) {
     bool filtered = false;
-    
+
     int32_t capacity = 300;
     uint8_t* message = jtk_Memory_allocate(uint8_t, capacity);
     int32_t messageSize = vsnprintf(message, capacity, format, arguments);
@@ -101,15 +101,15 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
 
     jtk_LogRecord_t* record = jtk_Logger_createLogRecord(logger, level,
         tag, tagSize, message, messageSize, threadIdentifier, time);
-    
+
     /* Destroy the previously allocated temporary buffer. */
     jtk_CString_delete(message);
-    
+
     // if (logger->m_keepRecords) {
         // TODO: Implement a circular buffer that automatically removes records.
         // jtk_DoublyLinkedList_addLast(logger->m_records, record);
     // }
-    
+
     /* The default filter is always active. This behaviour can be overriden
      * with a custom filter.
      *
@@ -128,7 +128,7 @@ void jtk_Logger_publish(jtk_Logger_t* logger, jtk_LogLevel_t level,
         }
     }
     jtk_Iterator_delete(iterator);
-    
+
     jtk_LogRecord_setFiltered(record, filtered);
 
     /* Previously, the logger prevented filtered logs from being delegated to
@@ -349,7 +349,7 @@ jtk_LogRecord_t* jtk_Logger_createLogRecord(jtk_Logger_t* logger, jtk_LogLevel_t
     int64_t threadIdentifier, int64_t time) {
     jtk_LogRecord_t* result = jtk_LogRecord_new(1, tag, tagSize, message,
         messageSize, level, threadIdentifier, time);
-    
+
     return result;
 }
 

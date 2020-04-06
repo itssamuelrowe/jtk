@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -198,7 +198,7 @@ void jtk_Array_delete(jtk_Array_t* array);
  * where `startIndex}, `stopIndex`, and `size` mean
  * the starting index of the range, the stopping index of the range, and the
  * size of the array, respectively.
- * 
+ *
  * If an object adapter was previously attached to the array, then the
  * comparison is evaluated via the `compare()` function; otherwise
  * the comparison operators are employed.
@@ -483,7 +483,7 @@ jtk_Array_t* jtk_Array_migrate_v(void** array, int32_t size,
 /* Raw Array */
 
 /**
- * A JTK array stores all the elements in a native array, internally. This 
+ * A JTK array stores all the elements in a native array, internally. This
  * function returns that native array associated with the specified array.
  * Any modifications made to the native array are reflected by the array, too.
  * Futher, the native array is owned by the array and should not be destroyed.

@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -85,7 +85,7 @@ void* jtk_DoublyLinkedListIterator_getNext(jtk_DoublyLinkedListIterator_t* itera
     jtk_Assert_assertTrue(jtk_DoublyLinkedListIterator_hasNext(iterator), "The specified iterator is empty.");
 
     jtk_DoublyLinkedNode_t* current = iterator->m_next;
-    
+
     iterator->m_current = current;
     iterator->m_next = current->m_next;
     iterator->m_index++;

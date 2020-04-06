@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2019 OneCube
+ * Copyright 2017-2020 Samuel Rowe
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ bool jtk_ArrayStack_isEmpty(jtk_ArrayStack_t* stack) {
 
 jtk_Iterator_t* jtk_ArrayStack_getIterator(jtk_ArrayStack_t* stack) {
     jtk_Assert_assertObject(stack, "The specified stack is null.");
-    
+
     return jtk_ArrayList_getIterator(stack->m_list);
 }
 

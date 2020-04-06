@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -71,22 +71,22 @@ struct jtk_DoublyLinkedListIterator_t {
      * The list from which the elements are extracted.
      */
     jtk_DoublyLinkedList_t* m_list;
-    
+
     /**
      * The node which contains the element that was returned recently.
      */
     jtk_DoublyLinkedNode_t* m_current;
-    
+
     /**
      * The node in which the next element is located.
      */
     jtk_DoublyLinkedNode_t* m_next;
-    
+
     /**
      * The index at which the next element is located.
      */
     int32_t m_index;
-    
+
     /**
      * The iterator associated with this source iterator.
      */

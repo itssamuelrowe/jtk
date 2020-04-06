@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -103,6 +103,6 @@ void jtk_BufferedOutputStream_writeBytes(jtk_BufferedOutputStream_t* stream,
  */
 void jtk_BufferedOutputStream_writeBytesEx(jtk_BufferedOutputStream_t* stream,
     uint8_t* bytes, int32_t size, int32_t startIndex, int32_t stopIndex);
- 
+
 
 #endif /* JTK_IO_BUFFERED_OUTPUT_STREAM_H */

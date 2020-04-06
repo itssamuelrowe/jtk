@@ -1,12 +1,12 @@
 /*
- * Copyright 2018-2019 OneCube
- * 
+ * Copyright 2017-2020 Samuel Rowe
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -103,7 +103,7 @@ int32_t jtk_Array_copyEx(jtk_Array_t* source, int32_t sourceIndex,
     jtk_Assert_assertObject(destination, "The specified destination array is null.");
 
     // TODO: Assert index :)
-    
+
     return jtk_Arrays_copyEx_v(source->m_values, source->m_size, sourceIndex,
         destination->m_values, destination->m_size, destinationIndex, size);
 }
@@ -351,7 +351,7 @@ void jtk_Array_reverse(jtk_Array_t* array) {
 
 void jtk_Array_reverseEx(jtk_Array_t* array, int32_t startIndex, int32_t stopIndex) {
     jtk_Assert_assertObject(array, "The specified array is null.");
-    
+
     jtk_Arrays_reverseEx_v(array->m_values, array->m_size, startIndex, stopIndex);
 }
 
@@ -359,7 +359,7 @@ void jtk_Array_reverseEx(jtk_Array_t* array, int32_t startIndex, int32_t stopInd
 
 void jtk_Array_rotate(jtk_Array_t* array, int32_t distance) {
     jtk_Assert_assertObject(array, "The specified array is null.");
-    
+
     jtk_Arrays_rotate_v(array->m_values, array->m_size, distance);
 }
 
