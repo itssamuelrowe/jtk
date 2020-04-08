@@ -118,7 +118,9 @@ int32_t jtk_ArrayList_addAll(jtk_ArrayList_t* list, jtk_CollectionType_t type,
     jtk_Assert_assertTrue(list != collection, "The results are undefined when the destination and source collections are the same.");
 
     jtk_Iterator_t* iterator = jtk_CollectionHelper_getIterator(type, collection);
-    return jtk_ArrayList_addAllFromIterator(list, iterator);
+    int32_t result = jtk_ArrayList_addAllFromIterator(list, iterator);
+    jtk_Iterator_delete(iterator);
+    return result;
 }
 
 void jtk_ArrayList_addAllEx(jtk_ArrayList_t* list, jtk_CollectionType_t type,
