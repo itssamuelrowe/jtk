@@ -97,10 +97,10 @@ void* jtk_HashMapEntryIterator_getNext(jtk_HashMapEntryIterator_t* iterator) {
     if (iterator->m_next == NULL) {
         int32_t index = iterator->m_index + 1;
         while ((index < iterator->m_map->m_tableSize) &&
-               (iterator->m_next == NULL)) {
+            (iterator->m_next == NULL)) {
             iterator->m_next = iterator->m_map->m_table[index++];
         }
-        iterator->m_index = index;
+        iterator->m_index = index - 1;
     }
     return entry;
 }
