@@ -2553,6 +2553,117 @@ void jtk_Arrays_timSortEx_v(void** array, int32_t size, int32_t startIndex,
         comparator);
 }
 
+// Replace
+
+void jtk_Arrays_replaceEx_b(int8_t* array, int32_t size, int8_t oldValue,
+    int8_t newValue, int32_t startIndex, int32_t stopIndex) {
+    int32_t i;
+    for (i = startIndex; i < stopIndex; i++) {
+        if (array[i] == oldValue) {
+            array[i] = newValue;
+        }
+    }
+}
+
+void jtk_Arrays_replaceEx_s(int16_t* array, int32_t size, int16_t oldValue,
+    int16_t newValue, int32_t startIndex, int32_t stopIndex) {
+    int32_t i;
+    for (i = startIndex; i < stopIndex; i++) {
+        if (array[i] == oldValue) {
+            array[i] = newValue;
+        }
+    }
+}
+
+void jtk_Arrays_replaceEx_i(int32_t* array, int32_t size, int32_t oldValue,
+    int32_t newValue, int32_t startIndex, int32_t stopIndex) {
+    int32_t i;
+    for (i = startIndex; i < stopIndex; i++) {
+        if (array[i] == oldValue) {
+            array[i] = newValue;
+        }
+    }
+}
+
+void jtk_Arrays_replaceEx_l(int64_t* array, int32_t size, int64_t oldValue,
+    int64_t newValue, int32_t startIndex, int32_t stopIndex) {
+    int32_t i;
+    for (i = startIndex; i < stopIndex; i++) {
+        if (array[i] == oldValue) {
+            array[i] = newValue;
+        }
+    }
+}
+
+void jtk_Arrays_replaceEx_f(float* array, int32_t size, float oldValue,
+    float newValue, int32_t startIndex, int32_t stopIndex) {
+    int32_t i;
+    for (i = startIndex; i < stopIndex; i++) {
+        if (jtk_Float_compare(array[i], oldValue) == 0) {
+            array[i] = newValue;
+        }
+    }
+}
+
+void jtk_Arrays_replaceEx_d(double* array, int32_t size, double oldValue,
+    double newValue, int32_t startIndex, int32_t stopIndex) {
+    int32_t i;
+    for (i = startIndex; i < stopIndex; i++) {
+        if (jtk_Double_compare(array[i], oldValue) == 0) {
+            array[i] = newValue;
+        }
+    }
+}
+void jtk_Arrays_replaceEx_v(void** array, int32_t size, void* oldValue,
+    void* newValue, int32_t startIndex, int32_t stopIndex,
+    jtk_ComparatorFunction_t comparator) {
+    int32_t i;
+    for (i = startIndex; i < stopIndex; i++) {
+        if (comparator(array[i], oldValue) == 0) {
+            array[i] = newValue;
+        }
+    }
+}
+
+// Replace
+
+void jtk_Arrays_replace_b(int8_t* array, int32_t size, int8_t oldValue,
+    int8_t newValue) {
+    jtk_Arrays_replaceEx_b(array, size, oldValue, newValue, 0, size);
+}
+
+void jtk_Arrays_replace_s(int16_t* array, int32_t size, int16_t oldValue,
+    int16_t newValue) {
+    jtk_Arrays_replaceEx_s(array, size, oldValue, newValue, 0, size);
+}
+
+void jtk_Arrays_replace_i(int32_t* array, int32_t size, int32_t oldValue,
+    int32_t newValue) {
+    jtk_Arrays_replaceEx_i(array, size, oldValue, newValue, 0, size);
+}
+
+void jtk_Arrays_replace_l(int64_t* array, int32_t size, int64_t oldValue,
+    int64_t newValue) {
+    jtk_Arrays_replaceEx_l(array, size, oldValue, newValue, 0, size);
+}
+
+void jtk_Arrays_replace_f(float* array, int32_t size, float oldValue,
+    float newValue) {
+    jtk_Arrays_replaceEx_f(array, size, oldValue, newValue, 0, size);
+}
+
+void jtk_Arrays_replace_d(double* array, int32_t size, double oldValue,
+    double newValue) {
+    jtk_Arrays_replaceEx_d(array, size, oldValue, newValue, 0, size);
+}
+
+void jtk_Arrays_replace_v(void** array, int32_t size, void* oldValue,
+    void* newValue, jtk_ComparatorFunction_t comparator) {
+    jtk_Arrays_replaceEx_v(array, size, oldValue, newValue, 0, size, comparator);
+}
+
+
+
 /* The following implementation of the Timsort algorithm was adopted from the
  * port created by Patrick O. Perry. The original source code can be found at
  * [https://github.com/patperry/timsort].

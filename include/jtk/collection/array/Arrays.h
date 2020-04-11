@@ -3098,6 +3098,54 @@ void jtk_Arrays_timSortEx_d(double* array, int32_t size, int32_t startIndex,
 void jtk_Arrays_timSortEx_v(void** array, int32_t size, int32_t startIndex,
     int32_t stopIndex, jtk_ComparatorFunction_t comparator);
 
+// Replace Extended
+
+void jtk_Arrays_replaceEx_b(int8_t* array, int32_t size, int8_t oldValue,
+    int8_t newValue, int32_t startIndex, int32_t stopIndex);
+
+void jtk_Arrays_replaceEx_s(int16_t* array, int32_t size, int16_t oldValue,
+    int16_t newValue, int32_t startIndex, int32_t stopIndex);
+
+void jtk_Arrays_replaceEx_i(int32_t* array, int32_t size, int32_t oldValue,
+    int32_t newValue, int32_t startIndex, int32_t stopIndex);
+
+void jtk_Arrays_replaceEx_l(int64_t* array, int32_t size, int64_t oldValue,
+    int64_t newValue, int32_t startIndex, int32_t stopIndex);
+
+void jtk_Arrays_replaceEx_f(float* array, int32_t size, float oldValue,
+    float newValue, int32_t startIndex, int32_t stopIndex);
+
+void jtk_Arrays_replaceEx_d(double* array, int32_t size, double oldValue,
+    double newValue, int32_t startIndex, int32_t stopIndex);
+
+void jtk_Arrays_replaceEx_v(void** array, int32_t size, void* oldValue,
+    void* newValue, int32_t startIndex, int32_t stopIndex,
+    jtk_ComparatorFunction_t comparator);
+
+
+// Replace
+
+void jtk_Arrays_replace_b(int8_t* array, int32_t size, int8_t oldValue,
+    int8_t newValue);
+
+void jtk_Arrays_replace_s(int16_t* array, int32_t size, int16_t oldValue,
+    int16_t newValue);
+
+void jtk_Arrays_replace_i(int32_t* array, int32_t size, int32_t oldValue,
+    int32_t newValue);
+
+void jtk_Arrays_replace_l(int64_t* array, int32_t size, int64_t oldValue,
+    int64_t newValue);
+
+void jtk_Arrays_replace_f(float* array, int32_t size, float oldValue,
+    float newValue);
+
+void jtk_Arrays_replace_d(double* array, int32_t size, double oldValue,
+    double newValue);
+
+void jtk_Arrays_replace_v(void** array, int32_t size, void* oldValue,
+    void* newValue, jtk_ComparatorFunction_t comparator);
+
 #endif /* JTK_COLLECTION_ARRAY_ARRAYS_H */
 
 // TODO: jtk_Arrays_rotateEx_*()
