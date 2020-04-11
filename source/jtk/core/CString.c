@@ -286,3 +286,95 @@ uint8_t* jtk_CString_nullTerminate(uint8_t* string, int32_t size) {
 
     return result;
 }
+
+// Find Last
+
+int32_t jtk_CString_findLastEx_c(const char* string, int32_t size, int32_t codePoint,
+    int32_t index) {
+    int32_t result = -1;
+    int32_t i;
+    if (size < 0) {
+        while (string[i] != '\0') {
+            if (string[i] == codePoint) {
+                result = i;
+            }
+            i++;
+        }
+    }
+    else if (size > 0) {
+        for (i = index; i >= 0; i--) {
+            if (string[i] == codePoint) {
+                result = i;
+                break;
+            }
+        }
+    }
+    return result;
+}
+
+int32_t jtk_CString_findLast_c(const uint8_t* string, int32_t size, int32_t codePoint) {
+    return jtk_CString_findLastEx_c(string, size, codePoint, size - 1);
+}
+
+int32_t jtk_CString_findLastEx_z(const uint8_t* string, int32_t size,
+    const uint8_t* substring, int32_t substringSize, int32_t index) {
+    // TODO: Check index
+
+    int32_t result = -1;
+    if (substringSize == 0) {
+        result = index;
+    }
+    else {
+        int32_t lastIndex = size - 1;
+        uint8_t last = substring[lastIndex];
+        int32_t limit = size - 1;
+        int32_t i = limit + index;
+        search : while (true) {
+            uint8_t c = string[i];
+            while ((i >= limit) && (c != last)) {
+                i--;
+                c = string[i];
+            }
+
+            if (i < limit) {
+                result = -1;
+                break;
+            }
+
+            int32_t j = i - 1;
+            int32_t start = j - (size - 1);
+            int32_t k = lastIndex - 1;
+            while (j > start) {
+                uint8_t c0 = string[j];
+                uint8_t c1 = substring[k];
+                j--;
+                k--;
+                if (c0 != c1) {
+                    i--;
+                    goto search;
+                }
+            }
+
+            result = start + 1;
+            break;
+        }
+    }
+    return result;
+}
+
+int32_t jtk_CString_findLast_z(const uint8_t* string, int32_t size,
+    const uint8_t* substring, int32_t substringSize) {
+    return jtk_CString_findLastEx_z(string, size, substring, substringSize, 0);
+}
+
+// Substring
+
+uint8_t* jtk_CString_substring(const uint8_t* string, int32_t size,
+    int32_t startIndex) {
+    return jtk_CString_newEx(string + startIndex, size - startIndex);
+}
+
+uint8_t* jtk_CString_substringEx(const uint8_t* string, int32_t size,
+    int32_t startIndex, int32_t stopIndex) {
+    return jtk_CString_newEx(string + startIndex, stopIndex - startIndex);
+}

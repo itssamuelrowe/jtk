@@ -102,4 +102,21 @@ uint8_t* jtk_CString_nullTerminate(uint8_t* string, int32_t size);
  */
 int32_t jtk_CString_getSize(const uint8_t* string);
 
+// Find Last
+
+int32_t jtk_CString_findLastEx_c(const char* string, int32_t size, int32_t codePoint,
+    int32_t index);
+int32_t jtk_CString_findLast_c(const uint8_t* string, int32_t size, int32_t codePoint);
+int32_t jtk_CString_findLastEx_z(const uint8_t* string, int32_t size,
+    const uint8_t* substring, int32_t substringSize, int32_t index);
+int32_t jtk_CString_findLast_z(const uint8_t* string, int32_t size,
+    const uint8_t* substring, int32_t substringSize);
+
+// Substring
+
+uint8_t* jtk_CString_substring(const uint8_t* string, int32_t size,
+    int32_t startIndex);
+uint8_t* jtk_CString_substringEx(const uint8_t* string, int32_t size,
+    int32_t startIndex, int32_t stopIndex);
+
 #endif /* JTK_CORE_C_STRING_H */
