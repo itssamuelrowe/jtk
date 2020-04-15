@@ -345,6 +345,8 @@ int32_t jtk_HashMap_getSize(jtk_HashMap_t* map);
  */
 void* jtk_HashMap_getValue(jtk_HashMap_t* map, void* key);
 
+void* jtk_HashMap_getValueQuick(jtk_HashMap_t* map, void* key, int32_t* hashCode);
+
 /**
  * Returns the value to which the specified key is mapped, if any. Otherwise,
  * this function returns the specified default value.

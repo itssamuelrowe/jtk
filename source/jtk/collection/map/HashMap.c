@@ -59,6 +59,35 @@ void jtk_HashMap_addEntry(jtk_HashMap_t* map, int32_t index, void* key,
     }
 }
 
+jtk_HashMapEntry_t* jtk_HashMap_getEntryEx(jtk_HashMap_t* map, void* key,
+    int32_t* externalHashCode) {
+    int32_t objectHashCode = -1;
+    if (externalHashCode != NULL) {
+        if (*externalHashCode == -1) {
+            *externalHashCode = map->m_keyAdapter->hash(key);
+        }
+        objectHashCode = *externalHashCode;
+    }
+    else {
+        objectHashCode = map->m_keyAdapter->hash(key);
+    }
+
+    int32_t hashCode = jtk_HashMap_hash(objectHashCode);
+    int32_t index = jtk_HashMap_getIndex(hashCode, map->m_tableSize);
+
+    jtk_HashMapEntry_t* result = NULL;
+    jtk_HashMapEntry_t* entry = map->m_table[index];
+    while (entry != NULL) {
+        void* key0 = entry->m_key;
+        if ((entry->m_hashCode == hashCode) && map->m_keyAdapter->equals(key0, key)) {
+            result = entry;
+            break;
+        }
+        entry = entry->m_next;
+    }
+    return result;
+}
+
 jtk_HashMapEntry_t* jtk_HashMap_getEntry(jtk_HashMap_t* map, void* key) {
     int32_t objectHashCode = map->m_keyAdapter->hash(key);
     int32_t hashCode = jtk_HashMap_hash(objectHashCode);
@@ -401,6 +430,13 @@ void* jtk_HashMap_getValue(jtk_HashMap_t* map, void* key) {
     jtk_Assert_assertObject(map, "The specified map is null.");
 
 	jtk_HashMapEntry_t* entry = jtk_HashMap_getEntry(map, key);
+    return (entry == NULL)? NULL : entry->m_value;
+}
+
+void* jtk_HashMap_getValueFast(jtk_HashMap_t* map, void* key, int32_t* hashCode) {
+    jtk_Assert_assertObject(map, "The specified map is null.");
+
+	jtk_HashMapEntry_t* entry = jtk_HashMap_getEntryEx(map, key, hashCode);
     return (entry == NULL)? NULL : entry->m_value;
 }
 
