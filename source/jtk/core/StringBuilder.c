@@ -197,7 +197,7 @@ void jtk_StringBuilder_appendSubsequence(jtk_StringBuilder_t* builder,
 void jtk_StringBuilder_appendNull(jtk_StringBuilder_t* builder) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
 
-    jtk_StringBuilder_appendEx_z(builder, "(null)", 4);
+    jtk_StringBuilder_appendEx_z(builder, "(null)", 6);
 }
 
 // Capacity
@@ -264,6 +264,28 @@ bool jtk_StringBuilder_isEmpty(jtk_StringBuilder_t* builder) {
     jtk_Assert_assertObject(builder, "The specified string builder is null.");
 
     return builder->m_size == 0;
+}
+
+// Multiply
+
+void jtk_StringBuilder_multiply_z(jtk_StringBuilder_t* builder, const uint8_t* sequence,
+    int32_t size, int32_t count) {
+    jtk_Assert_assertObject(builder, "The specified string builder is null.");
+
+    if (sequence == NULL) {
+        sequence = "(null)";
+        size = 6;
+    }
+
+    size = (size < 0)? jtk_CString_getSize(sequence) : size;
+    int32_t total = size * count;
+    jtk_StringBuilder_ensureSpace(builder, total);
+    int32_t i;
+    for (i = 0; i < count; i++) {
+        jtk_Arrays_copyEx_b(sequence, size, 0, builder->m_value,
+            builder->m_capacity, builder->m_size, size);
+        builder->m_size += size;
+    }
 }
 
 // Size

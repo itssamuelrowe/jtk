@@ -84,6 +84,11 @@ void jtk_StringBuilder_clear(jtk_StringBuilder_t* builder);
 
 bool jtk_StringBuilder_isEmpty(jtk_StringBuilder_t* builder);
 
+// Multiply
+
+void jtk_StringBuilder_multiply_z(jtk_StringBuilder_t* builder, const uint8_t* sequence,
+    int32_t size, int32_t count);
+
 // Size
 
 int32_t jtk_StringBuilder_getSize(jtk_StringBuilder_t* builder);
