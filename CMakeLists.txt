@@ -86,6 +86,7 @@ set(
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/Pair.c
 
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/array/Array.c
+    ${PROJECT_SOURCE_DIR}/source/jtk/collection/array/ByteArray.c
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/array/ArrayIterator.c
     ${PROJECT_SOURCE_DIR}/source/jtk/collection/array/Arrays.c
 
