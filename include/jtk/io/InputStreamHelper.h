@@ -21,6 +21,7 @@
 
 #include <jtk/Configuration.h>
 #include <jtk/io/InputStream.h>
+#include <jtk/collection/array/ByteArray.h>
 
 /*******************************************************************************
  * InputStreamHelper                                                           *
@@ -31,5 +32,7 @@ bool jtk_InputStreamHelper_readFully(jtk_InputStream_t* stream, uint8_t* buffer,
 
 bool jtk_InputStreamHelper_readFullyEx(jtk_InputStream_t* stream, uint8_t* buffer,
     int32_t size, int32_t index, int32_t limit);
+
+jtk_ByteArray_t* jtk_InputStreamHelper_toByteArray(jtk_InputStream_t* stream);
 
 #endif /* JTK_IO_INPUT_STREAM_HELPER_H */
