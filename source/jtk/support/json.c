@@ -230,6 +230,11 @@ static Token* createToken(Parser* parser);
 static void onNewLine(Parser* parser);
 static void decimalIntegerLiteral(Parser* parser);
 
+static void indent(jtk_StringBuilder_t* builder, int32_t depth);
+static void toString(jtk_StringBuilder_t* builder, jtk_JsonValue_t* value);
+static void toPrettyString(jtk_StringBuilder_t* builder, jtk_JsonValue_t* value, int32_t depth, bool member);
+
+
 Parser* newParser(const uint8_t* input, int32_t inputSize) {
     /* The constructor invokes consume() to initialize
      * the LA(1) character. Therefore, we assign negative values
@@ -822,4 +827,116 @@ jtk_JsonValue_t* jtk_JsonValue_forTrue() {
 
 void handleError() {
     printf("Errro!\n");
+}
+
+void indent(jtk_StringBuilder_t* builder, int32_t depth) {
+    jtk_StringBuilder_multiply_z(builder, "    ", 4, depth);
+}
+
+void toString(jtk_StringBuilder_t* builder, jtk_JsonValue_t* value) {
+    if (value->type == JTK_JSON_VALUE_OBJECT) {
+        jtk_StringBuilder_appendCodePoint(builder, '{');
+        jtk_Iterator_t* iterator = jtk_HashMap_getEntryIterator(value->object);
+        bool first = true;
+        while (jtk_Iterator_hasNext(iterator)) {
+            jtk_HashMapEntry_t* entry = (jtk_HashMapEntry_t*)jtk_Iterator_getNext(iterator);
+
+            if (!first) {
+                jtk_StringBuilder_appendCodePoint(builder, ',');
+            }
+
+            jtk_StringBuilder_appendCodePoint(builder, '"');
+            jtk_StringBuilder_append_z(builder, (char*)entry->m_key);
+            jtk_StringBuilder_appendCodePoint(builder, ':');
+            toString(builder, (jtk_JsonValue_t*)entry->m_value);
+
+            first = false;
+        }
+        jtk_StringBuilder_appendCodePoint(builder, '}');
+    }
+    else if (value->type == JTK_JSON_VALUE_ARRAY) {
+        jtk_StringBuilder_appendCodePoint(builder, '[');
+        int32_t limit = jtk_ArrayList_getSize(value->array);
+        int32_t i;
+        for (i = 0; i < limit; i++) {
+            jtk_JsonValue_t* element = (jtk_JsonValue_t*)jtk_ArrayList_getValue(value->array, i);
+            toString(builder, element);
+
+            if (i + 1 < limit) {
+                jtk_StringBuilder_appendCodePoint(builder, ',');
+            }
+        }
+        jtk_StringBuilder_appendCodePoint(builder, ']');
+    }
+    else if (value->type == JTK_JSON_VALUE_STRING) {
+        jtk_StringBuilder_appendCodePoint(builder, '"');
+        jtk_StringBuilder_appendEx_z(builder, value->string.bytes, value->string.length);
+        jtk_StringBuilder_appendCodePoint(builder, '"');
+    }
+}
+
+void toPrettyString(jtk_StringBuilder_t* builder, jtk_JsonValue_t* value,
+    int32_t depth, bool member) {
+    if (value->type == JTK_JSON_VALUE_OBJECT) {
+        jtk_StringBuilder_appendEx_z(builder, "{\n", 2);
+        jtk_Iterator_t* iterator = jtk_HashMap_getEntryIterator(value->object);
+        bool first = true;
+        while (jtk_Iterator_hasNext(iterator)) {
+            jtk_HashMapEntry_t* entry = (jtk_HashMapEntry_t*)jtk_Iterator_getNext(iterator);
+
+            if (!first) {
+                jtk_StringBuilder_appendEx_z(builder, ",\n", 2);
+            }
+
+            indent(builder, depth + 1);
+            jtk_StringBuilder_appendCodePoint(builder, '"');
+            jtk_StringBuilder_append_z(builder, (char*)entry->m_key);
+            jtk_StringBuilder_appendEx_z(builder, "\": ", 3);
+            toPrettyString(builder, (jtk_JsonValue_t*)entry->m_value, depth + 1, true);
+
+            first = false;
+        }
+        jtk_StringBuilder_appendCodePoint(builder, '\n');
+        indent(builder, depth);
+        jtk_StringBuilder_appendCodePoint(builder, '}');
+    }
+    else if (value->type == JTK_JSON_VALUE_ARRAY) {
+        jtk_StringBuilder_appendEx_z(builder, "[\n", 2);
+        int32_t limit = jtk_ArrayList_getSize(value->array);
+        int32_t i;
+        for (i = 0; i < limit; i++) {
+            jtk_JsonValue_t* element = (jtk_JsonValue_t*)jtk_ArrayList_getValue(value->array, i);
+            indent(builder, depth + 1);
+            toPrettyString(builder, element, depth + 1, true);
+
+            if (i + 1 < limit) {
+                jtk_StringBuilder_appendCodePoint(builder, ',');
+            }
+            jtk_StringBuilder_appendCodePoint(builder, '\n');
+        }
+        indent(builder, depth);
+        jtk_StringBuilder_appendCodePoint(builder, ']');
+    }
+    else if (value->type == JTK_JSON_VALUE_STRING) {
+        jtk_StringBuilder_appendCodePoint(builder, '"');
+        jtk_StringBuilder_appendEx_z(builder, (char*)value->string.bytes, value->string.length);
+        jtk_StringBuilder_appendCodePoint(builder, '"');
+    }
+
+    if (!member) {
+        jtk_StringBuilder_appendCodePoint(builder, '\n');
+    }
+}
+
+uint8_t* jtk_toJson(jtk_JsonValue_t* value, int32_t* size, bool pretty) {
+    jtk_StringBuilder_t* builder = jtk_StringBuilder_new();
+    if (pretty) {
+        toPrettyString(builder, value, 0, false);
+    }
+    else {
+        toString(builder, value);
+    }
+    uint8_t* result = jtk_StringBuilder_toCString(builder, size);
+    jtk_StringBuilder_delete(builder);
+    return result;
 }

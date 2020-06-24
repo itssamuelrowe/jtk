@@ -64,6 +64,22 @@ jtk_JsonValue_t* jtk_JsonValue_forTrue();
 jtk_JsonValue_t* jtk_JsonValue_forFalse();
 
 jtk_JsonValue_t* jtk_parseJson(const uint8_t* sequence, int32_t size, jtk_JsonError_t* error);
-uint8_t* jtk_toJson(jtk_JsonValue_t* value, int32_t* size);
+
+/**
+ * Sometimes you may want to generate JSON instead of parsing it. In such cases,
+ * you can manually create `jtk_JsonValue_t` objects to create your data and
+ * invoke `jtk_toJson()`. It will convert the objects to a JSON string.
+ *
+ * For example, consider in a text editor application you store all the user
+ * preferences in a JSON file. Therefore, you will load that file during application
+ * startup. The preferences will be stored in a `jtk_JsonValue_t`  object. When
+ * your user updates the preferences from your text editor, you need to save it
+ * to the JSON file. Instead of manually constructing a JSON string, you can just
+ * edit the `jtk_JsonValue_t` object you initially loaded. When the user wants
+ * to save the preferences, you simply invoke `jtk_toJson()` and get an equivalent
+ * string for the user's preferences. You can then write that string to the JSON
+ * file.
+ */
+uint8_t* jtk_toJson(jtk_JsonValue_t* value, int32_t* size, bool pretty);
 
 #endif /* JTK_SUPPORT_JSON_H */
