@@ -19,6 +19,8 @@
 #include <jtk/core/Error.h>
 #include <jtk/core/System.h>
 #include <jtk/io/InputStreamHelper.h>
+#include <jtk/collection/array/Arrays.h>
+#include <jtk/collection/array/ByteArray.h>
 
 /*******************************************************************************
  * InputStreamHelper                                                           *

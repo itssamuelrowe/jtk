@@ -17,6 +17,7 @@
 // Tuesday, March 17, 2020
 
 #include <jtk/collection/array/ByteArray.h>
+#include <jtk/collection/array/Arrays.h>
 
 /*******************************************************************************
  * ByteArray                                                                   *

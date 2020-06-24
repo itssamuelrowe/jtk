@@ -56,6 +56,8 @@ set(
     ${PROJECT_SOURCE_DIR}/source/jtk/core/StringBuilder.c
     ${PROJECT_SOURCE_DIR}/source/jtk/core/System.c
 
+    ${PROJECT_SOURCE_DIR}/source/jtk/support/json.c
+
     # Input/Output Module
 
     ${PROJECT_SOURCE_DIR}/source/jtk/io/DataInputStream.c
