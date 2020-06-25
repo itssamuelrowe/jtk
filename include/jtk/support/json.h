@@ -62,6 +62,7 @@ jtk_JsonValue_t* jtk_JsonValue_forString(const uint8_t* text, int32_t length);
 jtk_JsonValue_t* jtk_JsonValue_forNumber(const uint8_t* text, int32_t length);
 jtk_JsonValue_t* jtk_JsonValue_forTrue();
 jtk_JsonValue_t* jtk_JsonValue_forFalse();
+void jtk_JsonValue_delete(jtk_JsonValue_t* value);
 
 jtk_JsonValue_t* jtk_parseJson(const uint8_t* sequence, int32_t size, jtk_JsonError_t* error);
 

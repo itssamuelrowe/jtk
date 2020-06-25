@@ -73,17 +73,6 @@ static char tokenNames[][25] = {
 };
 
 /*******************************************************************************
- * TokenChannel                                                                *
- *******************************************************************************/
-
-enum TokenChannel {
-    TOKEN_CHANNEL_DEFAULT,
-    TOKEN_CHANNEL_HIDDEN,
-};
-
-typedef enum TokenChannel TokenChannel;
-
-/*******************************************************************************
  * Token                                                                       *
  *******************************************************************************/
 
@@ -94,7 +83,6 @@ typedef enum TokenChannel TokenChannel;
  * with it.
  */
 struct Token {
-    TokenChannel channel;
     TokenType type;
     uint8_t* text;
     int32_t length;
@@ -110,7 +98,7 @@ struct Token {
 
 typedef struct Token Token;
 
-Token* newToken(TokenChannel channel, TokenType type,
+Token* newToken(TokenType type,
     const uint8_t* text, int32_t length, int32_t startIndex, int32_t stopIndex,
     int32_t startLine, int32_t stopLine, int32_t startColumn, int32_t stopColumn,
     const char* file);
@@ -179,18 +167,12 @@ struct Parser {
      * Determines whether the lexer has reached the end of
      * the input stream.
      */
-    int32_t hitEndOfStream:1;
+    int32_t hitEOF:1;
 
     /**
      * The token that was most recently emitted.
      */
     Token* token;
-
-    /**
-     * The channel on which the next recognized
-     * token will be created on.
-     */
-    TokenChannel  channel;
 
     /**
      * The text consumed so far to recognize the next
@@ -252,9 +234,8 @@ Parser* newParser(const uint8_t* input, int32_t inputSize) {
     parser->startIndex = 0;
     parser->startLine = 0;
     parser->startColumn = 0;
-    parser->hitEndOfStream = false;
+    parser->hitEOF = false;
     parser->token = NULL;
-    parser->channel = TOKEN_CHANNEL_DEFAULT;
     parser->text = jtk_StringBuilder_new();
     parser->type = TOKEN_UNKNOWN;
 
@@ -270,7 +251,6 @@ Parser* newParser(const uint8_t* input, int32_t inputSize) {
  *******************************************************************************/
 
 Token* newToken(
-    TokenChannel channel,
     TokenType type,
     const uint8_t* text,
     int32_t length,
@@ -282,7 +262,6 @@ Token* newToken(
     int32_t stopColumn,
     const char* file) {
     Token* token = allocate(Token, 1);
-    token->channel = channel;
     token->type = type;
     token->text = jtk_CString_newEx(text, length);
     token->length = length; // This is the length of the text representation!
@@ -346,7 +325,6 @@ Token* createToken(Parser* parser) {
 
     Token* token =
         newToken(
-            parser->channel,
             parser->type,
             text,
             length,
@@ -415,14 +393,13 @@ Token* nextToken(Parser* parser) {
         parser->token = NULL;
         parser->type = TOKEN_UNKNOWN;
         jtk_StringBuilder_clear(parser->text);
-        parser->channel = TOKEN_CHANNEL_DEFAULT;
         parser->startIndex = parser->index;
         parser->startLine = parser->line;
         parser->startColumn = parser->column;
 
         if (parser->index == parser->inputSize) {
             parser->type = TOKEN_EOF;
-            parser->hitEndOfStream = true;
+            parser->hitEOF = true;
         }
         else {
 
@@ -641,6 +618,7 @@ Token* nextToken(Parser* parser) {
     return newToken;
 }
 
+// TODO: Recycle the token object and delete it along with the parser.
 Token* consume(Parser* parser) {
     Token* temporary = parser->lt1;
     parser->lt1 = nextToken(parser);
@@ -688,9 +666,10 @@ jtk_JsonValue_t* parseObject(Parser* parser) {
 
     if (parser->lt1->type == TOKEN_STRING) {
         Token* key = consume(parser);
+        uint8_t* keyText = jtk_CString_newEx(key->text, key->length);
         match(parser, TOKEN_COLON);
         jtk_JsonValue_t* value = parseValue(parser);
-        jtk_HashMap_put(result->object, key->text, value);
+        jtk_HashMap_put(result->object, keyText, value);
 
         while (parser->lt1->type == TOKEN_COMMA) {
             consume(parser);
@@ -825,6 +804,36 @@ jtk_JsonValue_t* jtk_JsonValue_forTrue() {
     return value;
 }
 
+void jtk_JsonValue_delete(jtk_JsonValue_t* value) {
+    if (value != NULL) {
+        if (value->type == JTK_JSON_VALUE_STRING) {
+            jtk_CString_delete(value->string.bytes);
+        }
+        else if (value->type == JTK_JSON_VALUE_ARRAY) {
+            int32_t limit = jtk_ArrayList_getSize(value->array);
+            int32_t i;
+            for (i = 0; i < limit; i++) {
+                jtk_JsonValue_t* temporary =
+                    (jtk_JsonValue_t*)jtk_ArrayList_getValue(value->array, i);
+                jtk_JsonValue_delete(temporary);
+            }
+            jtk_ArrayList_delete(value->array);
+        }
+        else if (value->type == JTK_JSON_VALUE_OBJECT) {
+            jtk_Iterator_t* iterator = jtk_HashMap_getEntryIterator(value->object);
+            while (jtk_Iterator_hasNext(iterator)) {
+                jtk_HashMapEntry_t* entry =
+                    (jtk_HashMapEntry_t*)jtk_Iterator_getNext(iterator);
+                jtk_CString_delete((uint8_t*)entry->m_key);
+                jtk_JsonValue_delete((jtk_JsonValue_t*)entry->m_value);
+            }
+            jtk_Iterator_delete(iterator);
+            jtk_HashMap_delete(value->object);
+        }
+        deallocate(value);
+    }
+}
+
 void handleError() {
     printf("Errro!\n");
 }
@@ -852,6 +861,7 @@ void toString(jtk_StringBuilder_t* builder, jtk_JsonValue_t* value) {
 
             first = false;
         }
+        jtk_Iterator_delete(iterator);
         jtk_StringBuilder_appendCodePoint(builder, '}');
     }
     else if (value->type == JTK_JSON_VALUE_ARRAY) {
@@ -896,6 +906,7 @@ void toPrettyString(jtk_StringBuilder_t* builder, jtk_JsonValue_t* value,
 
             first = false;
         }
+        jtk_Iterator_delete(iterator);
         jtk_StringBuilder_appendCodePoint(builder, '\n');
         indent(builder, depth);
         jtk_StringBuilder_appendCodePoint(builder, '}');
