@@ -1,0 +1,10 @@
+[
+    {
+        "text": "Ensure that the list is not empty.",
+        "id": "testNotEmpty",
+        "setUp": "setUpList",
+        "destroy": "destroy",
+        "pending": true,
+        "tags": [ "checker", "coder" ]
+    }
+]

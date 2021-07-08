@@ -112,6 +112,6 @@ void jtk_ArrayListTest_testAdd(jtk_TestCase_t* testCase, jtk_ArrayListBundle_t* 
     for (i = 0; i < k; i++) {
         jtk_TestCase_assertEquals_i(testCase, i, (intptr_t)jtk_ArrayList_getValue(bundle->m_list, i));
     }
-    
+
     printf("Size: %d, Capacity: %d\n", jtk_ArrayList_getSize(bundle->m_list), jtk_ArrayList_getCapacity(bundle->m_list));
 }
